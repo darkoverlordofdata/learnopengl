@@ -1,0 +1,45 @@
+{
+  "name": "emtest",
+  "template": "default",
+  "version": "0.0.1",
+  "vala": "0.26",
+  "authors": [],
+  "description": "emtest",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "zerog": "git://github.com/darkoverlordofdata/doran-zerog",
+    "system": "git://github.com/darkoverlordofdata/doran-system"
+  },
+  "source": "src",
+  "files": [
+    "src/Game.vala",
+    "src/glad.c",
+    "src/Shader.vala",
+    "src/stb.c",
+    "src/Image.vala",
+    "src/vapis/cglm.vapi",
+    "src/vapis/glfw3.vapi",
+    "src/vapis/gl.vapi",
+    "src/vapis/stb.vapi",
+    "src/vapis/emscripten.vapi"
+  ],
+  "packages": [],
+  "includes": [
+    "./include"
+  ],
+  "libraries": [
+    "glfw3"
+  ],
+  "options": {
+    "VERSION": "0.0.1",
+    "RELEASE_NAME": "emtest"
+  },
+  "definitions": [],
+  "symbols": [
+    "__EMSCRIPTEN__"
+  ],
+  "copy": null,
+  "vapidir": "/src/vapis",
+  "console": false
+}
