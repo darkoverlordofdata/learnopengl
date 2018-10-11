@@ -7,8 +7,10 @@ Vala + OpenGL 3.00 es (Compatability Profile at https://glad.dav1d.de/)
 
 ## dependencies
 
-glfw3 for window and eventing.
-emscripten - optional (requires zerog)
+uses [doran package manager](https://github.com/darkoverlordofdata/doran.git)
+
+glfw3 for window and event handling.
+emscripten - optional 
 uses glad loader for desktop, gles handle loading in emscripten.
 stbi for image loading.
 cglm headers for matrix math.
@@ -19,7 +21,7 @@ The build is not integrated into cmake, so...
 
 When __EMSCRIPTEM__ is set, you will get this error from cmake:
 
-    [build] C:/Users/darko/Documents/GitHub/emtest/build/src/Game.c:13:10: fatal error: 'emscripten/emscripten.h' file not found
+    [build] C:/Users/darko/Documents/GitHub/learnopengl/build/src/Game.c:13:10: fatal error: 'emscripten/emscripten.h' file not found
     [build] #include "emscripten/emscripten.h"
     [build]          ^~~~~~~~~~~~~~~~~~~~~~~~~
     [build] 1 error generated.

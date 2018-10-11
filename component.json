@@ -13,16 +13,17 @@
   },
   "source": "src",
   "files": [
-    "src/Game.vala",
+    "src/Camera.vala",
     "src/glad.c",
+    "src/Image.vala",
+    "src/Game.vala",
     "src/Shader.vala",
     "src/stb.c",
-    "src/Image.vala",
     "src/vapis/cglm.vapi",
+    "src/vapis/emscripten.vapi",
     "src/vapis/glfw3.vapi",
     "src/vapis/gl.vapi",
-    "src/vapis/stb.vapi",
-    "src/vapis/emscripten.vapi"
+    "src/vapis/stb.vapi"
   ],
   "packages": [],
   "includes": [

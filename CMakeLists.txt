@@ -41,9 +41,10 @@ file (RELATIVE_PATH CONFIG_VALA ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR}/src/Conf
 #   application source
 #
 list ( APPEND VALA_SOURCES ${CONFIG_VALA} )
+list ( APPEND VALA_SOURCES src/Camera.vala )
+list ( APPEND VALA_SOURCES src/Image.vala )
 list ( APPEND VALA_SOURCES src/Game.vala )
 list ( APPEND VALA_SOURCES src/Shader.vala )
-list ( APPEND VALA_SOURCES src/Image.vala )
 list ( APPEND C_SOURCES src/glad.c )
 list ( APPEND C_SOURCES src/stb.c )
 #
@@ -69,10 +70,10 @@ list ( APPEND VALAC_OPTIONS --vapidir=${CMAKE_SOURCE_DIR}/src/vapis)
 
 # Vapis: 
 set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/cglm.vapi" )
+set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/emscripten.vapi" )
 set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/glfw3.vapi" )
 set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/gl.vapi" )
 set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/stb.vapi" )
-set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/emscripten.vapi" )
 # Libs: 
 set ( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lglfw3" )
 
