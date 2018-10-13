@@ -1,5 +1,6 @@
 using GL;
 using GLFW;
+using glm;
 using System;
 #if (__EMSCRIPTEN__)
 using Emscripten;
@@ -27,7 +28,8 @@ using Emscripten;
     public const float ZOOM        =  45f;
 
     // Camera Attributes
-    float[] Position;
+    // float[] Position;
+    float* Position;
     float[] Front;
     float[] Up;
     float[] Right;
@@ -58,50 +60,39 @@ using Emscripten;
         updateCameraVectors();
     }        
 
-    public float* GetViewMatrix()
+    public float[,] GetViewMatrix()
     {
-        var view = glm.Mat4.Create();
-        var pf = glm.Vec3.Create();
-        glm.Vec3.Add(Position, Front, pf);
-        glm.LookAt(Position, pf, Up, view);
-        return (float*)view;
+        return LookAt(Position, Vec3.Add(Position, Front), Up);
     }
-
 
     // Processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
     public void ProcessKeyboard(CameraMovement direction, float deltaTime)
     {
         float velocity = MovementSpeed * deltaTime;
-        if (direction == CameraMovement.FORWARD)
+        switch (direction)
         {
-            // Position += Front * velocity;
-            var p1 = glm.Vec3.Create();
-            glm.Vec3.Scale(Front, velocity, p1);
-            glm.Vec3.Add(Position, p1, Position);
-        }
-        if (direction == CameraMovement.BACKWARD)
-        {
-            // Position -= Front * velocity;
-            var p1 = glm.Vec3.Create();
-            glm.Vec3.Scale(Front, velocity, p1);
-            glm.Vec3.Sub(Position, p1, Position);
+            case CameraMovement.FORWARD:
+                Position = Vec3.Add(Position, Vec3.Scale(Front, velocity));
+                break;
+
+            case CameraMovement.BACKWARD:
+                Position = Vec3.Sub(Position, Vec3.Scale(Front, velocity));
+                break;
+
+            case CameraMovement.LEFT:
+                Position = Vec3.Sub(Position, Vec3.Scale(Right, velocity));
+                break;
+
+            case CameraMovement.RIGHT:
+                Position = Vec3.Add(Position, Vec3.Scale(Right, velocity));
+                break;
+
+            default:
+                assert_not_reached();
 
         }
-        if (direction == CameraMovement.LEFT)
-        {
-            // Position -= Right * velocity;
-            var p1 = glm.Vec3.Create();
-            glm.Vec3.Scale(Right, velocity, p1);
-            glm.Vec3.Sub(Position, p1, Position);
-        }
-        if (direction == CameraMovement.RIGHT)
-        {
-            // Position += Right * velocity;
-            var p1 = glm.Vec3.Create();
-            glm.Vec3.Scale(Right, velocity, p1);
-            glm.Vec3.Add(Position, p1, Position);
-        }
     }
+
 
     // Processes input received from a mouse input system. Expects the offset value in both the x and y direction.
     public void ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = GL_TRUE)
@@ -141,18 +132,13 @@ using Emscripten;
     {
         // Calculate the new Front vector
         float[] front = {
-            Math.cosf(glm.Rad(Yaw)) * Math.cosf(glm.Rad(Pitch)),
-            Math.sinf(glm.Rad(Pitch)),
-            Math.sinf(glm.Rad(Yaw)) * Math.cosf(glm.Rad(Pitch))
+            Math.cosf(Rad(Yaw)) * Math.cosf(Rad(Pitch)),
+            Math.sinf(Rad(Pitch)),
+            Math.sinf(Rad(Yaw)) * Math.cosf(Rad(Pitch))
         };
-        glm.NormalizeTo(front, Front);
+        Front = Normalize(front);
         // Also re-calculate the Right and Up vector
-        var right = glm.Vec3.Create();
-        var up = glm.Vec3.Create();
-
-        glm.Cross(Front, WorldUp, right);
-        glm.NormalizeTo(right, Right);  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
-        glm.Cross(Right, Front, up);
-        glm.NormalizeTo(up, Up);
+        Right = Normalize(Cross(Front, WorldUp));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
+        Up    = Normalize(Cross(Right, Front));
     }
 }

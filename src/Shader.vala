@@ -126,7 +126,7 @@ public class Shader : Object
         glUniformMatrix3fv(glGetUniformLocation(id, name), 1, GL_FALSE, mat);
     }
     // ------------------------------------------------------------------------
-    public void SetMat4(string name, float* mat) 
+    public void SetMat4(string name, void* mat) 
     {
         glUniformMatrix4fv(glGetUniformLocation(id, name), 1, GL_FALSE, mat);
     }

@@ -6,8 +6,9 @@ using glm;
 static int main (string[] args) 
 {
     return new Game().Run();
+    print("Hello");
+    return 1;
 }
-
 public class Game : Object
 {
     const int FPS = 60;
@@ -22,7 +23,7 @@ public class Game : Object
     GLFWwindow* window;
     Shader ourShader;
     Image img;
-    float[,] projection;
+    Mat4 projection;
 
     public Game()
     {
@@ -33,7 +34,24 @@ public class Game : Object
     {
         print("Compiled with Vala %s\n", Constants.VALA_VERSION);
         print("Starting GLFW context, OpenGL 3.0\n");
-        
+
+        var z = new Mat4();
+
+        z.Print();
+        print("z.data.length = %d\n", z.data.length);
+
+        // print("test = %f\n", z.data[1][1]);
+
+        for (int ii = 0; ii < z.data.length; ii++)
+        {
+            print("%f %f %f %f\n",  z.data[ii][0], 
+                                    z.data[ii][1], 
+                                    z.data[ii][2], 
+                                    z.data[ii][3]);
+        }
+
+        return 0;
+
         glfwInit();
         #if (__EMSCRIPTEN__)
         glfwWindowHint(GLFW_VERSION_MAJOR, 3);
@@ -164,15 +182,16 @@ public class Game : Object
         glGenerateMipmap(GL_TEXTURE_2D);
 
         // note: since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
-        projection = Mat4.IDENTITY;
-        Perspective(Rad(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f, projection);
+        projection = new Mat4();
+        glm_perspective(glm_rad(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f, projection);
         
         // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
         // -------------------------------------------------------------------------------------------
         ourShader.Use(); 
         ourShader.SetInt("texture1", 0);
         ourShader.SetInt("texture2", 1);
-        ourShader.SetMat4("projection", &projection[0,0]);
+        ourShader.SetMat4("projection", projection);
+        // ourShader.SetMat4("projection", &projection[0,0]);
         
 
 
@@ -187,6 +206,7 @@ public class Game : Object
         glDeleteBuffers(1, &VBO);
 
         glfwTerminate();
+        // projection.Dispose();
 
 #endif
         return 0;
@@ -210,16 +230,15 @@ public class Game : Object
         // activate ourShader
         ourShader.Use();
 
-        // create transformations
-        var model = Mat4.IDENTITY;
-        var view = Mat4.IDENTITY;
+        var model = new Mat4();
+        var view = new Mat4();
 
-        Rotate(model, (float)glfwGetTime(), { 0.5f, 1.0f, 0.0f });
-        Translate(view, { 0.0f, 0.0f, -3.0f });
+        glm_rotatef(model, (float)glfwGetTime(), { 0.5f, 1.0f, 0.0f });
+        glm_translatef(view, { 0.0f, 0.0f, -3.0f });
 
         // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
-        ourShader.SetMat4("model", &model[0,0]);
-        ourShader.SetMat4("view", &view[0,0]);
+        ourShader.SetMat4("model", model);
+        ourShader.SetMat4("view", view);
 
         glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
         glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -230,7 +249,6 @@ public class Game : Object
         glfwWaitEventsTimeout(FRAME_RATE);
 #endif
     }
-
 
     public void ProcessInput(GLFWwindow* window)
     {

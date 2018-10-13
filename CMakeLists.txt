@@ -41,10 +41,11 @@ file (RELATIVE_PATH CONFIG_VALA ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR}/src/Conf
 #   application source
 #
 list ( APPEND VALA_SOURCES ${CONFIG_VALA} )
-list ( APPEND VALA_SOURCES src/Camera.vala )
+# list ( APPEND VALA_SOURCES src/Camera.vala )
 list ( APPEND VALA_SOURCES src/Image.vala )
 list ( APPEND VALA_SOURCES src/Game.vala )
 list ( APPEND VALA_SOURCES src/Shader.vala )
+list ( APPEND C_SOURCES src/glm.c )
 list ( APPEND C_SOURCES src/glad.c )
 list ( APPEND C_SOURCES src/stb.c )
 #
