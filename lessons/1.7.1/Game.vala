@@ -25,19 +25,9 @@ public class Game : Object
     Mat4 projection;
     Mat4 model;
     Mat4 view;
-    Vec3 eye;
-    Vec3 axis = new Vec3(1.0f, 0.3f, 0.5f);
+    Vec3 axis = new Vec3(0.5f, 1.0f, 0.0f);
     Vec3 pivot = new Vec3(0.0f, 0.0f, -3.0f);
-    Vec3 center = new Vec3(0.0f, 0.0f, 0.0f);
-    Vec3 up = new Vec3(0.0f, 1.0f, 0.0f);
-    Vec3 cameraPos   = new Vec3(0.0f, 0.0f,  3.0f);
-    Vec3 cameraFront = new Vec3(0.0f, 0.0f, -1.0f);
-    Vec3 cameraUp    = new Vec3(0.0f, 1.0f,  0.0f);
     Vec3[] cubePositions;
-
-    // timing
-    float deltaTime = 0.0f;	// time between current frame and last frame
-    float lastFrame = 0.0f;
 
     public Game()
     {
@@ -83,7 +73,7 @@ public class Game : Object
 
         glEnable(GL_DEPTH_TEST);
 
-        ourShader = new Shader().Load("7.2.camera.vs", "7.2.camera.fs");
+        ourShader = new Shader().Load("7.1.camera.vs", "7.1.camera.fs");
 
         float vertices[] = 
         {
@@ -220,20 +210,10 @@ public class Game : Object
 
     public void Update()
     {
-        // per-frame time logic
-        // --------------------
-        float currentFrame = (float)glfwGetTime();
-        deltaTime = currentFrame - lastFrame;
-        lastFrame = currentFrame;
-
-        // input
-        // -----
         ProcessInput(window);
         if (glfwWindowShouldClose(window) == GL_TRUE) 
             return;
             
-        // render
-        // ------
         glClearColor(0.2f, 0.3f, 0.3f, 1f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -246,16 +226,20 @@ public class Game : Object
         // activate ourShader
         ourShader.Use();
         //========================================================
-
-        // camera/view transformation
+        float radius = 10.0f;
+        float camX   = Math.sinf((float)glfwGetTime()) * radius;
+        float camZ   = Math.cosf((float)glfwGetTime()) * radius;
+        var eye = new Vec3(camX, 0.0f, camZ);
+        var center = new Vec3(0.0f, 0.0f, 0.0f);
+        var up = new Vec3(0.0f, 1.0f, 0.0f);
         glm_mat4_identity(view);
-        glm_vec_add(cameraPos, cameraFront, center);
-        glm_lookat(cameraPos, center, cameraUp, view);
+        glm_lookat(eye, center, up, view);
         ourShader.SetMat4("view", view);
 
+        axis = new Vec3(1.0f, 0.3f, 0.5f);
         // render boxes
         glBindVertexArray(VAO);
-        for (int i = 0; i < 10; i++)
+        for (uint i = 0; i < 10; i++)
         {
             // calculate the model matrix for each object and pass it to shader before drawing
             glm_mat4_identity(model);
@@ -263,12 +247,9 @@ public class Game : Object
             float angle = 20.0f * i;
             glm_rotate(model, glm_rad(angle), axis);
             ourShader.SetMat4("model", model);
-
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
-        //========================================================
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
+
         glfwSwapBuffers(window);
         glfwPollEvents();
 #if (!__EMSCRIPTEN__) 
@@ -278,43 +259,11 @@ public class Game : Object
 
     public void ProcessInput(GLFWwindow* window)
     {
-        var scaled = new Vec3();
-        var cross = new Vec3();
-
         if (glfwGetKey(window, Key.ESCAPE) == ButtonState.PRESS)
         {
             glfwSetWindowShouldClose(window, GL_TRUE);
         }
-
-        float cameraSpeed = 2.5f * deltaTime; 
-        if (glfwGetKey(window, Key.W) == ButtonState.PRESS)
-        {
-            glm_vec_scale(cameraFront, cameraSpeed, scaled);
-            glm_vec_add(cameraPos, scaled, cameraPos);
-            // cameraPos += cameraSpeed * cameraFront;
-        }
-        if (glfwGetKey(window, Key.S) == ButtonState.PRESS)
-        {
-            glm_vec_scale(cameraFront, cameraSpeed, scaled);
-            glm_vec_sub(cameraPos, scaled, cameraPos);
-            // cameraPos -= cameraSpeed * cameraFront;
-        }
-        if (glfwGetKey(window, Key.A) == ButtonState.PRESS)
-        {
-            glm_cross(cameraFront, cameraUp, cross);
-            glm_normalize(cross);
-            glm_vec_scale(cross, cameraSpeed, cross);
-            glm_vec_sub(cameraPos, cross, cameraPos);
-            // cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-        }
-        if (glfwGetKey(window, Key.D) == ButtonState.PRESS)
-        {
-            glm_cross(cameraFront, cameraUp, cross);
-            glm_normalize(cross);
-            glm_vec_scale(cross, cameraSpeed, cross);
-            glm_vec_add(cameraPos, cross, cameraPos);
-            // cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-        }
     }
+
 }
 

@@ -1,6 +1,6 @@
 using GL;
 using GLFW;
-using cglm;
+using glm;
 using System;
 #if (__EMSCRIPTEN__)
 using Emscripten;
@@ -45,9 +45,6 @@ public struct Vector3
     Vec3 Up;
     Vec3 Right;
     Vec3 WorldUp;
-    Vec3 scaled = new Vec3();
-    Vec3 front = new Vec3();
-    Vec3 cross = new Vec3();
     // Euler Angles
     float Yaw;
     float Pitch;
@@ -68,14 +65,15 @@ public struct Vector3
         MouseSensitivity = SENSITIVITY;
         Zoom = ZOOM;
         Position = new Vec3();
-        glm_vec_copyf(position, Position);
+        glm_vec_copy(position, &Position);
         // Position = position;
         WorldUp = new Vec3();
-        glm_vec_copyf(up, WorldUp);
+        glm_vec_copy(up, &WorldUp);
         // WorldUp = up;
         Yaw = yaw;
         Pitch = pitch;
         updateCameraVectors();
+        var test = new Vector3();
 
     }        
 
@@ -95,12 +93,15 @@ public struct Vector3
     public void ProcessKeyboard(Movement direction, float deltaTime)
     {
         float velocity = MovementSpeed * deltaTime;
+        var scaled = new Vec3();
         switch (direction)
         {
             case Movement.FORWARD:
                 // Position += Front * velocity;
-                glm_vec_scale(Front, velocity, scaled);
-                glm_vec_add(Position, scaled, Position);
+                // glm_vec_scale(Front, velocity, scaled);
+                // glm_vec_add(Position, scaled, Position);
+
+                Position = Position.Add(Front.Scale(velocity));
                 break;
 
             case Movement.BACKWARD:
@@ -165,12 +166,19 @@ public struct Vector3
     void updateCameraVectors()
     {
         // Calculate the new Front vector
+        // float[] front = {
+        //     Math.cosf(glm_rad(Yaw)) * Math.cosf(glm_rad(Pitch)),
+        //     Math.sinf(glm_rad(Pitch)),
+        //     Math.sinf(glm_rad(Yaw)) * Math.cosf(glm_rad(Pitch))
+        // };
+        var front = new Vec3();
         front.x = Math.cosf(glm_rad(Yaw)) * Math.cosf(glm_rad(Pitch));
         front.y = Math.sinf(glm_rad(Pitch));
         front.z = Math.sinf(glm_rad(Yaw)) * Math.cosf(glm_rad(Pitch));
 
         glm_normalize_to(front, Front);
         // Also re-calculate the Right and Up vector
+        var cross = new Vec3();
 
         glm_cross(Front, WorldUp, cross);
         glm_normalize_to(cross, Right);

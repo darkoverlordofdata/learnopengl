@@ -1405,7 +1405,7 @@ function _g_value_object_init($0) {
 }
 function _g_value_object_free_value($0) {
  $0 = $0|0;
- var $$lcssa$i = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
+ var $$lcssa$i = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
  sp = STACKTOP;
  $1 = ((($0)) + 8|0);
  $2 = HEAP32[$1>>2]|0;
@@ -1445,6 +1445,10 @@ function _g_value_object_free_value($0) {
  if (!($13)) {
   return;
  }
+ $14 = HEAP32[$2>>2]|0;
+ $15 = ((($14)) + 36|0);
+ $16 = HEAP32[$15>>2]|0;
+ ftCall_vi($16|0,$2);
  _g_type_free_instance($2);
  return;
 }
@@ -1620,7 +1624,7 @@ function _g_object_do_set_property($0,$1,$2,$3) {
  $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
  HEAP32[$vararg_ptr1>>2] = 1099;
  $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
- HEAP32[$vararg_ptr2>>2] = 140993;
+ HEAP32[$vararg_ptr2>>2] = 140605;
  $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
  HEAP32[$vararg_ptr3>>2] = $1;
  $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -1629,7 +1633,7 @@ function _g_object_do_set_property($0,$1,$2,$3) {
  HEAP32[$vararg_ptr5>>2] = $8;
  $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
  HEAP32[$vararg_ptr6>>2] = $11;
- _g_log(0,16,140939,$vararg_buffer);
+ _g_log(0,16,140532,$vararg_buffer);
  STACKTOP = sp;return;
 }
 function _g_object_do_get_property($0,$1,$2,$3) {
@@ -1653,7 +1657,7 @@ function _g_object_do_get_property($0,$1,$2,$3) {
  $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
  HEAP32[$vararg_ptr1>>2] = 1113;
  $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
- HEAP32[$vararg_ptr2>>2] = 140993;
+ HEAP32[$vararg_ptr2>>2] = 140605;
  $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
  HEAP32[$vararg_ptr3>>2] = $1;
  $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -1662,7 +1666,7 @@ function _g_object_do_get_property($0,$1,$2,$3) {
  HEAP32[$vararg_ptr5>>2] = $8;
  $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
  HEAP32[$vararg_ptr6>>2] = $11;
- _g_log(0,16,140939,$vararg_buffer);
+ _g_log(0,16,140532,$vararg_buffer);
  STACKTOP = sp;return;
 }
 function _g_object_real_dispose($0) {
@@ -2097,7 +2101,7 @@ function _g_object_ref($0) {
 }
 function _g_object_unref($0) {
  $0 = $0|0;
- var $$lcssa = 0, $1 = 0, $10 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
+ var $$lcssa = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
  sp = STACKTOP;
  $1 = ((($0)) + 4|0);
  (_g_atomic_int_get($1)|0);
@@ -2131,6 +2135,10 @@ function _g_object_unref($0) {
  if (!($10)) {
   return;
  }
+ $11 = HEAP32[$0>>2]|0;
+ $12 = ((($11)) + 36|0);
+ $13 = HEAP32[$12>>2]|0;
+ ftCall_vi($13|0,$0);
  _g_type_free_instance($0);
  return;
 }
@@ -2590,7 +2598,7 @@ function _object_floating_flag_handler($0,$1) {
 }
 function _g_object_ref_sink($0) {
  $0 = $0|0;
- var $$lcssa$i = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
+ var $$lcssa$i = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
  sp = STACKTOP;
  $1 = ((($0)) + 4|0);
  (_g_atomic_int_add($1,1)|0);
@@ -2630,13 +2638,17 @@ function _g_object_ref_sink($0) {
  if (!($12)) {
   return ($0|0);
  }
+ $13 = HEAP32[$0>>2]|0;
+ $14 = ((($13)) + 36|0);
+ $15 = HEAP32[$14>>2]|0;
+ ftCall_vi($15|0,$0);
  _g_type_free_instance($0);
  return ($0|0);
 }
 function _g_value_take_object($0,$1) {
  $0 = $0|0;
  $1 = $1|0;
- var $$lcssa$i = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
+ var $$lcssa$i = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
  sp = STACKTOP;
  $2 = ((($0)) + 8|0);
  $3 = HEAP32[$2>>2]|0;
@@ -2674,13 +2686,17 @@ function _g_value_take_object($0,$1) {
   if ((label|0) == 6) {
    $14 = ($$lcssa$i|0)==(1);
    if ($14) {
+    $15 = HEAP32[$3>>2]|0;
+    $16 = ((($15)) + 36|0);
+    $17 = HEAP32[$16>>2]|0;
+    ftCall_vi($17|0,$3);
     _g_type_free_instance($3);
    }
   }
   HEAP32[$2>>2] = 0;
  }
- $15 = ($1|0)==(0|0);
- if ($15) {
+ $18 = ($1|0)==(0|0);
+ if ($18) {
   return;
  }
  HEAP32[$2>>2] = $1;
@@ -22828,7 +22844,7 @@ function _system_io_buffered_reader_construct($0,$1,$2,$3) {
   HEAP32[$vararg_ptr3>>2] = $27;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $29;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($4);
   $$1 = 0;
   STACKTOP = sp;return ($$1|0);
@@ -23021,7 +23037,7 @@ function _system_io_buffered_reader_real_ReadOne($0,$1) {
   HEAP32[$vararg_ptr3>>2] = $42;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $44;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($2);
   $$4 = 0;
   STACKTOP = sp;return ($$4|0);
@@ -23200,7 +23216,7 @@ function _system_io_buffered_reader_real_Read($0,$1,$2,$3,$4,$5) {
   HEAP32[$vararg_ptr16>>2] = $51;
   $vararg_ptr17 = ((($vararg_buffer11)) + 16|0);
   HEAP32[$vararg_ptr17>>2] = $53;
-  _g_log(0,8,140862,$vararg_buffer11);
+  _g_log(0,8,140900,$vararg_buffer11);
   _g_clear_error($6);
   $$2 = 0;
   STACKTOP = sp;return ($$2|0);
@@ -23250,7 +23266,7 @@ function _system_io_buffered_reader_real_Skip($0,$1,$2) {
    HEAP32[$vararg_ptr3>>2] = $13;
    $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
    HEAP32[$vararg_ptr4>>2] = $15;
-   _g_log(0,8,140862,$vararg_buffer);
+   _g_log(0,8,140900,$vararg_buffer);
    _g_clear_error($3);
    $$3 = 0;
    STACKTOP = sp;return ($$3|0);
@@ -23393,7 +23409,7 @@ function _system_io_buffered_reader_real_Skip($0,$1,$2) {
   HEAP32[$vararg_ptr10>>2] = $55;
   $vararg_ptr11 = ((($vararg_buffer5)) + 16|0);
   HEAP32[$vararg_ptr11>>2] = $57;
-  _g_log(0,8,140862,$vararg_buffer5);
+  _g_log(0,8,140900,$vararg_buffer5);
   _g_clear_error($3);
   $$3 = 0;
   STACKTOP = sp;return ($$3|0);
@@ -23518,7 +23534,7 @@ function _system_io_buffered_reader_real_Ready($0,$1) {
   HEAP32[$vararg_ptr3>>2] = $47;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $49;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($2);
   $$1 = 0;
   STACKTOP = sp;return ($$1|0);
@@ -23571,7 +23587,7 @@ function _system_io_buffered_reader_real_Mark($0,$1,$2) {
    HEAP32[$vararg_ptr3>>2] = $13;
    $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
    HEAP32[$vararg_ptr4>>2] = $15;
-   _g_log(0,8,140862,$vararg_buffer);
+   _g_log(0,8,140900,$vararg_buffer);
    _g_clear_error($3);
    STACKTOP = sp;return;
   }
@@ -23623,7 +23639,7 @@ function _system_io_buffered_reader_real_Mark($0,$1,$2) {
   HEAP32[$vararg_ptr10>>2] = $36;
   $vararg_ptr11 = ((($vararg_buffer5)) + 16|0);
   HEAP32[$vararg_ptr11>>2] = $38;
-  _g_log(0,8,140862,$vararg_buffer5);
+  _g_log(0,8,140900,$vararg_buffer5);
   _g_clear_error($3);
   STACKTOP = sp;return;
  }
@@ -23696,7 +23712,7 @@ function _system_io_buffered_reader_real_Reset($0,$1) {
   HEAP32[$vararg_ptr3>>2] = $26;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $28;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($2);
   STACKTOP = sp;return;
  }
@@ -23769,7 +23785,7 @@ function _system_io_buffered_reader_real_Close($0,$1) {
   HEAP32[$vararg_ptr3>>2] = $27;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $29;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($2);
   STACKTOP = sp;return;
  }
@@ -23867,7 +23883,7 @@ function _system_io_buffered_reader_EnsureOpen($$0$1$val$0$0$val,$0) {
   HEAP32[$vararg_ptr3>>2] = $11;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $13;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($1);
   STACKTOP = sp;return;
  }
@@ -24028,7 +24044,7 @@ function _system_io_buffered_reader_Fill($0,$1) {
   HEAP32[$vararg_ptr3>>2] = $69;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $71;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($2);
   STACKTOP = sp;return;
  }
@@ -24108,7 +24124,7 @@ function _system_io_buffered_reader_Read1($0,$1,$2,$3,$4,$5) {
        HEAP32[$vararg_ptr3>>2] = $34;
        $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
        HEAP32[$vararg_ptr4>>2] = $36;
-       _g_log(0,8,140862,$vararg_buffer);
+       _g_log(0,8,140900,$vararg_buffer);
        _g_clear_error($6);
        $$6 = 0;
        STACKTOP = sp;return ($$6|0);
@@ -24152,7 +24168,7 @@ function _system_io_buffered_reader_Read1($0,$1,$2,$3,$4,$5) {
     HEAP32[$vararg_ptr10>>2] = $46;
     $vararg_ptr11 = ((($vararg_buffer5)) + 16|0);
     HEAP32[$vararg_ptr11>>2] = $48;
-    _g_log(0,8,140862,$vararg_buffer5);
+    _g_log(0,8,140900,$vararg_buffer5);
     _g_clear_error($6);
     $$6 = 0;
     STACKTOP = sp;return ($$6|0);
@@ -24220,7 +24236,7 @@ function _system_io_buffered_reader_Read1($0,$1,$2,$3,$4,$5) {
       HEAP32[$vararg_ptr17>>2] = $72;
       $vararg_ptr18 = ((($vararg_buffer12)) + 16|0);
       HEAP32[$vararg_ptr18>>2] = $74;
-      _g_log(0,8,140862,$vararg_buffer12);
+      _g_log(0,8,140900,$vararg_buffer12);
       _g_clear_error($6);
       $$6 = 0;
       STACKTOP = sp;return ($$6|0);
@@ -24494,7 +24510,7 @@ function _system_io_buffered_reader_ReadLine($0,$1,$2) {
   HEAP32[$vararg_ptr3>>2] = $81;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $83;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($3);
   $$4 = 0;
   STACKTOP = sp;return ($$4|0);
@@ -25418,7 +25434,7 @@ function _system_io_emscripten_file_system_real_ResolveFile($0,$1) {
   HEAP32[$vararg_ptr55>>2] = $104;
   $vararg_ptr56 = ((($vararg_buffer50)) + 16|0);
   HEAP32[$vararg_ptr56>>2] = $106;
-  _g_log(0,8,140862,$vararg_buffer50);
+  _g_log(0,8,140900,$vararg_buffer50);
   _g_clear_error($3);
   $$2 = 0;
   STACKTOP = sp;return ($$2|0);
@@ -26561,7 +26577,7 @@ function _system_io_file_construct($0,$1,$2) {
   HEAP32[$vararg_ptr3>>2] = $12;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $14;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($3);
   $$0 = 0;
   STACKTOP = sp;return ($$0|0);
@@ -27074,7 +27090,7 @@ function _system_io_file_input_stream_construct_FromFile($0,$1,$2) {
    HEAP32[$vararg_ptr3>>2] = $27;
    $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
    HEAP32[$vararg_ptr4>>2] = $29;
-   _g_log(0,8,140862,$vararg_buffer);
+   _g_log(0,8,140900,$vararg_buffer);
    _g_clear_error($3);
    $$3 = 0;
    STACKTOP = sp;return ($$3|0);
@@ -27114,7 +27130,7 @@ function _system_io_file_input_stream_construct_FromFile($0,$1,$2) {
    HEAP32[$vararg_ptr10>>2] = $40;
    $vararg_ptr11 = ((($vararg_buffer5)) + 16|0);
    HEAP32[$vararg_ptr11>>2] = $42;
-   _g_log(0,8,140862,$vararg_buffer5);
+   _g_log(0,8,140900,$vararg_buffer5);
    _g_clear_error($3);
    $$3 = 0;
    STACKTOP = sp;return ($$3|0);
@@ -27171,7 +27187,7 @@ function _system_io_file_input_stream_construct_FromFile($0,$1,$2) {
   HEAP32[$vararg_ptr17>>2] = $57;
   $vararg_ptr18 = ((($vararg_buffer12)) + 16|0);
   HEAP32[$vararg_ptr18>>2] = $59;
-  _g_log(0,8,140862,$vararg_buffer12);
+  _g_log(0,8,140900,$vararg_buffer12);
   _g_clear_error($3);
   $$3 = 0;
   STACKTOP = sp;return ($$3|0);
@@ -27278,7 +27294,7 @@ function _system_io_file_input_stream_real_Read($0,$1,$2,$3,$4,$5) {
    HEAP32[$vararg_ptr3>>2] = $18;
    $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
    HEAP32[$vararg_ptr4>>2] = $20;
-   _g_log(0,8,140862,$vararg_buffer);
+   _g_log(0,8,140900,$vararg_buffer);
    _g_clear_error($6);
    $$2 = 0;
    STACKTOP = sp;return ($$2|0);
@@ -27333,7 +27349,7 @@ function _system_io_file_input_stream_real_Read($0,$1,$2,$3,$4,$5) {
   HEAP32[$vararg_ptr10>>2] = $32;
   $vararg_ptr11 = ((($vararg_buffer5)) + 16|0);
   HEAP32[$vararg_ptr11>>2] = $34;
-  _g_log(0,8,140862,$vararg_buffer5);
+  _g_log(0,8,140900,$vararg_buffer5);
   _g_clear_error($6);
   $$2 = 0;
   STACKTOP = sp;return ($$2|0);
@@ -27391,7 +27407,7 @@ function _system_io_file_input_stream_real_Skip($0,$1,$2) {
      HEAP32[$vararg_ptr3>>2] = $15;
      $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
      HEAP32[$vararg_ptr4>>2] = $17;
-     _g_log(0,8,140862,$vararg_buffer);
+     _g_log(0,8,140900,$vararg_buffer);
      _g_clear_error($3);
      $$047 = 1;$$1 = 0;
      break;
@@ -28249,7 +28265,7 @@ function _system_io_input_stream_real_Read($0,$1,$2,$3,$4,$5) {
    HEAP32[$vararg_ptr3>>2] = $16;
    $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
    HEAP32[$vararg_ptr4>>2] = $18;
-   _g_log(0,8,140862,$vararg_buffer);
+   _g_log(0,8,140900,$vararg_buffer);
    _g_clear_error($6);
    $$9 = 0;
    STACKTOP = sp;return ($$9|0);
@@ -28287,7 +28303,7 @@ function _system_io_input_stream_real_Read($0,$1,$2,$3,$4,$5) {
    HEAP32[$vararg_ptr10>>2] = $32;
    $vararg_ptr11 = ((($vararg_buffer5)) + 16|0);
    HEAP32[$vararg_ptr11>>2] = $34;
-   _g_log(0,8,140862,$vararg_buffer5);
+   _g_log(0,8,140900,$vararg_buffer5);
    _g_clear_error($6);
    $$9 = 0;
    STACKTOP = sp;return ($$9|0);
@@ -28336,7 +28352,7 @@ function _system_io_input_stream_real_Read($0,$1,$2,$3,$4,$5) {
    HEAP32[$vararg_ptr17>>2] = $50;
    $vararg_ptr18 = ((($vararg_buffer12)) + 16|0);
    HEAP32[$vararg_ptr18>>2] = $52;
-   _g_log(0,8,140862,$vararg_buffer12);
+   _g_log(0,8,140900,$vararg_buffer12);
    _g_clear_error($6);
    $$9 = 0;
    STACKTOP = sp;return ($$9|0);
@@ -28450,7 +28466,7 @@ function _system_io_input_stream_real_Read($0,$1,$2,$3,$4,$5) {
    HEAP32[$vararg_ptr31>>2] = $87;
    $vararg_ptr32 = ((($vararg_buffer26)) + 16|0);
    HEAP32[$vararg_ptr32>>2] = $89;
-   _g_log(0,8,140862,$vararg_buffer26);
+   _g_log(0,8,140900,$vararg_buffer26);
    _g_clear_error($6);
    $$9 = 0;
    STACKTOP = sp;return ($$9|0);
@@ -28543,7 +28559,7 @@ function _system_io_input_stream_real_Skip($0,$1,$2) {
   HEAP32[$vararg_ptr3>>2] = $27;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $29;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($3);
   $$2 = 0;
   STACKTOP = sp;return ($$2|0);
@@ -28610,7 +28626,7 @@ function _system_io_input_stream_real_Reset($0,$1) {
   HEAP32[$vararg_ptr3>>2] = $11;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $13;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($2);
   STACKTOP = sp;return;
  }
@@ -28730,7 +28746,7 @@ function _system_io_input_stream_reader_real_ReadOne($0,$1) {
   HEAP32[$vararg_ptr3>>2] = $16;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $18;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($2);
   $$0 = 0;
   STACKTOP = sp;return ($$0|0);
@@ -28785,7 +28801,7 @@ function _system_io_input_stream_reader_real_Read($0,$1,$2,$3,$4,$5) {
   HEAP32[$vararg_ptr3>>2] = $20;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $22;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($6);
   $$0 = 0;
   STACKTOP = sp;return ($$0|0);
@@ -28834,7 +28850,7 @@ function _system_io_input_stream_reader_real_Close($0,$1) {
   HEAP32[$vararg_ptr3>>2] = $15;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $17;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($2);
   STACKTOP = sp;return;
  }
@@ -29099,7 +29115,7 @@ function _system_io_reader_real_ReadOne($0,$1) {
    HEAP32[$vararg_ptr3>>2] = $18;
    $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
    HEAP32[$vararg_ptr4>>2] = $20;
-   _g_log(0,8,140862,$vararg_buffer);
+   _g_log(0,8,140900,$vararg_buffer);
    _g_clear_error($2);
    $$0 = 0;
    STACKTOP = sp;return ($$0|0);
@@ -29168,7 +29184,7 @@ function _system_io_reader_real_Skip($0,$1,$2) {
    HEAP32[$vararg_ptr3>>2] = $13;
    $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
    HEAP32[$vararg_ptr4>>2] = $15;
-   _g_log(0,8,140862,$vararg_buffer);
+   _g_log(0,8,140900,$vararg_buffer);
    _g_clear_error($3);
    $$3 = 0;
    STACKTOP = sp;return ($$3|0);
@@ -29287,7 +29303,7 @@ function _system_io_reader_real_Skip($0,$1,$2) {
   HEAP32[$vararg_ptr10>>2] = $62;
   $vararg_ptr11 = ((($vararg_buffer5)) + 16|0);
   HEAP32[$vararg_ptr11>>2] = $64;
-  _g_log(0,8,140862,$vararg_buffer5);
+  _g_log(0,8,140900,$vararg_buffer5);
   _g_clear_error($3);
   $$3 = 0;
   STACKTOP = sp;return ($$3|0);
@@ -29341,7 +29357,7 @@ function _system_io_reader_real_Mark($0,$1,$2) {
   HEAP32[$vararg_ptr3>>2] = $12;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $14;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($3);
   STACKTOP = sp;return;
  }
@@ -29379,7 +29395,7 @@ function _system_io_reader_real_Reset($0,$1) {
   HEAP32[$vararg_ptr3>>2] = $11;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
   HEAP32[$vararg_ptr4>>2] = $13;
-  _g_log(0,8,140862,$vararg_buffer);
+  _g_log(0,8,140900,$vararg_buffer);
   _g_clear_error($2);
   STACKTOP = sp;return;
  }
@@ -29617,7 +29633,7 @@ function _object_real_Clone($0,$1) {
   HEAP32[$vararg_ptr5>>2] = $37;
   $vararg_ptr6 = ((($vararg_buffer1)) + 16|0);
   HEAP32[$vararg_ptr6>>2] = $39;
-  _g_log(0,8,140862,$vararg_buffer1);
+  _g_log(0,8,140900,$vararg_buffer1);
   _g_clear_error($2);
   $$0 = 0;
   STACKTOP = sp;return ($$0|0);
@@ -30601,7 +30617,7 @@ function __vala_system_collections_generic_collection_get_property($0,$1,$2,$3) 
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 1475;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -30610,7 +30626,7 @@ function __vala_system_collections_generic_collection_get_property($0,$1,$2,$3) 
   HEAP32[$vararg_ptr5>>2] = $18;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $21;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
 }
@@ -30673,7 +30689,7 @@ function __vala_system_collections_generic_collection_set_property($0,$1,$2,$3) 
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 1495;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -30682,7 +30698,7 @@ function __vala_system_collections_generic_collection_set_property($0,$1,$2,$3) 
   HEAP32[$vararg_ptr5>>2] = $25;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $28;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -31721,7 +31737,7 @@ function __vala_system_collections_generic_dictionary_get_property($0,$1,$2,$3) 
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 2590;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -31730,7 +31746,7 @@ function __vala_system_collections_generic_dictionary_get_property($0,$1,$2,$3) 
   HEAP32[$vararg_ptr5>>2] = $17;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $20;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -31850,7 +31866,7 @@ function __vala_system_collections_generic_dictionary_set_property($0,$1,$2,$3) 
    $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
    HEAP32[$vararg_ptr1>>2] = 2628;
    $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-   HEAP32[$vararg_ptr2>>2] = 140993;
+   HEAP32[$vararg_ptr2>>2] = 140605;
    $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
    HEAP32[$vararg_ptr3>>2] = $1;
    $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -31859,7 +31875,7 @@ function __vala_system_collections_generic_dictionary_set_property($0,$1,$2,$3) 
    HEAP32[$vararg_ptr5>>2] = $49;
    $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
    HEAP32[$vararg_ptr6>>2] = $52;
-   _g_log(0,16,140939,$vararg_buffer);
+   _g_log(0,16,140532,$vararg_buffer);
    STACKTOP = sp;return;
   }
   }
@@ -32236,7 +32252,7 @@ function __vala_system_collections_generic_dictionary_value_collection_get_prope
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 2207;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -32245,7 +32261,7 @@ function __vala_system_collections_generic_dictionary_value_collection_get_prope
   HEAP32[$vararg_ptr5>>2] = $15;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $18;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
 }
@@ -32363,7 +32379,7 @@ function __vala_system_collections_generic_dictionary_value_collection_set_prope
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 2239;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -32372,7 +32388,7 @@ function __vala_system_collections_generic_dictionary_value_collection_set_prope
   HEAP32[$vararg_ptr5>>2] = $48;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $51;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -32728,7 +32744,7 @@ function __vala_system_collections_generic_dictionary_value_iterator_get_propert
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 2478;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -32737,7 +32753,7 @@ function __vala_system_collections_generic_dictionary_value_iterator_get_propert
   HEAP32[$vararg_ptr5>>2] = $15;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $18;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
 }
@@ -32862,7 +32878,7 @@ function __vala_system_collections_generic_dictionary_value_iterator_set_propert
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 2510;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -32871,7 +32887,7 @@ function __vala_system_collections_generic_dictionary_value_iterator_set_propert
   HEAP32[$vararg_ptr5>>2] = $54;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $57;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -33175,7 +33191,7 @@ function __vala_system_collections_generic_dictionary_key_set_get_property($0,$1
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 1470;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -33184,7 +33200,7 @@ function __vala_system_collections_generic_dictionary_key_set_get_property($0,$1
   HEAP32[$vararg_ptr5>>2] = $15;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $18;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
 }
@@ -33302,7 +33318,7 @@ function __vala_system_collections_generic_dictionary_key_set_set_property($0,$1
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 1502;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -33311,7 +33327,7 @@ function __vala_system_collections_generic_dictionary_key_set_set_property($0,$1
   HEAP32[$vararg_ptr5>>2] = $48;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $51;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -33666,7 +33682,7 @@ function __vala_system_collections_generic_dictionary_key_iterator_get_property(
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 1971;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -33675,7 +33691,7 @@ function __vala_system_collections_generic_dictionary_key_iterator_get_property(
   HEAP32[$vararg_ptr5>>2] = $15;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $18;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
 }
@@ -33800,7 +33816,7 @@ function __vala_system_collections_generic_dictionary_key_iterator_set_property(
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 2003;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -33809,7 +33825,7 @@ function __vala_system_collections_generic_dictionary_key_iterator_set_property(
   HEAP32[$vararg_ptr5>>2] = $54;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $57;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -34256,7 +34272,7 @@ function __vala_system_collections_generic_dictionary_map_iterator_get_property(
  $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
  HEAP32[$vararg_ptr1>>2] = 1700;
  $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
- HEAP32[$vararg_ptr2>>2] = 140993;
+ HEAP32[$vararg_ptr2>>2] = 140605;
  $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
  HEAP32[$vararg_ptr3>>2] = $1;
  $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -34265,7 +34281,7 @@ function __vala_system_collections_generic_dictionary_map_iterator_get_property(
  HEAP32[$vararg_ptr5>>2] = $13;
  $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
  HEAP32[$vararg_ptr6>>2] = $16;
- _g_log(0,16,140939,$vararg_buffer);
+ _g_log(0,16,140532,$vararg_buffer);
  STACKTOP = sp;return;
 }
 function __vala_system_collections_generic_dictionary_map_iterator_set_property($0,$1,$2,$3) {
@@ -34389,7 +34405,7 @@ function __vala_system_collections_generic_dictionary_map_iterator_set_property(
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 1732;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -34398,7 +34414,7 @@ function __vala_system_collections_generic_dictionary_map_iterator_set_property(
   HEAP32[$vararg_ptr5>>2] = $54;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $57;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -34578,7 +34594,7 @@ function __vala_system_collections_generic_iterable_get_property($0,$1,$2,$3) {
  $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
  HEAP32[$vararg_ptr1>>2] = 233;
  $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
- HEAP32[$vararg_ptr2>>2] = 140993;
+ HEAP32[$vararg_ptr2>>2] = 140605;
  $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
  HEAP32[$vararg_ptr3>>2] = $1;
  $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -34587,7 +34603,7 @@ function __vala_system_collections_generic_iterable_get_property($0,$1,$2,$3) {
  HEAP32[$vararg_ptr5>>2] = $13;
  $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
  HEAP32[$vararg_ptr6>>2] = $16;
- _g_log(0,16,140939,$vararg_buffer);
+ _g_log(0,16,140532,$vararg_buffer);
  STACKTOP = sp;return;
 }
 function __vala_system_collections_generic_iterable_set_property($0,$1,$2,$3) {
@@ -34649,7 +34665,7 @@ function __vala_system_collections_generic_iterable_set_property($0,$1,$2,$3) {
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 253;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -34658,7 +34674,7 @@ function __vala_system_collections_generic_iterable_set_property($0,$1,$2,$3) {
   HEAP32[$vararg_ptr5>>2] = $25;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $28;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -34871,7 +34887,7 @@ function __vala_system_collections_generic_iterator_get_property($0,$1,$2,$3) {
  $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
  HEAP32[$vararg_ptr1>>2] = 267;
  $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
- HEAP32[$vararg_ptr2>>2] = 140993;
+ HEAP32[$vararg_ptr2>>2] = 140605;
  $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
  HEAP32[$vararg_ptr3>>2] = $1;
  $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -34880,7 +34896,7 @@ function __vala_system_collections_generic_iterator_get_property($0,$1,$2,$3) {
  HEAP32[$vararg_ptr5>>2] = $13;
  $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
  HEAP32[$vararg_ptr6>>2] = $16;
- _g_log(0,16,140939,$vararg_buffer);
+ _g_log(0,16,140532,$vararg_buffer);
  STACKTOP = sp;return;
 }
 function __vala_system_collections_generic_iterator_set_property($0,$1,$2,$3) {
@@ -34942,7 +34958,7 @@ function __vala_system_collections_generic_iterator_set_property($0,$1,$2,$3) {
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 287;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -34951,7 +34967,7 @@ function __vala_system_collections_generic_iterator_set_property($0,$1,$2,$3) {
   HEAP32[$vararg_ptr5>>2] = $25;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $28;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -35124,7 +35140,7 @@ function __vala_system_collections_generic_map_iterator_get_property($0,$1,$2,$3
  $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
  HEAP32[$vararg_ptr1>>2] = 242;
  $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
- HEAP32[$vararg_ptr2>>2] = 140993;
+ HEAP32[$vararg_ptr2>>2] = 140605;
  $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
  HEAP32[$vararg_ptr3>>2] = $1;
  $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -35133,7 +35149,7 @@ function __vala_system_collections_generic_map_iterator_get_property($0,$1,$2,$3
  HEAP32[$vararg_ptr5>>2] = $13;
  $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
  HEAP32[$vararg_ptr6>>2] = $16;
- _g_log(0,16,140939,$vararg_buffer);
+ _g_log(0,16,140532,$vararg_buffer);
  STACKTOP = sp;return;
 }
 function __vala_system_collections_generic_map_iterator_set_property($0,$1,$2,$3) {
@@ -35223,7 +35239,7 @@ function __vala_system_collections_generic_map_iterator_set_property($0,$1,$2,$3
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 271;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -35232,7 +35248,7 @@ function __vala_system_collections_generic_map_iterator_set_property($0,$1,$2,$3
   HEAP32[$vararg_ptr5>>2] = $37;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $40;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -35543,7 +35559,7 @@ function __vala_system_collections_generic_map_get_property($0,$1,$2,$3) {
  $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
  HEAP32[$vararg_ptr1>>2] = 402;
  $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
- HEAP32[$vararg_ptr2>>2] = 140993;
+ HEAP32[$vararg_ptr2>>2] = 140605;
  $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
  HEAP32[$vararg_ptr3>>2] = $1;
  $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -35552,7 +35568,7 @@ function __vala_system_collections_generic_map_get_property($0,$1,$2,$3) {
  HEAP32[$vararg_ptr5>>2] = $13;
  $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
  HEAP32[$vararg_ptr6>>2] = $16;
- _g_log(0,16,140939,$vararg_buffer);
+ _g_log(0,16,140532,$vararg_buffer);
  STACKTOP = sp;return;
 }
 function __vala_system_collections_generic_map_set_property($0,$1,$2,$3) {
@@ -35642,7 +35658,7 @@ function __vala_system_collections_generic_map_set_property($0,$1,$2,$3) {
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 431;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -35651,7 +35667,7 @@ function __vala_system_collections_generic_map_set_property($0,$1,$2,$3) {
   HEAP32[$vararg_ptr5>>2] = $37;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $40;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -35760,7 +35776,7 @@ function __vala_system_collections_generic_set_get_property($0,$1,$2,$3) {
  $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
  HEAP32[$vararg_ptr1>>2] = 229;
  $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
- HEAP32[$vararg_ptr2>>2] = 140993;
+ HEAP32[$vararg_ptr2>>2] = 140605;
  $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
  HEAP32[$vararg_ptr3>>2] = $1;
  $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -35769,7 +35785,7 @@ function __vala_system_collections_generic_set_get_property($0,$1,$2,$3) {
  HEAP32[$vararg_ptr5>>2] = $13;
  $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
  HEAP32[$vararg_ptr6>>2] = $16;
- _g_log(0,16,140939,$vararg_buffer);
+ _g_log(0,16,140532,$vararg_buffer);
  STACKTOP = sp;return;
 }
 function __vala_system_collections_generic_set_set_property($0,$1,$2,$3) {
@@ -35831,7 +35847,7 @@ function __vala_system_collections_generic_set_set_property($0,$1,$2,$3) {
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
   HEAP32[$vararg_ptr1>>2] = 249;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -35840,7 +35856,7 @@ function __vala_system_collections_generic_set_set_property($0,$1,$2,$3) {
   HEAP32[$vararg_ptr5>>2] = $25;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $28;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -67795,6 +67811,112 @@ function _stbi__stdio_eof($0) {
  $1 = (_feof($0)|0);
  return ($1|0);
 }
+function _glm_vec3_new($0,$1,$2) {
+ $0 = Math_fround($0);
+ $1 = Math_fround($1);
+ $2 = Math_fround($2);
+ var $3 = 0, $4 = 0, $5 = 0, $6 = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ $3 = (_malloc(24)|0);
+ $4 = ((($3)) + 16|0);
+ HEAP32[$4>>2] = 1;
+ HEAPF32[$3>>2] = $0;
+ $5 = ((($3)) + 4|0);
+ HEAPF32[$5>>2] = $1;
+ $6 = ((($3)) + 8|0);
+ HEAPF32[$6>>2] = $2;
+ return ($3|0);
+}
+function _glm_vec3_unref($0) {
+ $0 = $0|0;
+ var $1 = 0, $2 = 0, $3 = 0, $4 = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ $1 = ((($0)) + 16|0);
+ $2 = HEAP32[$1>>2]|0;
+ $3 = ($2|0)==(1);
+ if ($3) {
+  _free($0);
+  return;
+ } else {
+  $4 = (($2) + -1)|0;
+  HEAP32[$1>>2] = $4;
+  return;
+ }
+}
+function _glm_mat4_new($0) {
+ $0 = Math_fround($0);
+ var $1 = 0, $10 = 0, $11 = Math_fround(0), $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0;
+ var dest = 0, label = 0, sp = 0, stop = 0;
+ sp = STACKTOP;
+ $1 = (_malloc(80)|0);
+ $2 = ((($1)) + 64|0);
+ HEAP32[$2>>2] = 1;
+ $3 = $0 == Math_fround(0.0);
+ if ($3) {
+  dest=$1; stop=dest+80|0; do { HEAP32[dest>>2]=0|0; dest=dest+4|0; } while ((dest|0) < (stop|0));
+  return ($1|0);
+ }
+ $4 = ((($1)) + 4|0);
+ HEAP32[$1>>2] = 1065353216;
+ $5 = ((($1)) + 20|0);
+ $6 = ((($1)) + 24|0);
+ ;HEAP32[$4>>2]=0|0;HEAP32[$4+4>>2]=0|0;HEAP32[$4+8>>2]=0|0;HEAP32[$4+12>>2]=0|0;
+ HEAP32[$5>>2] = 1065353216;
+ $7 = ((($1)) + 40|0);
+ $8 = ((($1)) + 44|0);
+ ;HEAP32[$6>>2]=0|0;HEAP32[$6+4>>2]=0|0;HEAP32[$6+8>>2]=0|0;HEAP32[$6+12>>2]=0|0;
+ HEAP32[$7>>2] = 1065353216;
+ $9 = ((($1)) + 60|0);
+ ;HEAP32[$8>>2]=0|0;HEAP32[$8+4>>2]=0|0;HEAP32[$8+8>>2]=0|0;HEAP32[$8+12>>2]=0|0;
+ HEAP32[$9>>2] = 1065353216;
+ $10 = $0 != Math_fround(1.0);
+ if (!($10)) {
+  return ($1|0);
+ }
+ HEAPF32[$1>>2] = $0;
+ $11 = Math_fround($0 * Math_fround(0.0));
+ HEAPF32[$4>>2] = $11;
+ $12 = ((($1)) + 8|0);
+ HEAPF32[$12>>2] = $11;
+ $13 = ((($1)) + 12|0);
+ HEAPF32[$13>>2] = $11;
+ $14 = ((($1)) + 16|0);
+ HEAPF32[$14>>2] = $11;
+ HEAPF32[$5>>2] = $0;
+ HEAPF32[$6>>2] = $11;
+ $15 = ((($1)) + 28|0);
+ HEAPF32[$15>>2] = $11;
+ $16 = ((($1)) + 32|0);
+ HEAPF32[$16>>2] = $11;
+ $17 = ((($1)) + 36|0);
+ HEAPF32[$17>>2] = $11;
+ HEAPF32[$7>>2] = $0;
+ HEAPF32[$8>>2] = $11;
+ $18 = ((($1)) + 48|0);
+ HEAPF32[$18>>2] = $11;
+ $19 = ((($1)) + 52|0);
+ HEAPF32[$19>>2] = $11;
+ $20 = ((($1)) + 56|0);
+ HEAPF32[$20>>2] = $11;
+ HEAPF32[$9>>2] = $0;
+ return ($1|0);
+}
+function _glm_mat4_unref($0) {
+ $0 = $0|0;
+ var $1 = 0, $2 = 0, $3 = 0, $4 = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ $1 = ((($0)) + 64|0);
+ $2 = HEAP32[$1>>2]|0;
+ $3 = ($2|0)==(1);
+ if ($3) {
+  _free($0);
+  return;
+ } else {
+  $4 = (($2) + -1)|0;
+  HEAP32[$1>>2] = $4;
+  return;
+ }
+}
 function _game_new() {
  var $0 = 0, $1 = 0, $10 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
  sp = STACKTOP;
@@ -67802,7 +67924,7 @@ function _game_new() {
  $1 = ($0|0)==(0);
  if (!($1)) {
   $2 = (_object_get_type()|0);
-  $3 = (_g_type_register_static($2,140444,120352,0)|0);
+  $3 = (_g_type_register_static($2,140445,120352,0)|0);
   _g_once_init_leave(144140,$3);
  }
  $4 = HEAP32[36035]|0;
@@ -67827,21 +67949,23 @@ function _game_new() {
 }
 function _game_Run($0) {
  $0 = $0|0;
- var $$0 = 0, $$pre$phi533Z2D = 0, $$pre$phi534Z2D = 0, $$pre$phiZ2D = 0, $$sroa$10$0$$sroa_idx115 = 0, $$sroa$100$0$$sroa_idx295 = 0, $$sroa$101$0$$sroa_idx297 = 0, $$sroa$102$0$$sroa_idx299 = 0, $$sroa$103$0$$sroa_idx301 = 0, $$sroa$104$0$$sroa_idx303 = 0, $$sroa$105$0$$sroa_idx305 = 0, $$sroa$106$0$$sroa_idx307 = 0, $$sroa$107$0$$sroa_idx309 = 0, $$sroa$108$0$$sroa_idx311 = 0, $$sroa$109$0$$sroa_idx313 = 0, $$sroa$11$0$$sroa_idx117 = 0, $$sroa$110$0$$sroa_idx315 = 0, $$sroa$111$0$$sroa_idx317 = 0, $$sroa$112$0$$sroa_idx319 = 0, $$sroa$113$0$$sroa_idx321 = 0;
- var $$sroa$114$0$$sroa_idx323 = 0, $$sroa$115$0$$sroa_idx325 = 0, $$sroa$116$0$$sroa_idx327 = 0, $$sroa$117$0$$sroa_idx329 = 0, $$sroa$118$0$$sroa_idx331 = 0, $$sroa$119$0$$sroa_idx333 = 0, $$sroa$12$0$$sroa_idx119 = 0, $$sroa$120$0$$sroa_idx335 = 0, $$sroa$121$0$$sroa_idx337 = 0, $$sroa$122$0$$sroa_idx339 = 0, $$sroa$123$0$$sroa_idx341 = 0, $$sroa$124$0$$sroa_idx343 = 0, $$sroa$125$0$$sroa_idx345 = 0, $$sroa$126$0$$sroa_idx347 = 0, $$sroa$127$0$$sroa_idx349 = 0, $$sroa$128$0$$sroa_idx351 = 0, $$sroa$129$0$$sroa_idx353 = 0, $$sroa$13$0$$sroa_idx121 = 0, $$sroa$130$0$$sroa_idx355 = 0, $$sroa$131$0$$sroa_idx357 = 0;
- var $$sroa$132$0$$sroa_idx359 = 0, $$sroa$133$0$$sroa_idx361 = 0, $$sroa$134$0$$sroa_idx363 = 0, $$sroa$135$0$$sroa_idx365 = 0, $$sroa$136$0$$sroa_idx367 = 0, $$sroa$137$0$$sroa_idx369 = 0, $$sroa$138$0$$sroa_idx371 = 0, $$sroa$139$0$$sroa_idx373 = 0, $$sroa$14$0$$sroa_idx123 = 0, $$sroa$140$0$$sroa_idx375 = 0, $$sroa$141$0$$sroa_idx377 = 0, $$sroa$142$0$$sroa_idx379 = 0, $$sroa$143$0$$sroa_idx381 = 0, $$sroa$144$0$$sroa_idx383 = 0, $$sroa$145$0$$sroa_idx385 = 0, $$sroa$146$0$$sroa_idx387 = 0, $$sroa$147$0$$sroa_idx389 = 0, $$sroa$148$0$$sroa_idx391 = 0, $$sroa$149$0$$sroa_idx393 = 0, $$sroa$15$0$$sroa_idx125 = 0;
- var $$sroa$150$0$$sroa_idx395 = 0, $$sroa$151$0$$sroa_idx397 = 0, $$sroa$152$0$$sroa_idx399 = 0, $$sroa$153$0$$sroa_idx401 = 0, $$sroa$154$0$$sroa_idx403 = 0, $$sroa$155$0$$sroa_idx405 = 0, $$sroa$156$0$$sroa_idx407 = 0, $$sroa$157$0$$sroa_idx409 = 0, $$sroa$158$0$$sroa_idx411 = 0, $$sroa$159$0$$sroa_idx413 = 0, $$sroa$16$0$$sroa_idx127 = 0, $$sroa$160$0$$sroa_idx415 = 0, $$sroa$161$0$$sroa_idx417 = 0, $$sroa$162$0$$sroa_idx419 = 0, $$sroa$163$0$$sroa_idx421 = 0, $$sroa$164$0$$sroa_idx423 = 0, $$sroa$165$0$$sroa_idx425 = 0, $$sroa$166$0$$sroa_idx427 = 0, $$sroa$167$0$$sroa_idx429 = 0, $$sroa$168$0$$sroa_idx431 = 0;
- var $$sroa$169$0$$sroa_idx433 = 0, $$sroa$17$0$$sroa_idx129 = 0, $$sroa$170$0$$sroa_idx435 = 0, $$sroa$171$0$$sroa_idx437 = 0, $$sroa$172$0$$sroa_idx439 = 0, $$sroa$173$0$$sroa_idx441 = 0, $$sroa$174$0$$sroa_idx443 = 0, $$sroa$175$0$$sroa_idx445 = 0, $$sroa$176$0$$sroa_idx447 = 0, $$sroa$177$0$$sroa_idx449 = 0, $$sroa$178$0$$sroa_idx451 = 0, $$sroa$179$0$$sroa_idx453 = 0, $$sroa$18$0$$sroa_idx131 = 0, $$sroa$180$0$$sroa_idx455 = 0, $$sroa$181$0$$sroa_idx457 = 0, $$sroa$182$0$$sroa_idx459 = 0, $$sroa$183$0$$sroa_idx461 = 0, $$sroa$19$0$$sroa_idx133 = 0, $$sroa$20$0$$sroa_idx135 = 0, $$sroa$21$0$$sroa_idx137 = 0;
- var $$sroa$22$0$$sroa_idx139 = 0, $$sroa$23$0$$sroa_idx141 = 0, $$sroa$24$0$$sroa_idx143 = 0, $$sroa$25$0$$sroa_idx145 = 0, $$sroa$26$0$$sroa_idx147 = 0, $$sroa$27$0$$sroa_idx149 = 0, $$sroa$28$0$$sroa_idx151 = 0, $$sroa$29$0$$sroa_idx153 = 0, $$sroa$30$0$$sroa_idx155 = 0, $$sroa$31$0$$sroa_idx157 = 0, $$sroa$32$0$$sroa_idx159 = 0, $$sroa$33$0$$sroa_idx161 = 0, $$sroa$34$0$$sroa_idx163 = 0, $$sroa$35$0$$sroa_idx165 = 0, $$sroa$36$0$$sroa_idx167 = 0, $$sroa$37$0$$sroa_idx169 = 0, $$sroa$38$0$$sroa_idx171 = 0, $$sroa$39$0$$sroa_idx173 = 0, $$sroa$40$0$$sroa_idx175 = 0, $$sroa$41$0$$sroa_idx177 = 0;
- var $$sroa$42$0$$sroa_idx179 = 0, $$sroa$43$0$$sroa_idx181 = 0, $$sroa$44$0$$sroa_idx183 = 0, $$sroa$45$0$$sroa_idx185 = 0, $$sroa$46$0$$sroa_idx187 = 0, $$sroa$47$0$$sroa_idx189 = 0, $$sroa$48$0$$sroa_idx191 = 0, $$sroa$49$0$$sroa_idx193 = 0, $$sroa$5$0$$sroa_idx105 = 0, $$sroa$50$0$$sroa_idx195 = 0, $$sroa$51$0$$sroa_idx197 = 0, $$sroa$52$0$$sroa_idx199 = 0, $$sroa$53$0$$sroa_idx201 = 0, $$sroa$54$0$$sroa_idx203 = 0, $$sroa$55$0$$sroa_idx205 = 0, $$sroa$56$0$$sroa_idx207 = 0, $$sroa$57$0$$sroa_idx209 = 0, $$sroa$58$0$$sroa_idx211 = 0, $$sroa$59$0$$sroa_idx213 = 0, $$sroa$6$0$$sroa_idx107 = 0;
- var $$sroa$60$0$$sroa_idx215 = 0, $$sroa$61$0$$sroa_idx217 = 0, $$sroa$62$0$$sroa_idx219 = 0, $$sroa$63$0$$sroa_idx221 = 0, $$sroa$64$0$$sroa_idx223 = 0, $$sroa$65$0$$sroa_idx225 = 0, $$sroa$66$0$$sroa_idx227 = 0, $$sroa$67$0$$sroa_idx229 = 0, $$sroa$68$0$$sroa_idx231 = 0, $$sroa$69$0$$sroa_idx233 = 0, $$sroa$7$0$$sroa_idx109 = 0, $$sroa$70$0$$sroa_idx235 = 0, $$sroa$71$0$$sroa_idx237 = 0, $$sroa$72$0$$sroa_idx239 = 0, $$sroa$73$0$$sroa_idx241 = 0, $$sroa$74$0$$sroa_idx243 = 0, $$sroa$75$0$$sroa_idx245 = 0, $$sroa$76$0$$sroa_idx247 = 0, $$sroa$77$0$$sroa_idx249 = 0, $$sroa$78$0$$sroa_idx251 = 0;
- var $$sroa$79$0$$sroa_idx253 = 0, $$sroa$8$0$$sroa_idx111 = 0, $$sroa$80$0$$sroa_idx255 = 0, $$sroa$81$0$$sroa_idx257 = 0, $$sroa$82$0$$sroa_idx259 = 0, $$sroa$83$0$$sroa_idx261 = 0, $$sroa$84$0$$sroa_idx263 = 0, $$sroa$85$0$$sroa_idx265 = 0, $$sroa$86$0$$sroa_idx267 = 0, $$sroa$87$0$$sroa_idx269 = 0, $$sroa$88$0$$sroa_idx271 = 0, $$sroa$89$0$$sroa_idx273 = 0, $$sroa$9$0$$sroa_idx113 = 0, $$sroa$90$0$$sroa_idx275 = 0, $$sroa$91$0$$sroa_idx277 = 0, $$sroa$92$0$$sroa_idx279 = 0, $$sroa$93$0$$sroa_idx281 = 0, $$sroa$94$0$$sroa_idx283 = 0, $$sroa$95$0$$sroa_idx285 = 0, $$sroa$96$0$$sroa_idx287 = 0;
- var $$sroa$97$0$$sroa_idx289 = 0, $$sroa$98$0$$sroa_idx291 = 0, $$sroa$99$0$$sroa_idx293 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0;
- var $25 = 0, $26 = 0, $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $42 = 0;
- var $43 = 0, $44 = 0, $45 = 0, $46 = 0, $47 = 0, $48 = 0, $49 = 0, $5 = 0, $50 = 0, $51 = 0, $52 = 0, $53 = 0, $54 = 0, $55 = 0, $56 = 0, $57 = 0, $58 = 0, $59 = 0, $6 = 0, $60 = 0;
- var $61 = 0, $62 = 0, $63 = 0, $64 = 0, $65 = 0, $66 = 0, $67 = 0, $68 = 0, $69 = 0, $7 = 0, $70 = 0, $71 = 0, $72 = 0, $73 = 0, $74 = 0, $75 = 0, $76 = 0, $77 = 0, $78 = 0, $79 = 0;
- var $8 = 0, $80 = 0, $81 = 0, $82 = 0, $83 = 0, $84 = 0, $85 = 0, $86 = 0, $87 = 0, $88 = 0, $89 = 0, $9 = 0, $90 = 0, $91 = 0, $92 = 0, $93 = 0, $94 = 0, $95 = 0, $96 = 0, $97 = 0;
- var $98 = 0, $vararg_buffer = 0, $vararg_buffer1 = 0, $vararg_buffer3 = 0, dest = 0, label = 0, sp = 0, stop = 0;
+ var $$0 = 0, $$01$i$i = 0, $$pre$phi599Z2D = 0, $$pre$phi600Z2D = 0, $$pre$phi601Z2D = 0, $$pre$phi602Z2D = 0, $$pre$phi603Z2D = 0, $$pre$phiZ2D = 0, $$sroa$10$0$$sroa_idx166 = 0, $$sroa$100$0$$sroa_idx346 = 0, $$sroa$101$0$$sroa_idx348 = 0, $$sroa$102$0$$sroa_idx350 = 0, $$sroa$103$0$$sroa_idx352 = 0, $$sroa$104$0$$sroa_idx354 = 0, $$sroa$105$0$$sroa_idx356 = 0, $$sroa$106$0$$sroa_idx358 = 0, $$sroa$107$0$$sroa_idx360 = 0, $$sroa$108$0$$sroa_idx362 = 0, $$sroa$109$0$$sroa_idx364 = 0, $$sroa$11$0$$sroa_idx168 = 0;
+ var $$sroa$110$0$$sroa_idx366 = 0, $$sroa$111$0$$sroa_idx368 = 0, $$sroa$112$0$$sroa_idx370 = 0, $$sroa$113$0$$sroa_idx372 = 0, $$sroa$114$0$$sroa_idx374 = 0, $$sroa$115$0$$sroa_idx376 = 0, $$sroa$116$0$$sroa_idx378 = 0, $$sroa$117$0$$sroa_idx380 = 0, $$sroa$118$0$$sroa_idx382 = 0, $$sroa$119$0$$sroa_idx384 = 0, $$sroa$12$0$$sroa_idx170 = 0, $$sroa$120$0$$sroa_idx386 = 0, $$sroa$121$0$$sroa_idx388 = 0, $$sroa$122$0$$sroa_idx390 = 0, $$sroa$123$0$$sroa_idx392 = 0, $$sroa$124$0$$sroa_idx394 = 0, $$sroa$125$0$$sroa_idx396 = 0, $$sroa$126$0$$sroa_idx398 = 0, $$sroa$127$0$$sroa_idx400 = 0, $$sroa$128$0$$sroa_idx402 = 0;
+ var $$sroa$129$0$$sroa_idx404 = 0, $$sroa$13$0$$sroa_idx172 = 0, $$sroa$130$0$$sroa_idx406 = 0, $$sroa$131$0$$sroa_idx408 = 0, $$sroa$132$0$$sroa_idx410 = 0, $$sroa$133$0$$sroa_idx412 = 0, $$sroa$134$0$$sroa_idx414 = 0, $$sroa$135$0$$sroa_idx416 = 0, $$sroa$136$0$$sroa_idx418 = 0, $$sroa$137$0$$sroa_idx420 = 0, $$sroa$138$0$$sroa_idx422 = 0, $$sroa$139$0$$sroa_idx424 = 0, $$sroa$14$0$$sroa_idx174 = 0, $$sroa$140$0$$sroa_idx426 = 0, $$sroa$141$0$$sroa_idx428 = 0, $$sroa$142$0$$sroa_idx430 = 0, $$sroa$143$0$$sroa_idx432 = 0, $$sroa$144$0$$sroa_idx434 = 0, $$sroa$145$0$$sroa_idx436 = 0, $$sroa$146$0$$sroa_idx438 = 0;
+ var $$sroa$147$0$$sroa_idx440 = 0, $$sroa$148$0$$sroa_idx442 = 0, $$sroa$149$0$$sroa_idx444 = 0, $$sroa$15$0$$sroa_idx176 = 0, $$sroa$150$0$$sroa_idx446 = 0, $$sroa$151$0$$sroa_idx448 = 0, $$sroa$152$0$$sroa_idx450 = 0, $$sroa$153$0$$sroa_idx452 = 0, $$sroa$154$0$$sroa_idx454 = 0, $$sroa$155$0$$sroa_idx456 = 0, $$sroa$156$0$$sroa_idx458 = 0, $$sroa$157$0$$sroa_idx460 = 0, $$sroa$158$0$$sroa_idx462 = 0, $$sroa$159$0$$sroa_idx464 = 0, $$sroa$16$0$$sroa_idx178 = 0, $$sroa$160$0$$sroa_idx466 = 0, $$sroa$161$0$$sroa_idx468 = 0, $$sroa$162$0$$sroa_idx470 = 0, $$sroa$163$0$$sroa_idx472 = 0, $$sroa$164$0$$sroa_idx474 = 0;
+ var $$sroa$165$0$$sroa_idx476 = 0, $$sroa$166$0$$sroa_idx478 = 0, $$sroa$167$0$$sroa_idx480 = 0, $$sroa$168$0$$sroa_idx482 = 0, $$sroa$169$0$$sroa_idx484 = 0, $$sroa$17$0$$sroa_idx180 = 0, $$sroa$170$0$$sroa_idx486 = 0, $$sroa$171$0$$sroa_idx488 = 0, $$sroa$172$0$$sroa_idx490 = 0, $$sroa$173$0$$sroa_idx492 = 0, $$sroa$174$0$$sroa_idx494 = 0, $$sroa$175$0$$sroa_idx496 = 0, $$sroa$176$0$$sroa_idx498 = 0, $$sroa$177$0$$sroa_idx500 = 0, $$sroa$178$0$$sroa_idx502 = 0, $$sroa$179$0$$sroa_idx504 = 0, $$sroa$18$0$$sroa_idx182 = 0, $$sroa$180$0$$sroa_idx506 = 0, $$sroa$181$0$$sroa_idx508 = 0, $$sroa$182$0$$sroa_idx510 = 0;
+ var $$sroa$183$0$$sroa_idx512 = 0, $$sroa$19$0$$sroa_idx184 = 0, $$sroa$20$0$$sroa_idx186 = 0, $$sroa$21$0$$sroa_idx188 = 0, $$sroa$22$0$$sroa_idx190 = 0, $$sroa$23$0$$sroa_idx192 = 0, $$sroa$24$0$$sroa_idx194 = 0, $$sroa$25$0$$sroa_idx196 = 0, $$sroa$26$0$$sroa_idx198 = 0, $$sroa$27$0$$sroa_idx200 = 0, $$sroa$28$0$$sroa_idx202 = 0, $$sroa$29$0$$sroa_idx204 = 0, $$sroa$30$0$$sroa_idx206 = 0, $$sroa$31$0$$sroa_idx208 = 0, $$sroa$32$0$$sroa_idx210 = 0, $$sroa$33$0$$sroa_idx212 = 0, $$sroa$34$0$$sroa_idx214 = 0, $$sroa$35$0$$sroa_idx216 = 0, $$sroa$36$0$$sroa_idx218 = 0, $$sroa$37$0$$sroa_idx220 = 0;
+ var $$sroa$38$0$$sroa_idx222 = 0, $$sroa$39$0$$sroa_idx224 = 0, $$sroa$40$0$$sroa_idx226 = 0, $$sroa$41$0$$sroa_idx228 = 0, $$sroa$42$0$$sroa_idx230 = 0, $$sroa$43$0$$sroa_idx232 = 0, $$sroa$44$0$$sroa_idx234 = 0, $$sroa$45$0$$sroa_idx236 = 0, $$sroa$46$0$$sroa_idx238 = 0, $$sroa$47$0$$sroa_idx240 = 0, $$sroa$48$0$$sroa_idx242 = 0, $$sroa$49$0$$sroa_idx244 = 0, $$sroa$5$0$$sroa_idx156 = 0, $$sroa$50$0$$sroa_idx246 = 0, $$sroa$51$0$$sroa_idx248 = 0, $$sroa$52$0$$sroa_idx250 = 0, $$sroa$53$0$$sroa_idx252 = 0, $$sroa$54$0$$sroa_idx254 = 0, $$sroa$55$0$$sroa_idx256 = 0, $$sroa$56$0$$sroa_idx258 = 0;
+ var $$sroa$57$0$$sroa_idx260 = 0, $$sroa$58$0$$sroa_idx262 = 0, $$sroa$59$0$$sroa_idx264 = 0, $$sroa$6$0$$sroa_idx158 = 0, $$sroa$60$0$$sroa_idx266 = 0, $$sroa$61$0$$sroa_idx268 = 0, $$sroa$62$0$$sroa_idx270 = 0, $$sroa$63$0$$sroa_idx272 = 0, $$sroa$64$0$$sroa_idx274 = 0, $$sroa$65$0$$sroa_idx276 = 0, $$sroa$66$0$$sroa_idx278 = 0, $$sroa$67$0$$sroa_idx280 = 0, $$sroa$68$0$$sroa_idx282 = 0, $$sroa$69$0$$sroa_idx284 = 0, $$sroa$7$0$$sroa_idx160 = 0, $$sroa$70$0$$sroa_idx286 = 0, $$sroa$71$0$$sroa_idx288 = 0, $$sroa$72$0$$sroa_idx290 = 0, $$sroa$73$0$$sroa_idx292 = 0, $$sroa$74$0$$sroa_idx294 = 0;
+ var $$sroa$75$0$$sroa_idx296 = 0, $$sroa$76$0$$sroa_idx298 = 0, $$sroa$77$0$$sroa_idx300 = 0, $$sroa$78$0$$sroa_idx302 = 0, $$sroa$79$0$$sroa_idx304 = 0, $$sroa$8$0$$sroa_idx162 = 0, $$sroa$80$0$$sroa_idx306 = 0, $$sroa$81$0$$sroa_idx308 = 0, $$sroa$82$0$$sroa_idx310 = 0, $$sroa$83$0$$sroa_idx312 = 0, $$sroa$84$0$$sroa_idx314 = 0, $$sroa$85$0$$sroa_idx316 = 0, $$sroa$86$0$$sroa_idx318 = 0, $$sroa$87$0$$sroa_idx320 = 0, $$sroa$88$0$$sroa_idx322 = 0, $$sroa$89$0$$sroa_idx324 = 0, $$sroa$9$0$$sroa_idx164 = 0, $$sroa$90$0$$sroa_idx326 = 0, $$sroa$91$0$$sroa_idx328 = 0, $$sroa$92$0$$sroa_idx330 = 0;
+ var $$sroa$93$0$$sroa_idx332 = 0, $$sroa$94$0$$sroa_idx334 = 0, $$sroa$95$0$$sroa_idx336 = 0, $$sroa$96$0$$sroa_idx338 = 0, $$sroa$97$0$$sroa_idx340 = 0, $$sroa$98$0$$sroa_idx342 = 0, $$sroa$99$0$$sroa_idx344 = 0, $1 = 0, $10 = 0, $100 = 0, $101 = 0, $102 = 0, $103 = 0, $104 = 0, $105 = 0, $106 = 0, $107 = 0, $108 = 0, $109 = 0, $11 = 0;
+ var $110 = 0, $111 = 0, $112 = 0, $113 = 0, $114 = 0, $115 = 0, $116 = 0, $117 = 0, $118 = 0, $119 = 0, $12 = 0, $120 = 0, $121 = 0, $122 = 0, $123 = 0, $124 = 0, $125 = 0, $126 = 0, $127 = 0, $128 = 0;
+ var $129 = 0, $13 = 0, $130 = 0, $131 = 0, $132 = 0, $133 = 0, $134 = 0, $135 = 0, $136 = 0, $137 = 0, $138 = 0, $139 = 0, $14 = 0, $140 = 0, $141 = 0, $142 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0;
+ var $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0, $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0;
+ var $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $42 = 0, $43 = 0, $44 = 0, $45 = 0, $46 = 0, $47 = 0, $48 = 0, $49 = 0, $5 = 0, $50 = 0, $51 = 0, $52 = 0, $53 = 0, $54 = 0;
+ var $55 = 0, $56 = 0, $57 = 0, $58 = 0, $59 = 0, $6 = 0, $60 = 0, $61 = 0, $62 = 0, $63 = 0, $64 = 0, $65 = 0, $66 = 0, $67 = 0, $68 = 0, $69 = 0, $7 = 0, $70 = 0, $71 = 0, $72 = 0;
+ var $73 = 0, $74 = 0, $75 = 0, $76 = 0, $77 = 0, $78 = 0, $79 = 0, $8 = 0, $80 = 0, $81 = 0, $82 = 0, $83 = 0, $84 = 0, $85 = 0, $86 = 0, $87 = 0, $88 = 0, $89 = 0, $9 = 0, $90 = 0;
+ var $91 = 0, $92 = 0, $93 = 0, $94 = 0, $95 = 0, $96 = 0, $97 = 0, $98 = 0, $99 = 0, $exitcond$i$i = 0, $or$cond$i$i = 0, $vararg_buffer = 0, $vararg_buffer1 = 0, $vararg_buffer3 = 0, dest = 0, label = 0, sp = 0, stop = 0;
  sp = STACKTOP;
  STACKTOP = STACKTOP + 752|0;
  $vararg_buffer3 = sp + 736|0;
@@ -67873,523 +67997,615 @@ function _game_Run($0) {
  $9 = HEAP32[$8>>2]|0;
  (_glfwSetFramebufferSizeCallback(($9|0),(453|0))|0);
  _glEnable(2929);
- $10 = (_shader_new(140316,140331)|0);
- $11 = HEAP32[$3>>2]|0;
- $12 = ((($11)) + 20|0);
- $13 = HEAP32[$12>>2]|0;
- $14 = ($13|0)==(0|0);
- if ($14) {
-  $$pre$phiZ2D = $12;$17 = $11;
+ $10 = (_shader_new(300,140316)|0);
+ $11 = (_shader_Load($10,140319,140333,0)|0);
+ $12 = HEAP32[$3>>2]|0;
+ $13 = ((($12)) + 20|0);
+ $14 = HEAP32[$13>>2]|0;
+ $15 = ($14|0)==(0|0);
+ if ($15) {
+  $$pre$phiZ2D = $13;
  } else {
-  _g_object_unref($13);
-  $15 = HEAP32[$3>>2]|0;
-  $16 = ((($15)) + 20|0);
-  HEAP32[$16>>2] = 0;
-  $$pre$phiZ2D = $16;$17 = $15;
+  _g_object_unref($14);
+  $16 = HEAP32[$3>>2]|0;
+  $17 = ((($16)) + 20|0);
+  HEAP32[$17>>2] = 0;
+  $$pre$phiZ2D = $17;
  }
- HEAP32[$$pre$phiZ2D>>2] = $10;
+ HEAP32[$$pre$phiZ2D>>2] = $11;
+ $18 = ($10|0)==(0|0);
+ if (!($18)) {
+  _g_object_unref($10);
+ }
  HEAPF32[$1>>2] = Math_fround(-0.5);
- $$sroa$5$0$$sroa_idx105 = ((($1)) + 4|0);
- HEAPF32[$$sroa$5$0$$sroa_idx105>>2] = Math_fround(-0.5);
- $$sroa$6$0$$sroa_idx107 = ((($1)) + 8|0);
- HEAPF32[$$sroa$6$0$$sroa_idx107>>2] = Math_fround(-0.5);
- $$sroa$7$0$$sroa_idx109 = ((($1)) + 12|0);
- HEAPF32[$$sroa$7$0$$sroa_idx109>>2] = Math_fround(0.0);
- $$sroa$8$0$$sroa_idx111 = ((($1)) + 16|0);
- HEAPF32[$$sroa$8$0$$sroa_idx111>>2] = Math_fround(0.0);
- $$sroa$9$0$$sroa_idx113 = ((($1)) + 20|0);
- HEAPF32[$$sroa$9$0$$sroa_idx113>>2] = Math_fround(0.5);
- $$sroa$10$0$$sroa_idx115 = ((($1)) + 24|0);
- HEAPF32[$$sroa$10$0$$sroa_idx115>>2] = Math_fround(-0.5);
- $$sroa$11$0$$sroa_idx117 = ((($1)) + 28|0);
- HEAPF32[$$sroa$11$0$$sroa_idx117>>2] = Math_fround(-0.5);
- $$sroa$12$0$$sroa_idx119 = ((($1)) + 32|0);
- HEAPF32[$$sroa$12$0$$sroa_idx119>>2] = Math_fround(1.0);
- $$sroa$13$0$$sroa_idx121 = ((($1)) + 36|0);
- HEAPF32[$$sroa$13$0$$sroa_idx121>>2] = Math_fround(0.0);
- $$sroa$14$0$$sroa_idx123 = ((($1)) + 40|0);
- HEAPF32[$$sroa$14$0$$sroa_idx123>>2] = Math_fround(0.5);
- $$sroa$15$0$$sroa_idx125 = ((($1)) + 44|0);
- HEAPF32[$$sroa$15$0$$sroa_idx125>>2] = Math_fround(0.5);
- $$sroa$16$0$$sroa_idx127 = ((($1)) + 48|0);
- HEAPF32[$$sroa$16$0$$sroa_idx127>>2] = Math_fround(-0.5);
- $$sroa$17$0$$sroa_idx129 = ((($1)) + 52|0);
- HEAPF32[$$sroa$17$0$$sroa_idx129>>2] = Math_fround(1.0);
- $$sroa$18$0$$sroa_idx131 = ((($1)) + 56|0);
- HEAPF32[$$sroa$18$0$$sroa_idx131>>2] = Math_fround(1.0);
- $$sroa$19$0$$sroa_idx133 = ((($1)) + 60|0);
- HEAPF32[$$sroa$19$0$$sroa_idx133>>2] = Math_fround(0.5);
- $$sroa$20$0$$sroa_idx135 = ((($1)) + 64|0);
- HEAPF32[$$sroa$20$0$$sroa_idx135>>2] = Math_fround(0.5);
- $$sroa$21$0$$sroa_idx137 = ((($1)) + 68|0);
- HEAPF32[$$sroa$21$0$$sroa_idx137>>2] = Math_fround(-0.5);
- $$sroa$22$0$$sroa_idx139 = ((($1)) + 72|0);
- HEAPF32[$$sroa$22$0$$sroa_idx139>>2] = Math_fround(1.0);
- $$sroa$23$0$$sroa_idx141 = ((($1)) + 76|0);
- HEAPF32[$$sroa$23$0$$sroa_idx141>>2] = Math_fround(1.0);
- $$sroa$24$0$$sroa_idx143 = ((($1)) + 80|0);
- HEAPF32[$$sroa$24$0$$sroa_idx143>>2] = Math_fround(-0.5);
- $$sroa$25$0$$sroa_idx145 = ((($1)) + 84|0);
- HEAPF32[$$sroa$25$0$$sroa_idx145>>2] = Math_fround(0.5);
- $$sroa$26$0$$sroa_idx147 = ((($1)) + 88|0);
- HEAPF32[$$sroa$26$0$$sroa_idx147>>2] = Math_fround(-0.5);
- $$sroa$27$0$$sroa_idx149 = ((($1)) + 92|0);
- HEAPF32[$$sroa$27$0$$sroa_idx149>>2] = Math_fround(0.0);
- $$sroa$28$0$$sroa_idx151 = ((($1)) + 96|0);
- HEAPF32[$$sroa$28$0$$sroa_idx151>>2] = Math_fround(1.0);
- $$sroa$29$0$$sroa_idx153 = ((($1)) + 100|0);
- HEAPF32[$$sroa$29$0$$sroa_idx153>>2] = Math_fround(-0.5);
- $$sroa$30$0$$sroa_idx155 = ((($1)) + 104|0);
- HEAPF32[$$sroa$30$0$$sroa_idx155>>2] = Math_fround(-0.5);
- $$sroa$31$0$$sroa_idx157 = ((($1)) + 108|0);
- HEAPF32[$$sroa$31$0$$sroa_idx157>>2] = Math_fround(-0.5);
- $$sroa$32$0$$sroa_idx159 = ((($1)) + 112|0);
- HEAPF32[$$sroa$32$0$$sroa_idx159>>2] = Math_fround(0.0);
- $$sroa$33$0$$sroa_idx161 = ((($1)) + 116|0);
- HEAPF32[$$sroa$33$0$$sroa_idx161>>2] = Math_fround(0.0);
- $$sroa$34$0$$sroa_idx163 = ((($1)) + 120|0);
- HEAPF32[$$sroa$34$0$$sroa_idx163>>2] = Math_fround(-0.5);
- $$sroa$35$0$$sroa_idx165 = ((($1)) + 124|0);
- HEAPF32[$$sroa$35$0$$sroa_idx165>>2] = Math_fround(-0.5);
- $$sroa$36$0$$sroa_idx167 = ((($1)) + 128|0);
- HEAPF32[$$sroa$36$0$$sroa_idx167>>2] = Math_fround(0.5);
- $$sroa$37$0$$sroa_idx169 = ((($1)) + 132|0);
- HEAPF32[$$sroa$37$0$$sroa_idx169>>2] = Math_fround(0.0);
- $$sroa$38$0$$sroa_idx171 = ((($1)) + 136|0);
- HEAPF32[$$sroa$38$0$$sroa_idx171>>2] = Math_fround(0.0);
- $$sroa$39$0$$sroa_idx173 = ((($1)) + 140|0);
- HEAPF32[$$sroa$39$0$$sroa_idx173>>2] = Math_fround(0.5);
- $$sroa$40$0$$sroa_idx175 = ((($1)) + 144|0);
- HEAPF32[$$sroa$40$0$$sroa_idx175>>2] = Math_fround(-0.5);
- $$sroa$41$0$$sroa_idx177 = ((($1)) + 148|0);
- HEAPF32[$$sroa$41$0$$sroa_idx177>>2] = Math_fround(0.5);
- $$sroa$42$0$$sroa_idx179 = ((($1)) + 152|0);
- HEAPF32[$$sroa$42$0$$sroa_idx179>>2] = Math_fround(1.0);
- $$sroa$43$0$$sroa_idx181 = ((($1)) + 156|0);
- HEAPF32[$$sroa$43$0$$sroa_idx181>>2] = Math_fround(0.0);
- $$sroa$44$0$$sroa_idx183 = ((($1)) + 160|0);
- HEAPF32[$$sroa$44$0$$sroa_idx183>>2] = Math_fround(0.5);
- $$sroa$45$0$$sroa_idx185 = ((($1)) + 164|0);
- HEAPF32[$$sroa$45$0$$sroa_idx185>>2] = Math_fround(0.5);
- $$sroa$46$0$$sroa_idx187 = ((($1)) + 168|0);
- HEAPF32[$$sroa$46$0$$sroa_idx187>>2] = Math_fround(0.5);
- $$sroa$47$0$$sroa_idx189 = ((($1)) + 172|0);
- HEAPF32[$$sroa$47$0$$sroa_idx189>>2] = Math_fround(1.0);
- $$sroa$48$0$$sroa_idx191 = ((($1)) + 176|0);
- HEAPF32[$$sroa$48$0$$sroa_idx191>>2] = Math_fround(1.0);
- $$sroa$49$0$$sroa_idx193 = ((($1)) + 180|0);
- HEAPF32[$$sroa$49$0$$sroa_idx193>>2] = Math_fround(0.5);
- $$sroa$50$0$$sroa_idx195 = ((($1)) + 184|0);
- HEAPF32[$$sroa$50$0$$sroa_idx195>>2] = Math_fround(0.5);
- $$sroa$51$0$$sroa_idx197 = ((($1)) + 188|0);
- HEAPF32[$$sroa$51$0$$sroa_idx197>>2] = Math_fround(0.5);
- $$sroa$52$0$$sroa_idx199 = ((($1)) + 192|0);
- HEAPF32[$$sroa$52$0$$sroa_idx199>>2] = Math_fround(1.0);
- $$sroa$53$0$$sroa_idx201 = ((($1)) + 196|0);
- HEAPF32[$$sroa$53$0$$sroa_idx201>>2] = Math_fround(1.0);
- $$sroa$54$0$$sroa_idx203 = ((($1)) + 200|0);
- HEAPF32[$$sroa$54$0$$sroa_idx203>>2] = Math_fround(-0.5);
- $$sroa$55$0$$sroa_idx205 = ((($1)) + 204|0);
- HEAPF32[$$sroa$55$0$$sroa_idx205>>2] = Math_fround(0.5);
- $$sroa$56$0$$sroa_idx207 = ((($1)) + 208|0);
- HEAPF32[$$sroa$56$0$$sroa_idx207>>2] = Math_fround(0.5);
- $$sroa$57$0$$sroa_idx209 = ((($1)) + 212|0);
- HEAPF32[$$sroa$57$0$$sroa_idx209>>2] = Math_fround(0.0);
- $$sroa$58$0$$sroa_idx211 = ((($1)) + 216|0);
- HEAPF32[$$sroa$58$0$$sroa_idx211>>2] = Math_fround(1.0);
- $$sroa$59$0$$sroa_idx213 = ((($1)) + 220|0);
- HEAPF32[$$sroa$59$0$$sroa_idx213>>2] = Math_fround(-0.5);
- $$sroa$60$0$$sroa_idx215 = ((($1)) + 224|0);
- HEAPF32[$$sroa$60$0$$sroa_idx215>>2] = Math_fround(-0.5);
- $$sroa$61$0$$sroa_idx217 = ((($1)) + 228|0);
- HEAPF32[$$sroa$61$0$$sroa_idx217>>2] = Math_fround(0.5);
- $$sroa$62$0$$sroa_idx219 = ((($1)) + 232|0);
- HEAPF32[$$sroa$62$0$$sroa_idx219>>2] = Math_fround(0.0);
- $$sroa$63$0$$sroa_idx221 = ((($1)) + 236|0);
- HEAPF32[$$sroa$63$0$$sroa_idx221>>2] = Math_fround(0.0);
- $$sroa$64$0$$sroa_idx223 = ((($1)) + 240|0);
- HEAPF32[$$sroa$64$0$$sroa_idx223>>2] = Math_fround(-0.5);
- $$sroa$65$0$$sroa_idx225 = ((($1)) + 244|0);
- HEAPF32[$$sroa$65$0$$sroa_idx225>>2] = Math_fround(0.5);
- $$sroa$66$0$$sroa_idx227 = ((($1)) + 248|0);
- HEAPF32[$$sroa$66$0$$sroa_idx227>>2] = Math_fround(0.5);
- $$sroa$67$0$$sroa_idx229 = ((($1)) + 252|0);
- HEAPF32[$$sroa$67$0$$sroa_idx229>>2] = Math_fround(1.0);
- $$sroa$68$0$$sroa_idx231 = ((($1)) + 256|0);
- HEAPF32[$$sroa$68$0$$sroa_idx231>>2] = Math_fround(0.0);
- $$sroa$69$0$$sroa_idx233 = ((($1)) + 260|0);
- HEAPF32[$$sroa$69$0$$sroa_idx233>>2] = Math_fround(-0.5);
- $$sroa$70$0$$sroa_idx235 = ((($1)) + 264|0);
- HEAPF32[$$sroa$70$0$$sroa_idx235>>2] = Math_fround(0.5);
- $$sroa$71$0$$sroa_idx237 = ((($1)) + 268|0);
- HEAPF32[$$sroa$71$0$$sroa_idx237>>2] = Math_fround(-0.5);
- $$sroa$72$0$$sroa_idx239 = ((($1)) + 272|0);
- HEAPF32[$$sroa$72$0$$sroa_idx239>>2] = Math_fround(1.0);
- $$sroa$73$0$$sroa_idx241 = ((($1)) + 276|0);
- HEAPF32[$$sroa$73$0$$sroa_idx241>>2] = Math_fround(1.0);
- $$sroa$74$0$$sroa_idx243 = ((($1)) + 280|0);
- HEAPF32[$$sroa$74$0$$sroa_idx243>>2] = Math_fround(-0.5);
- $$sroa$75$0$$sroa_idx245 = ((($1)) + 284|0);
- HEAPF32[$$sroa$75$0$$sroa_idx245>>2] = Math_fround(-0.5);
- $$sroa$76$0$$sroa_idx247 = ((($1)) + 288|0);
- HEAPF32[$$sroa$76$0$$sroa_idx247>>2] = Math_fround(-0.5);
- $$sroa$77$0$$sroa_idx249 = ((($1)) + 292|0);
- HEAPF32[$$sroa$77$0$$sroa_idx249>>2] = Math_fround(0.0);
- $$sroa$78$0$$sroa_idx251 = ((($1)) + 296|0);
- HEAPF32[$$sroa$78$0$$sroa_idx251>>2] = Math_fround(1.0);
- $$sroa$79$0$$sroa_idx253 = ((($1)) + 300|0);
- HEAPF32[$$sroa$79$0$$sroa_idx253>>2] = Math_fround(-0.5);
- $$sroa$80$0$$sroa_idx255 = ((($1)) + 304|0);
- HEAPF32[$$sroa$80$0$$sroa_idx255>>2] = Math_fround(-0.5);
- $$sroa$81$0$$sroa_idx257 = ((($1)) + 308|0);
- HEAPF32[$$sroa$81$0$$sroa_idx257>>2] = Math_fround(-0.5);
- $$sroa$82$0$$sroa_idx259 = ((($1)) + 312|0);
- HEAPF32[$$sroa$82$0$$sroa_idx259>>2] = Math_fround(0.0);
- $$sroa$83$0$$sroa_idx261 = ((($1)) + 316|0);
- HEAPF32[$$sroa$83$0$$sroa_idx261>>2] = Math_fround(1.0);
- $$sroa$84$0$$sroa_idx263 = ((($1)) + 320|0);
- HEAPF32[$$sroa$84$0$$sroa_idx263>>2] = Math_fround(-0.5);
- $$sroa$85$0$$sroa_idx265 = ((($1)) + 324|0);
- HEAPF32[$$sroa$85$0$$sroa_idx265>>2] = Math_fround(-0.5);
- $$sroa$86$0$$sroa_idx267 = ((($1)) + 328|0);
- HEAPF32[$$sroa$86$0$$sroa_idx267>>2] = Math_fround(0.5);
- $$sroa$87$0$$sroa_idx269 = ((($1)) + 332|0);
- HEAPF32[$$sroa$87$0$$sroa_idx269>>2] = Math_fround(0.0);
- $$sroa$88$0$$sroa_idx271 = ((($1)) + 336|0);
- HEAPF32[$$sroa$88$0$$sroa_idx271>>2] = Math_fround(0.0);
- $$sroa$89$0$$sroa_idx273 = ((($1)) + 340|0);
- HEAPF32[$$sroa$89$0$$sroa_idx273>>2] = Math_fround(-0.5);
- $$sroa$90$0$$sroa_idx275 = ((($1)) + 344|0);
- HEAPF32[$$sroa$90$0$$sroa_idx275>>2] = Math_fround(0.5);
- $$sroa$91$0$$sroa_idx277 = ((($1)) + 348|0);
- HEAPF32[$$sroa$91$0$$sroa_idx277>>2] = Math_fround(0.5);
- $$sroa$92$0$$sroa_idx279 = ((($1)) + 352|0);
- HEAPF32[$$sroa$92$0$$sroa_idx279>>2] = Math_fround(1.0);
- $$sroa$93$0$$sroa_idx281 = ((($1)) + 356|0);
- HEAPF32[$$sroa$93$0$$sroa_idx281>>2] = Math_fround(0.0);
- $$sroa$94$0$$sroa_idx283 = ((($1)) + 360|0);
- HEAPF32[$$sroa$94$0$$sroa_idx283>>2] = Math_fround(0.5);
- $$sroa$95$0$$sroa_idx285 = ((($1)) + 364|0);
- HEAPF32[$$sroa$95$0$$sroa_idx285>>2] = Math_fround(0.5);
- $$sroa$96$0$$sroa_idx287 = ((($1)) + 368|0);
- HEAPF32[$$sroa$96$0$$sroa_idx287>>2] = Math_fround(0.5);
- $$sroa$97$0$$sroa_idx289 = ((($1)) + 372|0);
- HEAPF32[$$sroa$97$0$$sroa_idx289>>2] = Math_fround(1.0);
- $$sroa$98$0$$sroa_idx291 = ((($1)) + 376|0);
- HEAPF32[$$sroa$98$0$$sroa_idx291>>2] = Math_fround(0.0);
- $$sroa$99$0$$sroa_idx293 = ((($1)) + 380|0);
- HEAPF32[$$sroa$99$0$$sroa_idx293>>2] = Math_fround(0.5);
- $$sroa$100$0$$sroa_idx295 = ((($1)) + 384|0);
- HEAPF32[$$sroa$100$0$$sroa_idx295>>2] = Math_fround(0.5);
- $$sroa$101$0$$sroa_idx297 = ((($1)) + 388|0);
- HEAPF32[$$sroa$101$0$$sroa_idx297>>2] = Math_fround(-0.5);
- $$sroa$102$0$$sroa_idx299 = ((($1)) + 392|0);
- HEAPF32[$$sroa$102$0$$sroa_idx299>>2] = Math_fround(1.0);
- $$sroa$103$0$$sroa_idx301 = ((($1)) + 396|0);
- HEAPF32[$$sroa$103$0$$sroa_idx301>>2] = Math_fround(1.0);
- $$sroa$104$0$$sroa_idx303 = ((($1)) + 400|0);
- HEAPF32[$$sroa$104$0$$sroa_idx303>>2] = Math_fround(0.5);
- $$sroa$105$0$$sroa_idx305 = ((($1)) + 404|0);
- HEAPF32[$$sroa$105$0$$sroa_idx305>>2] = Math_fround(-0.5);
- $$sroa$106$0$$sroa_idx307 = ((($1)) + 408|0);
- HEAPF32[$$sroa$106$0$$sroa_idx307>>2] = Math_fround(-0.5);
- $$sroa$107$0$$sroa_idx309 = ((($1)) + 412|0);
- HEAPF32[$$sroa$107$0$$sroa_idx309>>2] = Math_fround(0.0);
- $$sroa$108$0$$sroa_idx311 = ((($1)) + 416|0);
- HEAPF32[$$sroa$108$0$$sroa_idx311>>2] = Math_fround(1.0);
- $$sroa$109$0$$sroa_idx313 = ((($1)) + 420|0);
- HEAPF32[$$sroa$109$0$$sroa_idx313>>2] = Math_fround(0.5);
- $$sroa$110$0$$sroa_idx315 = ((($1)) + 424|0);
- HEAPF32[$$sroa$110$0$$sroa_idx315>>2] = Math_fround(-0.5);
- $$sroa$111$0$$sroa_idx317 = ((($1)) + 428|0);
- HEAPF32[$$sroa$111$0$$sroa_idx317>>2] = Math_fround(-0.5);
- $$sroa$112$0$$sroa_idx319 = ((($1)) + 432|0);
- HEAPF32[$$sroa$112$0$$sroa_idx319>>2] = Math_fround(0.0);
- $$sroa$113$0$$sroa_idx321 = ((($1)) + 436|0);
- HEAPF32[$$sroa$113$0$$sroa_idx321>>2] = Math_fround(1.0);
- $$sroa$114$0$$sroa_idx323 = ((($1)) + 440|0);
- HEAPF32[$$sroa$114$0$$sroa_idx323>>2] = Math_fround(0.5);
- $$sroa$115$0$$sroa_idx325 = ((($1)) + 444|0);
- HEAPF32[$$sroa$115$0$$sroa_idx325>>2] = Math_fround(-0.5);
- $$sroa$116$0$$sroa_idx327 = ((($1)) + 448|0);
- HEAPF32[$$sroa$116$0$$sroa_idx327>>2] = Math_fround(0.5);
- $$sroa$117$0$$sroa_idx329 = ((($1)) + 452|0);
- HEAPF32[$$sroa$117$0$$sroa_idx329>>2] = Math_fround(0.0);
- $$sroa$118$0$$sroa_idx331 = ((($1)) + 456|0);
- HEAPF32[$$sroa$118$0$$sroa_idx331>>2] = Math_fround(0.0);
- $$sroa$119$0$$sroa_idx333 = ((($1)) + 460|0);
- HEAPF32[$$sroa$119$0$$sroa_idx333>>2] = Math_fround(0.5);
- $$sroa$120$0$$sroa_idx335 = ((($1)) + 464|0);
- HEAPF32[$$sroa$120$0$$sroa_idx335>>2] = Math_fround(0.5);
- $$sroa$121$0$$sroa_idx337 = ((($1)) + 468|0);
- HEAPF32[$$sroa$121$0$$sroa_idx337>>2] = Math_fround(0.5);
- $$sroa$122$0$$sroa_idx339 = ((($1)) + 472|0);
- HEAPF32[$$sroa$122$0$$sroa_idx339>>2] = Math_fround(1.0);
- $$sroa$123$0$$sroa_idx341 = ((($1)) + 476|0);
- HEAPF32[$$sroa$123$0$$sroa_idx341>>2] = Math_fround(0.0);
- $$sroa$124$0$$sroa_idx343 = ((($1)) + 480|0);
- HEAPF32[$$sroa$124$0$$sroa_idx343>>2] = Math_fround(-0.5);
- $$sroa$125$0$$sroa_idx345 = ((($1)) + 484|0);
- HEAPF32[$$sroa$125$0$$sroa_idx345>>2] = Math_fround(-0.5);
- $$sroa$126$0$$sroa_idx347 = ((($1)) + 488|0);
- HEAPF32[$$sroa$126$0$$sroa_idx347>>2] = Math_fround(-0.5);
- $$sroa$127$0$$sroa_idx349 = ((($1)) + 492|0);
- HEAPF32[$$sroa$127$0$$sroa_idx349>>2] = Math_fround(0.0);
- $$sroa$128$0$$sroa_idx351 = ((($1)) + 496|0);
- HEAPF32[$$sroa$128$0$$sroa_idx351>>2] = Math_fround(1.0);
- $$sroa$129$0$$sroa_idx353 = ((($1)) + 500|0);
- HEAPF32[$$sroa$129$0$$sroa_idx353>>2] = Math_fround(0.5);
- $$sroa$130$0$$sroa_idx355 = ((($1)) + 504|0);
- HEAPF32[$$sroa$130$0$$sroa_idx355>>2] = Math_fround(-0.5);
- $$sroa$131$0$$sroa_idx357 = ((($1)) + 508|0);
- HEAPF32[$$sroa$131$0$$sroa_idx357>>2] = Math_fround(-0.5);
- $$sroa$132$0$$sroa_idx359 = ((($1)) + 512|0);
- HEAPF32[$$sroa$132$0$$sroa_idx359>>2] = Math_fround(1.0);
- $$sroa$133$0$$sroa_idx361 = ((($1)) + 516|0);
- HEAPF32[$$sroa$133$0$$sroa_idx361>>2] = Math_fround(1.0);
- $$sroa$134$0$$sroa_idx363 = ((($1)) + 520|0);
- HEAPF32[$$sroa$134$0$$sroa_idx363>>2] = Math_fround(0.5);
- $$sroa$135$0$$sroa_idx365 = ((($1)) + 524|0);
- HEAPF32[$$sroa$135$0$$sroa_idx365>>2] = Math_fround(-0.5);
- $$sroa$136$0$$sroa_idx367 = ((($1)) + 528|0);
- HEAPF32[$$sroa$136$0$$sroa_idx367>>2] = Math_fround(0.5);
- $$sroa$137$0$$sroa_idx369 = ((($1)) + 532|0);
- HEAPF32[$$sroa$137$0$$sroa_idx369>>2] = Math_fround(1.0);
- $$sroa$138$0$$sroa_idx371 = ((($1)) + 536|0);
- HEAPF32[$$sroa$138$0$$sroa_idx371>>2] = Math_fround(0.0);
- $$sroa$139$0$$sroa_idx373 = ((($1)) + 540|0);
- HEAPF32[$$sroa$139$0$$sroa_idx373>>2] = Math_fround(0.5);
- $$sroa$140$0$$sroa_idx375 = ((($1)) + 544|0);
- HEAPF32[$$sroa$140$0$$sroa_idx375>>2] = Math_fround(-0.5);
- $$sroa$141$0$$sroa_idx377 = ((($1)) + 548|0);
- HEAPF32[$$sroa$141$0$$sroa_idx377>>2] = Math_fround(0.5);
- $$sroa$142$0$$sroa_idx379 = ((($1)) + 552|0);
- HEAPF32[$$sroa$142$0$$sroa_idx379>>2] = Math_fround(1.0);
- $$sroa$143$0$$sroa_idx381 = ((($1)) + 556|0);
- HEAPF32[$$sroa$143$0$$sroa_idx381>>2] = Math_fround(0.0);
- $$sroa$144$0$$sroa_idx383 = ((($1)) + 560|0);
- HEAPF32[$$sroa$144$0$$sroa_idx383>>2] = Math_fround(-0.5);
- $$sroa$145$0$$sroa_idx385 = ((($1)) + 564|0);
- HEAPF32[$$sroa$145$0$$sroa_idx385>>2] = Math_fround(-0.5);
- $$sroa$146$0$$sroa_idx387 = ((($1)) + 568|0);
- HEAPF32[$$sroa$146$0$$sroa_idx387>>2] = Math_fround(0.5);
- $$sroa$147$0$$sroa_idx389 = ((($1)) + 572|0);
- HEAPF32[$$sroa$147$0$$sroa_idx389>>2] = Math_fround(0.0);
- $$sroa$148$0$$sroa_idx391 = ((($1)) + 576|0);
- HEAPF32[$$sroa$148$0$$sroa_idx391>>2] = Math_fround(0.0);
- $$sroa$149$0$$sroa_idx393 = ((($1)) + 580|0);
- HEAPF32[$$sroa$149$0$$sroa_idx393>>2] = Math_fround(-0.5);
- $$sroa$150$0$$sroa_idx395 = ((($1)) + 584|0);
- HEAPF32[$$sroa$150$0$$sroa_idx395>>2] = Math_fround(-0.5);
- $$sroa$151$0$$sroa_idx397 = ((($1)) + 588|0);
- HEAPF32[$$sroa$151$0$$sroa_idx397>>2] = Math_fround(-0.5);
- $$sroa$152$0$$sroa_idx399 = ((($1)) + 592|0);
- HEAPF32[$$sroa$152$0$$sroa_idx399>>2] = Math_fround(0.0);
- $$sroa$153$0$$sroa_idx401 = ((($1)) + 596|0);
- HEAPF32[$$sroa$153$0$$sroa_idx401>>2] = Math_fround(1.0);
- $$sroa$154$0$$sroa_idx403 = ((($1)) + 600|0);
- HEAPF32[$$sroa$154$0$$sroa_idx403>>2] = Math_fround(-0.5);
- $$sroa$155$0$$sroa_idx405 = ((($1)) + 604|0);
- HEAPF32[$$sroa$155$0$$sroa_idx405>>2] = Math_fround(0.5);
- $$sroa$156$0$$sroa_idx407 = ((($1)) + 608|0);
- HEAPF32[$$sroa$156$0$$sroa_idx407>>2] = Math_fround(-0.5);
- $$sroa$157$0$$sroa_idx409 = ((($1)) + 612|0);
- HEAPF32[$$sroa$157$0$$sroa_idx409>>2] = Math_fround(0.0);
- $$sroa$158$0$$sroa_idx411 = ((($1)) + 616|0);
- HEAPF32[$$sroa$158$0$$sroa_idx411>>2] = Math_fround(1.0);
- $$sroa$159$0$$sroa_idx413 = ((($1)) + 620|0);
- HEAPF32[$$sroa$159$0$$sroa_idx413>>2] = Math_fround(0.5);
- $$sroa$160$0$$sroa_idx415 = ((($1)) + 624|0);
- HEAPF32[$$sroa$160$0$$sroa_idx415>>2] = Math_fround(0.5);
- $$sroa$161$0$$sroa_idx417 = ((($1)) + 628|0);
- HEAPF32[$$sroa$161$0$$sroa_idx417>>2] = Math_fround(-0.5);
- $$sroa$162$0$$sroa_idx419 = ((($1)) + 632|0);
- HEAPF32[$$sroa$162$0$$sroa_idx419>>2] = Math_fround(1.0);
- $$sroa$163$0$$sroa_idx421 = ((($1)) + 636|0);
- HEAPF32[$$sroa$163$0$$sroa_idx421>>2] = Math_fround(1.0);
- $$sroa$164$0$$sroa_idx423 = ((($1)) + 640|0);
- HEAPF32[$$sroa$164$0$$sroa_idx423>>2] = Math_fround(0.5);
- $$sroa$165$0$$sroa_idx425 = ((($1)) + 644|0);
- HEAPF32[$$sroa$165$0$$sroa_idx425>>2] = Math_fround(0.5);
- $$sroa$166$0$$sroa_idx427 = ((($1)) + 648|0);
- HEAPF32[$$sroa$166$0$$sroa_idx427>>2] = Math_fround(0.5);
- $$sroa$167$0$$sroa_idx429 = ((($1)) + 652|0);
- HEAPF32[$$sroa$167$0$$sroa_idx429>>2] = Math_fround(1.0);
- $$sroa$168$0$$sroa_idx431 = ((($1)) + 656|0);
- HEAPF32[$$sroa$168$0$$sroa_idx431>>2] = Math_fround(0.0);
- $$sroa$169$0$$sroa_idx433 = ((($1)) + 660|0);
- HEAPF32[$$sroa$169$0$$sroa_idx433>>2] = Math_fround(0.5);
- $$sroa$170$0$$sroa_idx435 = ((($1)) + 664|0);
- HEAPF32[$$sroa$170$0$$sroa_idx435>>2] = Math_fround(0.5);
- $$sroa$171$0$$sroa_idx437 = ((($1)) + 668|0);
- HEAPF32[$$sroa$171$0$$sroa_idx437>>2] = Math_fround(0.5);
- $$sroa$172$0$$sroa_idx439 = ((($1)) + 672|0);
- HEAPF32[$$sroa$172$0$$sroa_idx439>>2] = Math_fround(1.0);
- $$sroa$173$0$$sroa_idx441 = ((($1)) + 676|0);
- HEAPF32[$$sroa$173$0$$sroa_idx441>>2] = Math_fround(0.0);
- $$sroa$174$0$$sroa_idx443 = ((($1)) + 680|0);
- HEAPF32[$$sroa$174$0$$sroa_idx443>>2] = Math_fround(-0.5);
- $$sroa$175$0$$sroa_idx445 = ((($1)) + 684|0);
- HEAPF32[$$sroa$175$0$$sroa_idx445>>2] = Math_fround(0.5);
- $$sroa$176$0$$sroa_idx447 = ((($1)) + 688|0);
- HEAPF32[$$sroa$176$0$$sroa_idx447>>2] = Math_fround(0.5);
- $$sroa$177$0$$sroa_idx449 = ((($1)) + 692|0);
- HEAPF32[$$sroa$177$0$$sroa_idx449>>2] = Math_fround(0.0);
- $$sroa$178$0$$sroa_idx451 = ((($1)) + 696|0);
- HEAPF32[$$sroa$178$0$$sroa_idx451>>2] = Math_fround(0.0);
- $$sroa$179$0$$sroa_idx453 = ((($1)) + 700|0);
- HEAPF32[$$sroa$179$0$$sroa_idx453>>2] = Math_fround(-0.5);
- $$sroa$180$0$$sroa_idx455 = ((($1)) + 704|0);
- HEAPF32[$$sroa$180$0$$sroa_idx455>>2] = Math_fround(0.5);
- $$sroa$181$0$$sroa_idx457 = ((($1)) + 708|0);
- HEAPF32[$$sroa$181$0$$sroa_idx457>>2] = Math_fround(-0.5);
- $$sroa$182$0$$sroa_idx459 = ((($1)) + 712|0);
- HEAPF32[$$sroa$182$0$$sroa_idx459>>2] = Math_fround(0.0);
- $$sroa$183$0$$sroa_idx461 = ((($1)) + 716|0);
- HEAPF32[$$sroa$183$0$$sroa_idx461>>2] = Math_fround(1.0);
- HEAP32[$17>>2] = 0;
- $18 = ((($17)) + 4|0);
- HEAP32[$18>>2] = 0;
- _glGenVertexArrays(1,($18|0));
- $19 = HEAP32[$3>>2]|0;
- _glGenBuffers(1,($19|0));
- $20 = HEAP32[$3>>2]|0;
- $21 = ((($20)) + 4|0);
- $22 = HEAP32[$21>>2]|0;
- _glBindVertexArray(($22|0));
- $23 = HEAP32[$3>>2]|0;
- $24 = HEAP32[$23>>2]|0;
- _glBindBuffer(34962,($24|0));
+ $$sroa$5$0$$sroa_idx156 = ((($1)) + 4|0);
+ HEAPF32[$$sroa$5$0$$sroa_idx156>>2] = Math_fround(-0.5);
+ $$sroa$6$0$$sroa_idx158 = ((($1)) + 8|0);
+ HEAPF32[$$sroa$6$0$$sroa_idx158>>2] = Math_fround(-0.5);
+ $$sroa$7$0$$sroa_idx160 = ((($1)) + 12|0);
+ HEAPF32[$$sroa$7$0$$sroa_idx160>>2] = Math_fround(0.0);
+ $$sroa$8$0$$sroa_idx162 = ((($1)) + 16|0);
+ HEAPF32[$$sroa$8$0$$sroa_idx162>>2] = Math_fround(0.0);
+ $$sroa$9$0$$sroa_idx164 = ((($1)) + 20|0);
+ HEAPF32[$$sroa$9$0$$sroa_idx164>>2] = Math_fround(0.5);
+ $$sroa$10$0$$sroa_idx166 = ((($1)) + 24|0);
+ HEAPF32[$$sroa$10$0$$sroa_idx166>>2] = Math_fround(-0.5);
+ $$sroa$11$0$$sroa_idx168 = ((($1)) + 28|0);
+ HEAPF32[$$sroa$11$0$$sroa_idx168>>2] = Math_fround(-0.5);
+ $$sroa$12$0$$sroa_idx170 = ((($1)) + 32|0);
+ HEAPF32[$$sroa$12$0$$sroa_idx170>>2] = Math_fround(1.0);
+ $$sroa$13$0$$sroa_idx172 = ((($1)) + 36|0);
+ HEAPF32[$$sroa$13$0$$sroa_idx172>>2] = Math_fround(0.0);
+ $$sroa$14$0$$sroa_idx174 = ((($1)) + 40|0);
+ HEAPF32[$$sroa$14$0$$sroa_idx174>>2] = Math_fround(0.5);
+ $$sroa$15$0$$sroa_idx176 = ((($1)) + 44|0);
+ HEAPF32[$$sroa$15$0$$sroa_idx176>>2] = Math_fround(0.5);
+ $$sroa$16$0$$sroa_idx178 = ((($1)) + 48|0);
+ HEAPF32[$$sroa$16$0$$sroa_idx178>>2] = Math_fround(-0.5);
+ $$sroa$17$0$$sroa_idx180 = ((($1)) + 52|0);
+ HEAPF32[$$sroa$17$0$$sroa_idx180>>2] = Math_fround(1.0);
+ $$sroa$18$0$$sroa_idx182 = ((($1)) + 56|0);
+ HEAPF32[$$sroa$18$0$$sroa_idx182>>2] = Math_fround(1.0);
+ $$sroa$19$0$$sroa_idx184 = ((($1)) + 60|0);
+ HEAPF32[$$sroa$19$0$$sroa_idx184>>2] = Math_fround(0.5);
+ $$sroa$20$0$$sroa_idx186 = ((($1)) + 64|0);
+ HEAPF32[$$sroa$20$0$$sroa_idx186>>2] = Math_fround(0.5);
+ $$sroa$21$0$$sroa_idx188 = ((($1)) + 68|0);
+ HEAPF32[$$sroa$21$0$$sroa_idx188>>2] = Math_fround(-0.5);
+ $$sroa$22$0$$sroa_idx190 = ((($1)) + 72|0);
+ HEAPF32[$$sroa$22$0$$sroa_idx190>>2] = Math_fround(1.0);
+ $$sroa$23$0$$sroa_idx192 = ((($1)) + 76|0);
+ HEAPF32[$$sroa$23$0$$sroa_idx192>>2] = Math_fround(1.0);
+ $$sroa$24$0$$sroa_idx194 = ((($1)) + 80|0);
+ HEAPF32[$$sroa$24$0$$sroa_idx194>>2] = Math_fround(-0.5);
+ $$sroa$25$0$$sroa_idx196 = ((($1)) + 84|0);
+ HEAPF32[$$sroa$25$0$$sroa_idx196>>2] = Math_fround(0.5);
+ $$sroa$26$0$$sroa_idx198 = ((($1)) + 88|0);
+ HEAPF32[$$sroa$26$0$$sroa_idx198>>2] = Math_fround(-0.5);
+ $$sroa$27$0$$sroa_idx200 = ((($1)) + 92|0);
+ HEAPF32[$$sroa$27$0$$sroa_idx200>>2] = Math_fround(0.0);
+ $$sroa$28$0$$sroa_idx202 = ((($1)) + 96|0);
+ HEAPF32[$$sroa$28$0$$sroa_idx202>>2] = Math_fround(1.0);
+ $$sroa$29$0$$sroa_idx204 = ((($1)) + 100|0);
+ HEAPF32[$$sroa$29$0$$sroa_idx204>>2] = Math_fround(-0.5);
+ $$sroa$30$0$$sroa_idx206 = ((($1)) + 104|0);
+ HEAPF32[$$sroa$30$0$$sroa_idx206>>2] = Math_fround(-0.5);
+ $$sroa$31$0$$sroa_idx208 = ((($1)) + 108|0);
+ HEAPF32[$$sroa$31$0$$sroa_idx208>>2] = Math_fround(-0.5);
+ $$sroa$32$0$$sroa_idx210 = ((($1)) + 112|0);
+ HEAPF32[$$sroa$32$0$$sroa_idx210>>2] = Math_fround(0.0);
+ $$sroa$33$0$$sroa_idx212 = ((($1)) + 116|0);
+ HEAPF32[$$sroa$33$0$$sroa_idx212>>2] = Math_fround(0.0);
+ $$sroa$34$0$$sroa_idx214 = ((($1)) + 120|0);
+ HEAPF32[$$sroa$34$0$$sroa_idx214>>2] = Math_fround(-0.5);
+ $$sroa$35$0$$sroa_idx216 = ((($1)) + 124|0);
+ HEAPF32[$$sroa$35$0$$sroa_idx216>>2] = Math_fround(-0.5);
+ $$sroa$36$0$$sroa_idx218 = ((($1)) + 128|0);
+ HEAPF32[$$sroa$36$0$$sroa_idx218>>2] = Math_fround(0.5);
+ $$sroa$37$0$$sroa_idx220 = ((($1)) + 132|0);
+ HEAPF32[$$sroa$37$0$$sroa_idx220>>2] = Math_fround(0.0);
+ $$sroa$38$0$$sroa_idx222 = ((($1)) + 136|0);
+ HEAPF32[$$sroa$38$0$$sroa_idx222>>2] = Math_fround(0.0);
+ $$sroa$39$0$$sroa_idx224 = ((($1)) + 140|0);
+ HEAPF32[$$sroa$39$0$$sroa_idx224>>2] = Math_fround(0.5);
+ $$sroa$40$0$$sroa_idx226 = ((($1)) + 144|0);
+ HEAPF32[$$sroa$40$0$$sroa_idx226>>2] = Math_fround(-0.5);
+ $$sroa$41$0$$sroa_idx228 = ((($1)) + 148|0);
+ HEAPF32[$$sroa$41$0$$sroa_idx228>>2] = Math_fround(0.5);
+ $$sroa$42$0$$sroa_idx230 = ((($1)) + 152|0);
+ HEAPF32[$$sroa$42$0$$sroa_idx230>>2] = Math_fround(1.0);
+ $$sroa$43$0$$sroa_idx232 = ((($1)) + 156|0);
+ HEAPF32[$$sroa$43$0$$sroa_idx232>>2] = Math_fround(0.0);
+ $$sroa$44$0$$sroa_idx234 = ((($1)) + 160|0);
+ HEAPF32[$$sroa$44$0$$sroa_idx234>>2] = Math_fround(0.5);
+ $$sroa$45$0$$sroa_idx236 = ((($1)) + 164|0);
+ HEAPF32[$$sroa$45$0$$sroa_idx236>>2] = Math_fround(0.5);
+ $$sroa$46$0$$sroa_idx238 = ((($1)) + 168|0);
+ HEAPF32[$$sroa$46$0$$sroa_idx238>>2] = Math_fround(0.5);
+ $$sroa$47$0$$sroa_idx240 = ((($1)) + 172|0);
+ HEAPF32[$$sroa$47$0$$sroa_idx240>>2] = Math_fround(1.0);
+ $$sroa$48$0$$sroa_idx242 = ((($1)) + 176|0);
+ HEAPF32[$$sroa$48$0$$sroa_idx242>>2] = Math_fround(1.0);
+ $$sroa$49$0$$sroa_idx244 = ((($1)) + 180|0);
+ HEAPF32[$$sroa$49$0$$sroa_idx244>>2] = Math_fround(0.5);
+ $$sroa$50$0$$sroa_idx246 = ((($1)) + 184|0);
+ HEAPF32[$$sroa$50$0$$sroa_idx246>>2] = Math_fround(0.5);
+ $$sroa$51$0$$sroa_idx248 = ((($1)) + 188|0);
+ HEAPF32[$$sroa$51$0$$sroa_idx248>>2] = Math_fround(0.5);
+ $$sroa$52$0$$sroa_idx250 = ((($1)) + 192|0);
+ HEAPF32[$$sroa$52$0$$sroa_idx250>>2] = Math_fround(1.0);
+ $$sroa$53$0$$sroa_idx252 = ((($1)) + 196|0);
+ HEAPF32[$$sroa$53$0$$sroa_idx252>>2] = Math_fround(1.0);
+ $$sroa$54$0$$sroa_idx254 = ((($1)) + 200|0);
+ HEAPF32[$$sroa$54$0$$sroa_idx254>>2] = Math_fround(-0.5);
+ $$sroa$55$0$$sroa_idx256 = ((($1)) + 204|0);
+ HEAPF32[$$sroa$55$0$$sroa_idx256>>2] = Math_fround(0.5);
+ $$sroa$56$0$$sroa_idx258 = ((($1)) + 208|0);
+ HEAPF32[$$sroa$56$0$$sroa_idx258>>2] = Math_fround(0.5);
+ $$sroa$57$0$$sroa_idx260 = ((($1)) + 212|0);
+ HEAPF32[$$sroa$57$0$$sroa_idx260>>2] = Math_fround(0.0);
+ $$sroa$58$0$$sroa_idx262 = ((($1)) + 216|0);
+ HEAPF32[$$sroa$58$0$$sroa_idx262>>2] = Math_fround(1.0);
+ $$sroa$59$0$$sroa_idx264 = ((($1)) + 220|0);
+ HEAPF32[$$sroa$59$0$$sroa_idx264>>2] = Math_fround(-0.5);
+ $$sroa$60$0$$sroa_idx266 = ((($1)) + 224|0);
+ HEAPF32[$$sroa$60$0$$sroa_idx266>>2] = Math_fround(-0.5);
+ $$sroa$61$0$$sroa_idx268 = ((($1)) + 228|0);
+ HEAPF32[$$sroa$61$0$$sroa_idx268>>2] = Math_fround(0.5);
+ $$sroa$62$0$$sroa_idx270 = ((($1)) + 232|0);
+ HEAPF32[$$sroa$62$0$$sroa_idx270>>2] = Math_fround(0.0);
+ $$sroa$63$0$$sroa_idx272 = ((($1)) + 236|0);
+ HEAPF32[$$sroa$63$0$$sroa_idx272>>2] = Math_fround(0.0);
+ $$sroa$64$0$$sroa_idx274 = ((($1)) + 240|0);
+ HEAPF32[$$sroa$64$0$$sroa_idx274>>2] = Math_fround(-0.5);
+ $$sroa$65$0$$sroa_idx276 = ((($1)) + 244|0);
+ HEAPF32[$$sroa$65$0$$sroa_idx276>>2] = Math_fround(0.5);
+ $$sroa$66$0$$sroa_idx278 = ((($1)) + 248|0);
+ HEAPF32[$$sroa$66$0$$sroa_idx278>>2] = Math_fround(0.5);
+ $$sroa$67$0$$sroa_idx280 = ((($1)) + 252|0);
+ HEAPF32[$$sroa$67$0$$sroa_idx280>>2] = Math_fround(1.0);
+ $$sroa$68$0$$sroa_idx282 = ((($1)) + 256|0);
+ HEAPF32[$$sroa$68$0$$sroa_idx282>>2] = Math_fround(0.0);
+ $$sroa$69$0$$sroa_idx284 = ((($1)) + 260|0);
+ HEAPF32[$$sroa$69$0$$sroa_idx284>>2] = Math_fround(-0.5);
+ $$sroa$70$0$$sroa_idx286 = ((($1)) + 264|0);
+ HEAPF32[$$sroa$70$0$$sroa_idx286>>2] = Math_fround(0.5);
+ $$sroa$71$0$$sroa_idx288 = ((($1)) + 268|0);
+ HEAPF32[$$sroa$71$0$$sroa_idx288>>2] = Math_fround(-0.5);
+ $$sroa$72$0$$sroa_idx290 = ((($1)) + 272|0);
+ HEAPF32[$$sroa$72$0$$sroa_idx290>>2] = Math_fround(1.0);
+ $$sroa$73$0$$sroa_idx292 = ((($1)) + 276|0);
+ HEAPF32[$$sroa$73$0$$sroa_idx292>>2] = Math_fround(1.0);
+ $$sroa$74$0$$sroa_idx294 = ((($1)) + 280|0);
+ HEAPF32[$$sroa$74$0$$sroa_idx294>>2] = Math_fround(-0.5);
+ $$sroa$75$0$$sroa_idx296 = ((($1)) + 284|0);
+ HEAPF32[$$sroa$75$0$$sroa_idx296>>2] = Math_fround(-0.5);
+ $$sroa$76$0$$sroa_idx298 = ((($1)) + 288|0);
+ HEAPF32[$$sroa$76$0$$sroa_idx298>>2] = Math_fround(-0.5);
+ $$sroa$77$0$$sroa_idx300 = ((($1)) + 292|0);
+ HEAPF32[$$sroa$77$0$$sroa_idx300>>2] = Math_fround(0.0);
+ $$sroa$78$0$$sroa_idx302 = ((($1)) + 296|0);
+ HEAPF32[$$sroa$78$0$$sroa_idx302>>2] = Math_fround(1.0);
+ $$sroa$79$0$$sroa_idx304 = ((($1)) + 300|0);
+ HEAPF32[$$sroa$79$0$$sroa_idx304>>2] = Math_fround(-0.5);
+ $$sroa$80$0$$sroa_idx306 = ((($1)) + 304|0);
+ HEAPF32[$$sroa$80$0$$sroa_idx306>>2] = Math_fround(-0.5);
+ $$sroa$81$0$$sroa_idx308 = ((($1)) + 308|0);
+ HEAPF32[$$sroa$81$0$$sroa_idx308>>2] = Math_fround(-0.5);
+ $$sroa$82$0$$sroa_idx310 = ((($1)) + 312|0);
+ HEAPF32[$$sroa$82$0$$sroa_idx310>>2] = Math_fround(0.0);
+ $$sroa$83$0$$sroa_idx312 = ((($1)) + 316|0);
+ HEAPF32[$$sroa$83$0$$sroa_idx312>>2] = Math_fround(1.0);
+ $$sroa$84$0$$sroa_idx314 = ((($1)) + 320|0);
+ HEAPF32[$$sroa$84$0$$sroa_idx314>>2] = Math_fround(-0.5);
+ $$sroa$85$0$$sroa_idx316 = ((($1)) + 324|0);
+ HEAPF32[$$sroa$85$0$$sroa_idx316>>2] = Math_fround(-0.5);
+ $$sroa$86$0$$sroa_idx318 = ((($1)) + 328|0);
+ HEAPF32[$$sroa$86$0$$sroa_idx318>>2] = Math_fround(0.5);
+ $$sroa$87$0$$sroa_idx320 = ((($1)) + 332|0);
+ HEAPF32[$$sroa$87$0$$sroa_idx320>>2] = Math_fround(0.0);
+ $$sroa$88$0$$sroa_idx322 = ((($1)) + 336|0);
+ HEAPF32[$$sroa$88$0$$sroa_idx322>>2] = Math_fround(0.0);
+ $$sroa$89$0$$sroa_idx324 = ((($1)) + 340|0);
+ HEAPF32[$$sroa$89$0$$sroa_idx324>>2] = Math_fround(-0.5);
+ $$sroa$90$0$$sroa_idx326 = ((($1)) + 344|0);
+ HEAPF32[$$sroa$90$0$$sroa_idx326>>2] = Math_fround(0.5);
+ $$sroa$91$0$$sroa_idx328 = ((($1)) + 348|0);
+ HEAPF32[$$sroa$91$0$$sroa_idx328>>2] = Math_fround(0.5);
+ $$sroa$92$0$$sroa_idx330 = ((($1)) + 352|0);
+ HEAPF32[$$sroa$92$0$$sroa_idx330>>2] = Math_fround(1.0);
+ $$sroa$93$0$$sroa_idx332 = ((($1)) + 356|0);
+ HEAPF32[$$sroa$93$0$$sroa_idx332>>2] = Math_fround(0.0);
+ $$sroa$94$0$$sroa_idx334 = ((($1)) + 360|0);
+ HEAPF32[$$sroa$94$0$$sroa_idx334>>2] = Math_fround(0.5);
+ $$sroa$95$0$$sroa_idx336 = ((($1)) + 364|0);
+ HEAPF32[$$sroa$95$0$$sroa_idx336>>2] = Math_fround(0.5);
+ $$sroa$96$0$$sroa_idx338 = ((($1)) + 368|0);
+ HEAPF32[$$sroa$96$0$$sroa_idx338>>2] = Math_fround(0.5);
+ $$sroa$97$0$$sroa_idx340 = ((($1)) + 372|0);
+ HEAPF32[$$sroa$97$0$$sroa_idx340>>2] = Math_fround(1.0);
+ $$sroa$98$0$$sroa_idx342 = ((($1)) + 376|0);
+ HEAPF32[$$sroa$98$0$$sroa_idx342>>2] = Math_fround(0.0);
+ $$sroa$99$0$$sroa_idx344 = ((($1)) + 380|0);
+ HEAPF32[$$sroa$99$0$$sroa_idx344>>2] = Math_fround(0.5);
+ $$sroa$100$0$$sroa_idx346 = ((($1)) + 384|0);
+ HEAPF32[$$sroa$100$0$$sroa_idx346>>2] = Math_fround(0.5);
+ $$sroa$101$0$$sroa_idx348 = ((($1)) + 388|0);
+ HEAPF32[$$sroa$101$0$$sroa_idx348>>2] = Math_fround(-0.5);
+ $$sroa$102$0$$sroa_idx350 = ((($1)) + 392|0);
+ HEAPF32[$$sroa$102$0$$sroa_idx350>>2] = Math_fround(1.0);
+ $$sroa$103$0$$sroa_idx352 = ((($1)) + 396|0);
+ HEAPF32[$$sroa$103$0$$sroa_idx352>>2] = Math_fround(1.0);
+ $$sroa$104$0$$sroa_idx354 = ((($1)) + 400|0);
+ HEAPF32[$$sroa$104$0$$sroa_idx354>>2] = Math_fround(0.5);
+ $$sroa$105$0$$sroa_idx356 = ((($1)) + 404|0);
+ HEAPF32[$$sroa$105$0$$sroa_idx356>>2] = Math_fround(-0.5);
+ $$sroa$106$0$$sroa_idx358 = ((($1)) + 408|0);
+ HEAPF32[$$sroa$106$0$$sroa_idx358>>2] = Math_fround(-0.5);
+ $$sroa$107$0$$sroa_idx360 = ((($1)) + 412|0);
+ HEAPF32[$$sroa$107$0$$sroa_idx360>>2] = Math_fround(0.0);
+ $$sroa$108$0$$sroa_idx362 = ((($1)) + 416|0);
+ HEAPF32[$$sroa$108$0$$sroa_idx362>>2] = Math_fround(1.0);
+ $$sroa$109$0$$sroa_idx364 = ((($1)) + 420|0);
+ HEAPF32[$$sroa$109$0$$sroa_idx364>>2] = Math_fround(0.5);
+ $$sroa$110$0$$sroa_idx366 = ((($1)) + 424|0);
+ HEAPF32[$$sroa$110$0$$sroa_idx366>>2] = Math_fround(-0.5);
+ $$sroa$111$0$$sroa_idx368 = ((($1)) + 428|0);
+ HEAPF32[$$sroa$111$0$$sroa_idx368>>2] = Math_fround(-0.5);
+ $$sroa$112$0$$sroa_idx370 = ((($1)) + 432|0);
+ HEAPF32[$$sroa$112$0$$sroa_idx370>>2] = Math_fround(0.0);
+ $$sroa$113$0$$sroa_idx372 = ((($1)) + 436|0);
+ HEAPF32[$$sroa$113$0$$sroa_idx372>>2] = Math_fround(1.0);
+ $$sroa$114$0$$sroa_idx374 = ((($1)) + 440|0);
+ HEAPF32[$$sroa$114$0$$sroa_idx374>>2] = Math_fround(0.5);
+ $$sroa$115$0$$sroa_idx376 = ((($1)) + 444|0);
+ HEAPF32[$$sroa$115$0$$sroa_idx376>>2] = Math_fround(-0.5);
+ $$sroa$116$0$$sroa_idx378 = ((($1)) + 448|0);
+ HEAPF32[$$sroa$116$0$$sroa_idx378>>2] = Math_fround(0.5);
+ $$sroa$117$0$$sroa_idx380 = ((($1)) + 452|0);
+ HEAPF32[$$sroa$117$0$$sroa_idx380>>2] = Math_fround(0.0);
+ $$sroa$118$0$$sroa_idx382 = ((($1)) + 456|0);
+ HEAPF32[$$sroa$118$0$$sroa_idx382>>2] = Math_fround(0.0);
+ $$sroa$119$0$$sroa_idx384 = ((($1)) + 460|0);
+ HEAPF32[$$sroa$119$0$$sroa_idx384>>2] = Math_fround(0.5);
+ $$sroa$120$0$$sroa_idx386 = ((($1)) + 464|0);
+ HEAPF32[$$sroa$120$0$$sroa_idx386>>2] = Math_fround(0.5);
+ $$sroa$121$0$$sroa_idx388 = ((($1)) + 468|0);
+ HEAPF32[$$sroa$121$0$$sroa_idx388>>2] = Math_fround(0.5);
+ $$sroa$122$0$$sroa_idx390 = ((($1)) + 472|0);
+ HEAPF32[$$sroa$122$0$$sroa_idx390>>2] = Math_fround(1.0);
+ $$sroa$123$0$$sroa_idx392 = ((($1)) + 476|0);
+ HEAPF32[$$sroa$123$0$$sroa_idx392>>2] = Math_fround(0.0);
+ $$sroa$124$0$$sroa_idx394 = ((($1)) + 480|0);
+ HEAPF32[$$sroa$124$0$$sroa_idx394>>2] = Math_fround(-0.5);
+ $$sroa$125$0$$sroa_idx396 = ((($1)) + 484|0);
+ HEAPF32[$$sroa$125$0$$sroa_idx396>>2] = Math_fround(-0.5);
+ $$sroa$126$0$$sroa_idx398 = ((($1)) + 488|0);
+ HEAPF32[$$sroa$126$0$$sroa_idx398>>2] = Math_fround(-0.5);
+ $$sroa$127$0$$sroa_idx400 = ((($1)) + 492|0);
+ HEAPF32[$$sroa$127$0$$sroa_idx400>>2] = Math_fround(0.0);
+ $$sroa$128$0$$sroa_idx402 = ((($1)) + 496|0);
+ HEAPF32[$$sroa$128$0$$sroa_idx402>>2] = Math_fround(1.0);
+ $$sroa$129$0$$sroa_idx404 = ((($1)) + 500|0);
+ HEAPF32[$$sroa$129$0$$sroa_idx404>>2] = Math_fround(0.5);
+ $$sroa$130$0$$sroa_idx406 = ((($1)) + 504|0);
+ HEAPF32[$$sroa$130$0$$sroa_idx406>>2] = Math_fround(-0.5);
+ $$sroa$131$0$$sroa_idx408 = ((($1)) + 508|0);
+ HEAPF32[$$sroa$131$0$$sroa_idx408>>2] = Math_fround(-0.5);
+ $$sroa$132$0$$sroa_idx410 = ((($1)) + 512|0);
+ HEAPF32[$$sroa$132$0$$sroa_idx410>>2] = Math_fround(1.0);
+ $$sroa$133$0$$sroa_idx412 = ((($1)) + 516|0);
+ HEAPF32[$$sroa$133$0$$sroa_idx412>>2] = Math_fround(1.0);
+ $$sroa$134$0$$sroa_idx414 = ((($1)) + 520|0);
+ HEAPF32[$$sroa$134$0$$sroa_idx414>>2] = Math_fround(0.5);
+ $$sroa$135$0$$sroa_idx416 = ((($1)) + 524|0);
+ HEAPF32[$$sroa$135$0$$sroa_idx416>>2] = Math_fround(-0.5);
+ $$sroa$136$0$$sroa_idx418 = ((($1)) + 528|0);
+ HEAPF32[$$sroa$136$0$$sroa_idx418>>2] = Math_fround(0.5);
+ $$sroa$137$0$$sroa_idx420 = ((($1)) + 532|0);
+ HEAPF32[$$sroa$137$0$$sroa_idx420>>2] = Math_fround(1.0);
+ $$sroa$138$0$$sroa_idx422 = ((($1)) + 536|0);
+ HEAPF32[$$sroa$138$0$$sroa_idx422>>2] = Math_fround(0.0);
+ $$sroa$139$0$$sroa_idx424 = ((($1)) + 540|0);
+ HEAPF32[$$sroa$139$0$$sroa_idx424>>2] = Math_fround(0.5);
+ $$sroa$140$0$$sroa_idx426 = ((($1)) + 544|0);
+ HEAPF32[$$sroa$140$0$$sroa_idx426>>2] = Math_fround(-0.5);
+ $$sroa$141$0$$sroa_idx428 = ((($1)) + 548|0);
+ HEAPF32[$$sroa$141$0$$sroa_idx428>>2] = Math_fround(0.5);
+ $$sroa$142$0$$sroa_idx430 = ((($1)) + 552|0);
+ HEAPF32[$$sroa$142$0$$sroa_idx430>>2] = Math_fround(1.0);
+ $$sroa$143$0$$sroa_idx432 = ((($1)) + 556|0);
+ HEAPF32[$$sroa$143$0$$sroa_idx432>>2] = Math_fround(0.0);
+ $$sroa$144$0$$sroa_idx434 = ((($1)) + 560|0);
+ HEAPF32[$$sroa$144$0$$sroa_idx434>>2] = Math_fround(-0.5);
+ $$sroa$145$0$$sroa_idx436 = ((($1)) + 564|0);
+ HEAPF32[$$sroa$145$0$$sroa_idx436>>2] = Math_fround(-0.5);
+ $$sroa$146$0$$sroa_idx438 = ((($1)) + 568|0);
+ HEAPF32[$$sroa$146$0$$sroa_idx438>>2] = Math_fround(0.5);
+ $$sroa$147$0$$sroa_idx440 = ((($1)) + 572|0);
+ HEAPF32[$$sroa$147$0$$sroa_idx440>>2] = Math_fround(0.0);
+ $$sroa$148$0$$sroa_idx442 = ((($1)) + 576|0);
+ HEAPF32[$$sroa$148$0$$sroa_idx442>>2] = Math_fround(0.0);
+ $$sroa$149$0$$sroa_idx444 = ((($1)) + 580|0);
+ HEAPF32[$$sroa$149$0$$sroa_idx444>>2] = Math_fround(-0.5);
+ $$sroa$150$0$$sroa_idx446 = ((($1)) + 584|0);
+ HEAPF32[$$sroa$150$0$$sroa_idx446>>2] = Math_fround(-0.5);
+ $$sroa$151$0$$sroa_idx448 = ((($1)) + 588|0);
+ HEAPF32[$$sroa$151$0$$sroa_idx448>>2] = Math_fround(-0.5);
+ $$sroa$152$0$$sroa_idx450 = ((($1)) + 592|0);
+ HEAPF32[$$sroa$152$0$$sroa_idx450>>2] = Math_fround(0.0);
+ $$sroa$153$0$$sroa_idx452 = ((($1)) + 596|0);
+ HEAPF32[$$sroa$153$0$$sroa_idx452>>2] = Math_fround(1.0);
+ $$sroa$154$0$$sroa_idx454 = ((($1)) + 600|0);
+ HEAPF32[$$sroa$154$0$$sroa_idx454>>2] = Math_fround(-0.5);
+ $$sroa$155$0$$sroa_idx456 = ((($1)) + 604|0);
+ HEAPF32[$$sroa$155$0$$sroa_idx456>>2] = Math_fround(0.5);
+ $$sroa$156$0$$sroa_idx458 = ((($1)) + 608|0);
+ HEAPF32[$$sroa$156$0$$sroa_idx458>>2] = Math_fround(-0.5);
+ $$sroa$157$0$$sroa_idx460 = ((($1)) + 612|0);
+ HEAPF32[$$sroa$157$0$$sroa_idx460>>2] = Math_fround(0.0);
+ $$sroa$158$0$$sroa_idx462 = ((($1)) + 616|0);
+ HEAPF32[$$sroa$158$0$$sroa_idx462>>2] = Math_fround(1.0);
+ $$sroa$159$0$$sroa_idx464 = ((($1)) + 620|0);
+ HEAPF32[$$sroa$159$0$$sroa_idx464>>2] = Math_fround(0.5);
+ $$sroa$160$0$$sroa_idx466 = ((($1)) + 624|0);
+ HEAPF32[$$sroa$160$0$$sroa_idx466>>2] = Math_fround(0.5);
+ $$sroa$161$0$$sroa_idx468 = ((($1)) + 628|0);
+ HEAPF32[$$sroa$161$0$$sroa_idx468>>2] = Math_fround(-0.5);
+ $$sroa$162$0$$sroa_idx470 = ((($1)) + 632|0);
+ HEAPF32[$$sroa$162$0$$sroa_idx470>>2] = Math_fround(1.0);
+ $$sroa$163$0$$sroa_idx472 = ((($1)) + 636|0);
+ HEAPF32[$$sroa$163$0$$sroa_idx472>>2] = Math_fround(1.0);
+ $$sroa$164$0$$sroa_idx474 = ((($1)) + 640|0);
+ HEAPF32[$$sroa$164$0$$sroa_idx474>>2] = Math_fround(0.5);
+ $$sroa$165$0$$sroa_idx476 = ((($1)) + 644|0);
+ HEAPF32[$$sroa$165$0$$sroa_idx476>>2] = Math_fround(0.5);
+ $$sroa$166$0$$sroa_idx478 = ((($1)) + 648|0);
+ HEAPF32[$$sroa$166$0$$sroa_idx478>>2] = Math_fround(0.5);
+ $$sroa$167$0$$sroa_idx480 = ((($1)) + 652|0);
+ HEAPF32[$$sroa$167$0$$sroa_idx480>>2] = Math_fround(1.0);
+ $$sroa$168$0$$sroa_idx482 = ((($1)) + 656|0);
+ HEAPF32[$$sroa$168$0$$sroa_idx482>>2] = Math_fround(0.0);
+ $$sroa$169$0$$sroa_idx484 = ((($1)) + 660|0);
+ HEAPF32[$$sroa$169$0$$sroa_idx484>>2] = Math_fround(0.5);
+ $$sroa$170$0$$sroa_idx486 = ((($1)) + 664|0);
+ HEAPF32[$$sroa$170$0$$sroa_idx486>>2] = Math_fround(0.5);
+ $$sroa$171$0$$sroa_idx488 = ((($1)) + 668|0);
+ HEAPF32[$$sroa$171$0$$sroa_idx488>>2] = Math_fround(0.5);
+ $$sroa$172$0$$sroa_idx490 = ((($1)) + 672|0);
+ HEAPF32[$$sroa$172$0$$sroa_idx490>>2] = Math_fround(1.0);
+ $$sroa$173$0$$sroa_idx492 = ((($1)) + 676|0);
+ HEAPF32[$$sroa$173$0$$sroa_idx492>>2] = Math_fround(0.0);
+ $$sroa$174$0$$sroa_idx494 = ((($1)) + 680|0);
+ HEAPF32[$$sroa$174$0$$sroa_idx494>>2] = Math_fround(-0.5);
+ $$sroa$175$0$$sroa_idx496 = ((($1)) + 684|0);
+ HEAPF32[$$sroa$175$0$$sroa_idx496>>2] = Math_fround(0.5);
+ $$sroa$176$0$$sroa_idx498 = ((($1)) + 688|0);
+ HEAPF32[$$sroa$176$0$$sroa_idx498>>2] = Math_fround(0.5);
+ $$sroa$177$0$$sroa_idx500 = ((($1)) + 692|0);
+ HEAPF32[$$sroa$177$0$$sroa_idx500>>2] = Math_fround(0.0);
+ $$sroa$178$0$$sroa_idx502 = ((($1)) + 696|0);
+ HEAPF32[$$sroa$178$0$$sroa_idx502>>2] = Math_fround(0.0);
+ $$sroa$179$0$$sroa_idx504 = ((($1)) + 700|0);
+ HEAPF32[$$sroa$179$0$$sroa_idx504>>2] = Math_fround(-0.5);
+ $$sroa$180$0$$sroa_idx506 = ((($1)) + 704|0);
+ HEAPF32[$$sroa$180$0$$sroa_idx506>>2] = Math_fround(0.5);
+ $$sroa$181$0$$sroa_idx508 = ((($1)) + 708|0);
+ HEAPF32[$$sroa$181$0$$sroa_idx508>>2] = Math_fround(-0.5);
+ $$sroa$182$0$$sroa_idx510 = ((($1)) + 712|0);
+ HEAPF32[$$sroa$182$0$$sroa_idx510>>2] = Math_fround(0.0);
+ $$sroa$183$0$$sroa_idx512 = ((($1)) + 716|0);
+ HEAPF32[$$sroa$183$0$$sroa_idx512>>2] = Math_fround(1.0);
+ $19 = (_glm_vec3_new(Math_fround(0.0),Math_fround(0.0),Math_fround(0.0))|0);
+ $20 = (_glm_vec3_new(Math_fround(2.0),Math_fround(5.0),Math_fround(-15.0))|0);
+ $21 = (_glm_vec3_new(Math_fround(-1.5),Math_fround(-2.20000005),Math_fround(-2.5))|0);
+ $22 = (_glm_vec3_new(Math_fround(-3.79999995),Math_fround(-2.0),Math_fround(-12.3000002))|0);
+ $23 = (_glm_vec3_new(Math_fround(2.4000001),Math_fround(-0.400000006),Math_fround(-3.5))|0);
+ $24 = (_glm_vec3_new(Math_fround(-1.70000005),Math_fround(3.0),Math_fround(-7.5))|0);
+ $25 = (_glm_vec3_new(Math_fround(1.29999995),Math_fround(-2.0),Math_fround(-2.5))|0);
+ $26 = (_glm_vec3_new(Math_fround(1.5),Math_fround(2.0),Math_fround(-2.5))|0);
+ $27 = (_glm_vec3_new(Math_fround(1.5),Math_fround(0.200000003),Math_fround(-1.5))|0);
+ $28 = (_glm_vec3_new(Math_fround(-1.29999995),Math_fround(1.0),Math_fround(-1.5))|0);
+ $29 = (_g_malloc0_n(11,4)|0);
+ HEAP32[$29>>2] = $19;
+ $30 = ((($29)) + 4|0);
+ HEAP32[$30>>2] = $20;
+ $31 = ((($29)) + 8|0);
+ HEAP32[$31>>2] = $21;
+ $32 = ((($29)) + 12|0);
+ HEAP32[$32>>2] = $22;
+ $33 = ((($29)) + 16|0);
+ HEAP32[$33>>2] = $23;
+ $34 = ((($29)) + 20|0);
+ HEAP32[$34>>2] = $24;
+ $35 = ((($29)) + 24|0);
+ HEAP32[$35>>2] = $25;
+ $36 = ((($29)) + 28|0);
+ HEAP32[$36>>2] = $26;
+ $37 = ((($29)) + 32|0);
+ HEAP32[$37>>2] = $27;
+ $38 = ((($29)) + 36|0);
+ HEAP32[$38>>2] = $28;
+ $39 = HEAP32[$3>>2]|0;
+ $40 = ((($39)) + 72|0);
+ $41 = HEAP32[$40>>2]|0;
+ $42 = ((($39)) + 76|0);
+ $43 = HEAP32[$42>>2]|0;
+ $44 = ($41|0)!=(0|0);
+ $45 = ($43|0)>(0);
+ $or$cond$i$i = $44 & $45;
+ if ($or$cond$i$i) {
+  $$01$i$i = 0;
+  while(1) {
+   $46 = (($41) + ($$01$i$i<<2)|0);
+   $47 = HEAP32[$46>>2]|0;
+   $48 = ($47|0)==(0|0);
+   if (!($48)) {
+    _glm_vec3_unref($47);
+   }
+   $49 = (($$01$i$i) + 1)|0;
+   $exitcond$i$i = ($49|0)==($43|0);
+   if ($exitcond$i$i) {
+    break;
+   } else {
+    $$01$i$i = $49;
+   }
+  }
+ }
+ _g_free($41);
+ $50 = HEAP32[$3>>2]|0;
+ $51 = ((($50)) + 72|0);
+ HEAP32[$51>>2] = $29;
+ $52 = ((($50)) + 76|0);
+ HEAP32[$52>>2] = 10;
+ $53 = ((($50)) + 80|0);
+ HEAP32[$53>>2] = 10;
+ HEAP32[$50>>2] = 0;
+ $54 = ((($50)) + 4|0);
+ HEAP32[$54>>2] = 0;
+ _glGenVertexArrays(1,($54|0));
+ $55 = HEAP32[$3>>2]|0;
+ _glGenBuffers(1,($55|0));
+ $56 = HEAP32[$3>>2]|0;
+ $57 = ((($56)) + 4|0);
+ $58 = HEAP32[$57>>2]|0;
+ _glBindVertexArray(($58|0));
+ $59 = HEAP32[$3>>2]|0;
+ $60 = HEAP32[$59>>2]|0;
+ _glBindBuffer(34962,($60|0));
  _glBufferData(34962,720,($1|0),35044);
  _glVertexAttribPointer(0,3,5126,0,20,(0|0));
  _glEnableVertexAttribArray(0);
  _glVertexAttribPointer(1,2,5126,0,20,((12)|0));
  _glEnableVertexAttribArray(1);
- $25 = HEAP32[$3>>2]|0;
- $26 = ((($25)) + 8|0);
- _glGenTextures(1,($26|0));
- $27 = HEAP32[$3>>2]|0;
- $28 = ((($27)) + 8|0);
- $29 = HEAP32[$28>>2]|0;
- _glBindTexture(3553,($29|0));
- _glTexParameteri(3553,10242,10497);
- _glTexParameteri(3553,10243,10497);
- _glTexParameteri(3553,10241,9729);
- _glTexParameteri(3553,10240,9729);
- $30 = (_image_new(140346)|0);
- $31 = HEAP32[$3>>2]|0;
- $32 = ((($31)) + 24|0);
- $33 = HEAP32[$32>>2]|0;
- $34 = ($33|0)==(0|0);
- if ($34) {
-  $$pre$phi533Z2D = $32;
- } else {
-  _g_object_unref($33);
-  $35 = HEAP32[$3>>2]|0;
-  $36 = ((($35)) + 24|0);
-  HEAP32[$36>>2] = 0;
-  $$pre$phi533Z2D = $36;
- }
- HEAP32[$$pre$phi533Z2D>>2] = $30;
- $37 = (_image_get_Width($30)|0);
- $38 = HEAP32[$3>>2]|0;
- $39 = ((($38)) + 24|0);
- $40 = HEAP32[$39>>2]|0;
- $41 = (_image_get_Height($40)|0);
- $42 = HEAP32[$3>>2]|0;
- $43 = ((($42)) + 24|0);
- $44 = HEAP32[$43>>2]|0;
- $45 = (_image_get_Pixels($44)|0);
- _glTexImage2D(3553,0,6407,($37|0),($41|0),0,6407,5121,($45|0));
- _glGenerateMipmap(3553);
- $46 = HEAP32[$3>>2]|0;
- $47 = ((($46)) + 12|0);
- _glGenTextures(1,($47|0));
- $48 = HEAP32[$3>>2]|0;
- $49 = ((($48)) + 12|0);
- $50 = HEAP32[$49>>2]|0;
- _glBindTexture(3553,($50|0));
- _glTexParameteri(3553,10242,10497);
- _glTexParameteri(3553,10243,10497);
- _glTexParameteri(3553,10241,9729);
- _glTexParameteri(3553,10240,9729);
- $51 = (_image_new(140374)|0);
- $52 = HEAP32[$3>>2]|0;
- $53 = ((($52)) + 24|0);
- $54 = HEAP32[$53>>2]|0;
- $55 = ($54|0)==(0|0);
- if ($55) {
-  $$pre$phi534Z2D = $53;
- } else {
-  _g_object_unref($54);
-  $56 = HEAP32[$3>>2]|0;
-  $57 = ((($56)) + 24|0);
-  HEAP32[$57>>2] = 0;
-  $$pre$phi534Z2D = $57;
- }
- HEAP32[$$pre$phi534Z2D>>2] = $51;
- $58 = (_image_get_Width($51)|0);
- $59 = HEAP32[$3>>2]|0;
- $60 = ((($59)) + 24|0);
- $61 = HEAP32[$60>>2]|0;
- $62 = (_image_get_Height($61)|0);
+ $61 = HEAP32[$3>>2]|0;
+ $62 = ((($61)) + 8|0);
+ _glGenTextures(1,($62|0));
  $63 = HEAP32[$3>>2]|0;
- $64 = ((($63)) + 24|0);
+ $64 = ((($63)) + 8|0);
  $65 = HEAP32[$64>>2]|0;
- $66 = (_image_get_Pixels($65)|0);
- _glTexImage2D(3553,0,6408,($58|0),($62|0),0,6408,5121,($66|0));
- _glGenerateMipmap(3553);
+ _glBindTexture(3553,($65|0));
+ _glTexParameteri(3553,10242,10497);
+ _glTexParameteri(3553,10243,10497);
+ _glTexParameteri(3553,10241,9729);
+ _glTexParameteri(3553,10240,9729);
+ $66 = (_image_new(140347)|0);
  $67 = HEAP32[$3>>2]|0;
- $68 = ((($67)) + 20|0);
+ $68 = ((($67)) + 24|0);
  $69 = HEAP32[$68>>2]|0;
- _shader_Use($69);
- $70 = HEAP32[$3>>2]|0;
- $71 = ((($70)) + 20|0);
- $72 = HEAP32[$71>>2]|0;
- _shader_SetInt($72,140404,0);
- $73 = HEAP32[$3>>2]|0;
- $74 = ((($73)) + 20|0);
- $75 = HEAP32[$74>>2]|0;
- _shader_SetInt($75,140413,1);
- $76 = (_g_malloc0_n(16,4)|0);
- $77 = ((($76)) + 4|0);
- $78 = ((($76)) + 20|0);
- $79 = ((($76)) + 24|0);
- ;HEAP32[$77>>2]=0|0;HEAP32[$77+4>>2]=0|0;HEAP32[$77+8>>2]=0|0;HEAP32[$77+12>>2]=0|0;
- $80 = ((($76)) + 40|0);
- $81 = ((($76)) + 44|0);
- ;HEAP32[$79>>2]=0|0;HEAP32[$79+4>>2]=0|0;HEAP32[$79+8>>2]=0|0;HEAP32[$79+12>>2]=0|0;
- $82 = ((($76)) + 60|0);
- $83 = ((($76)) + 48|0);
- $84 = $83;
- $85 = $84;
- HEAP32[$85>>2] = 0;
- $86 = (($84) + 4)|0;
- $87 = $86;
- HEAP32[$87>>2] = 0;
- HEAP32[$82>>2] = 1065353216;
+ $70 = ($69|0)==(0|0);
+ if ($70) {
+  $$pre$phi599Z2D = $68;
+ } else {
+  _g_object_unref($69);
+  $71 = HEAP32[$3>>2]|0;
+  $72 = ((($71)) + 24|0);
+  HEAP32[$72>>2] = 0;
+  $$pre$phi599Z2D = $72;
+ }
+ HEAP32[$$pre$phi599Z2D>>2] = $66;
+ $73 = (_image_get_Width($66)|0);
+ $74 = HEAP32[$3>>2]|0;
+ $75 = ((($74)) + 24|0);
+ $76 = HEAP32[$75>>2]|0;
+ $77 = (_image_get_Height($76)|0);
+ $78 = HEAP32[$3>>2]|0;
+ $79 = ((($78)) + 24|0);
+ $80 = HEAP32[$79>>2]|0;
+ $81 = (_image_get_Pixels($80)|0);
+ _glTexImage2D(3553,0,6407,($73|0),($77|0),0,6407,5121,($81|0));
+ _glGenerateMipmap(3553);
+ $82 = HEAP32[$3>>2]|0;
+ $83 = ((($82)) + 12|0);
+ _glGenTextures(1,($83|0));
+ $84 = HEAP32[$3>>2]|0;
+ $85 = ((($84)) + 12|0);
+ $86 = HEAP32[$85>>2]|0;
+ _glBindTexture(3553,($86|0));
+ _glTexParameteri(3553,10242,10497);
+ _glTexParameteri(3553,10243,10497);
+ _glTexParameteri(3553,10241,9729);
+ _glTexParameteri(3553,10240,9729);
+ $87 = (_image_new(140375)|0);
  $88 = HEAP32[$3>>2]|0;
- $89 = ((($88)) + 28|0);
+ $89 = ((($88)) + 24|0);
  $90 = HEAP32[$89>>2]|0;
- _g_free($90);
- $91 = HEAP32[$3>>2]|0;
- $92 = ((($91)) + 28|0);
- HEAP32[$92>>2] = $76;
- $93 = ((($91)) + 32|0);
- HEAP32[$93>>2] = 4;
- $94 = ((($91)) + 36|0);
- HEAP32[$94>>2] = 4;
- dest=$77; stop=dest+60|0; do { HEAP32[dest>>2]=0|0; dest=dest+4|0; } while ((dest|0) < (stop|0));
- HEAPF32[$76>>2] = Math_fround(1.81066);
- HEAPF32[$78>>2] = Math_fround(2.41421342);
- HEAPF32[$80>>2] = Math_fround(-1.002002);
- HEAPF32[$81>>2] = Math_fround(-1.0);
- $95 = ((($76)) + 56|0);
- HEAPF32[$95>>2] = Math_fround(-0.2002002);
- $96 = ((($91)) + 20|0);
+ $91 = ($90|0)==(0|0);
+ if ($91) {
+  $$pre$phi600Z2D = $89;
+ } else {
+  _g_object_unref($90);
+  $92 = HEAP32[$3>>2]|0;
+  $93 = ((($92)) + 24|0);
+  HEAP32[$93>>2] = 0;
+  $$pre$phi600Z2D = $93;
+ }
+ HEAP32[$$pre$phi600Z2D>>2] = $87;
+ $94 = (_image_get_Width($87)|0);
+ $95 = HEAP32[$3>>2]|0;
+ $96 = ((($95)) + 24|0);
  $97 = HEAP32[$96>>2]|0;
- $98 = HEAP32[$92>>2]|0;
- _shader_SetMat4($97,140422,$98);
+ $98 = (_image_get_Height($97)|0);
+ $99 = HEAP32[$3>>2]|0;
+ $100 = ((($99)) + 24|0);
+ $101 = HEAP32[$100>>2]|0;
+ $102 = (_image_get_Pixels($101)|0);
+ _glTexImage2D(3553,0,6408,($94|0),($98|0),0,6408,5121,($102|0));
+ _glGenerateMipmap(3553);
+ $103 = (_glm_mat4_new(Math_fround(1.0))|0);
+ $104 = HEAP32[$3>>2]|0;
+ $105 = ((($104)) + 32|0);
+ $106 = HEAP32[$105>>2]|0;
+ $107 = ($106|0)==(0|0);
+ if ($107) {
+  $$pre$phi601Z2D = $105;
+ } else {
+  _glm_mat4_unref($106);
+  $108 = HEAP32[$3>>2]|0;
+  $109 = ((($108)) + 32|0);
+  HEAP32[$109>>2] = 0;
+  $$pre$phi601Z2D = $109;
+ }
+ HEAP32[$$pre$phi601Z2D>>2] = $103;
+ $110 = (_glm_mat4_new(Math_fround(1.0))|0);
+ $111 = HEAP32[$3>>2]|0;
+ $112 = ((($111)) + 36|0);
+ $113 = HEAP32[$112>>2]|0;
+ $114 = ($113|0)==(0|0);
+ if ($114) {
+  $$pre$phi602Z2D = $112;
+ } else {
+  _glm_mat4_unref($113);
+  $115 = HEAP32[$3>>2]|0;
+  $116 = ((($115)) + 36|0);
+  HEAP32[$116>>2] = 0;
+  $$pre$phi602Z2D = $116;
+ }
+ HEAP32[$$pre$phi602Z2D>>2] = $110;
+ $117 = (_glm_mat4_new(Math_fround(1.0))|0);
+ $118 = HEAP32[$3>>2]|0;
+ $119 = ((($118)) + 28|0);
+ $120 = HEAP32[$119>>2]|0;
+ $121 = ($120|0)==(0|0);
+ if ($121) {
+  $$pre$phi603Z2D = $119;
+ } else {
+  _glm_mat4_unref($120);
+  $122 = HEAP32[$3>>2]|0;
+  $123 = ((($122)) + 28|0);
+  HEAP32[$123>>2] = 0;
+  $$pre$phi603Z2D = $123;
+ }
+ HEAP32[$$pre$phi603Z2D>>2] = $117;
+ $124 = ((($117)) + 4|0);
+ dest=$124; stop=dest+60|0; do { HEAP32[dest>>2]=0|0; dest=dest+4|0; } while ((dest|0) < (stop|0));
+ HEAPF32[$117>>2] = Math_fround(1.81066);
+ $125 = ((($117)) + 20|0);
+ HEAPF32[$125>>2] = Math_fround(2.41421342);
+ $126 = ((($117)) + 40|0);
+ HEAPF32[$126>>2] = Math_fround(-1.002002);
+ $127 = ((($117)) + 44|0);
+ HEAPF32[$127>>2] = Math_fround(-1.0);
+ $128 = ((($117)) + 56|0);
+ HEAPF32[$128>>2] = Math_fround(-0.2002002);
+ $129 = HEAP32[$3>>2]|0;
+ $130 = ((($129)) + 20|0);
+ $131 = HEAP32[$130>>2]|0;
+ _shader_Use($131);
+ $132 = HEAP32[$3>>2]|0;
+ $133 = ((($132)) + 20|0);
+ $134 = HEAP32[$133>>2]|0;
+ _shader_SetInt($134,140405,0);
+ $135 = HEAP32[$3>>2]|0;
+ $136 = ((($135)) + 20|0);
+ $137 = HEAP32[$136>>2]|0;
+ _shader_SetInt($137,140414,1);
+ $138 = HEAP32[$3>>2]|0;
+ $139 = ((($138)) + 20|0);
+ $140 = HEAP32[$139>>2]|0;
+ $141 = ((($138)) + 28|0);
+ $142 = HEAP32[$141>>2]|0;
+ _shader_SetMat4($140,140423,$142);
  _emscripten_set_main_loop((454|0),-1,0);
  $$0 = 0;
  STACKTOP = sp;return ($$0|0);
@@ -68412,245 +68628,747 @@ function ____lambda50__em_callback_func() {
 }
 function _game_Update($0) {
  $0 = $0|0;
- var $1 = 0, $10 = 0, $100 = Math_fround(0), $101 = Math_fround(0), $102 = Math_fround(0), $103 = Math_fround(0), $104 = 0, $105 = 0, $106 = 0, $107 = Math_fround(0), $108 = Math_fround(0), $109 = Math_fround(0), $11 = 0, $110 = Math_fround(0), $111 = 0, $112 = Math_fround(0), $113 = Math_fround(0), $114 = 0, $115 = Math_fround(0), $116 = Math_fround(0);
- var $117 = 0, $118 = Math_fround(0), $119 = Math_fround(0), $12 = 0, $120 = Math_fround(0), $121 = Math_fround(0), $122 = Math_fround(0), $123 = Math_fround(0), $124 = 0, $125 = Math_fround(0), $126 = Math_fround(0), $127 = 0, $128 = Math_fround(0), $129 = Math_fround(0), $13 = 0, $130 = 0, $131 = Math_fround(0), $132 = Math_fround(0), $133 = Math_fround(0), $134 = Math_fround(0);
- var $135 = Math_fround(0), $136 = Math_fround(0), $137 = 0, $138 = Math_fround(0), $139 = Math_fround(0), $14 = 0, $140 = 0, $141 = Math_fround(0), $142 = Math_fround(0), $143 = 0, $144 = Math_fround(0), $145 = Math_fround(0), $146 = Math_fround(0), $147 = Math_fround(0), $148 = Math_fround(0), $149 = Math_fround(0), $15 = 0, $150 = Math_fround(0), $151 = Math_fround(0), $152 = Math_fround(0);
- var $153 = Math_fround(0), $154 = Math_fround(0), $155 = Math_fround(0), $156 = 0, $157 = 0, $158 = 0, $159 = 0, $16 = 0, $160 = 0, $161 = 0, $162 = 0, $163 = 0, $164 = 0, $165 = 0, $166 = 0, $167 = 0, $168 = 0, $169 = 0, $17 = 0, $170 = 0;
- var $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0, $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0;
- var $36 = 0.0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = Math_fround(0), $41 = Math_fround(0), $42 = Math_fround(0), $43 = Math_fround(0), $44 = Math_fround(0), $45 = Math_fround(0), $46 = Math_fround(0), $47 = Math_fround(0), $48 = Math_fround(0), $49 = Math_fround(0), $5 = 0, $50 = Math_fround(0), $51 = Math_fround(0), $52 = Math_fround(0), $53 = Math_fround(0);
- var $54 = Math_fround(0), $55 = Math_fround(0), $56 = Math_fround(0), $57 = Math_fround(0), $58 = Math_fround(0), $59 = Math_fround(0), $6 = 0, $60 = Math_fround(0), $61 = Math_fround(0), $62 = Math_fround(0), $63 = Math_fround(0), $64 = Math_fround(0), $65 = Math_fround(0), $66 = Math_fround(0), $67 = Math_fround(0), $68 = 0, $69 = 0, $7 = 0, $70 = 0, $71 = 0;
- var $72 = 0, $73 = 0, $74 = Math_fround(0), $75 = Math_fround(0), $76 = Math_fround(0), $77 = Math_fround(0), $78 = Math_fround(0), $79 = Math_fround(0), $8 = 0, $80 = Math_fround(0), $81 = Math_fround(0), $82 = Math_fround(0), $83 = Math_fround(0), $84 = Math_fround(0), $85 = Math_fround(0), $86 = Math_fround(0), $87 = Math_fround(0), $88 = Math_fround(0), $89 = Math_fround(0), $9 = 0;
- var $90 = Math_fround(0), $91 = Math_fround(0), $92 = Math_fround(0), $93 = Math_fround(0), $94 = Math_fround(0), $95 = Math_fround(0), $96 = Math_fround(0), $97 = Math_fround(0), $98 = Math_fround(0), $99 = Math_fround(0), label = 0, sp = 0;
+ var $$idx158 = 0, $$idx158$val = Math_fround(0), $$idx159 = 0, $$idx159$val = Math_fround(0), $$idx161 = 0, $$idx161$val = Math_fround(0), $$idx162 = 0, $$idx162$val = Math_fround(0), $$idx24$val$i = Math_fround(0), $$idx25$val$i = Math_fround(0), $$idx30$val$i = Math_fround(0), $$idx31$val$i = Math_fround(0), $$idx36$val$i = Math_fround(0), $$idx37$val$i = Math_fround(0), $$sink$i$i$i = Math_fround(0), $$sroa$011$0$i$i = Math_fround(0), $$sroa$014$0$i = Math_fround(0), $$sroa$12$0$i = Math_fround(0), $$sroa$22$0$i = Math_fround(0), $$sroa$9$0$i$i = Math_fround(0);
+ var $$val157 = Math_fround(0), $$val160 = Math_fround(0), $$val23$i = Math_fround(0), $$val29$i = Math_fround(0), $$val35$i = Math_fround(0), $1 = 0.0, $10 = 0, $100 = Math_fround(0), $101 = Math_fround(0), $102 = Math_fround(0), $103 = Math_fround(0), $104 = Math_fround(0), $105 = Math_fround(0), $106 = Math_fround(0), $107 = Math_fround(0), $108 = Math_fround(0), $109 = Math_fround(0), $11 = 0, $110 = Math_fround(0), $111 = Math_fround(0);
+ var $112 = Math_fround(0), $113 = Math_fround(0), $114 = 0, $115 = Math_fround(0), $116 = 0, $117 = 0, $118 = 0, $119 = Math_fround(0), $12 = 0, $120 = 0, $121 = 0, $122 = 0, $123 = Math_fround(0), $124 = 0, $125 = Math_fround(0), $126 = Math_fround(0), $127 = Math_fround(0), $128 = Math_fround(0), $129 = Math_fround(0), $13 = 0;
+ var $130 = Math_fround(0), $131 = 0, $132 = Math_fround(0), $133 = Math_fround(0), $134 = Math_fround(0), $135 = Math_fround(0), $136 = Math_fround(0), $137 = Math_fround(0), $138 = 0, $139 = Math_fround(0), $14 = 0, $140 = Math_fround(0), $141 = Math_fround(0), $142 = Math_fround(0), $143 = Math_fround(0), $144 = 0, $145 = 0, $146 = 0, $147 = 0, $148 = 0;
+ var $149 = 0, $15 = 0, $150 = 0, $151 = 0, $152 = 0, $153 = 0, $154 = 0, $155 = 0, $156 = 0, $157 = 0, $158 = 0, $159 = 0, $16 = 0, $160 = 0, $161 = 0, $162 = 0, $163 = 0, $164 = 0, $165 = 0, $166 = 0;
+ var $167 = 0, $168 = 0, $169 = 0, $17 = 0, $170 = 0, $171 = 0, $172 = Math_fround(0), $173 = Math_fround(0), $174 = 0, $175 = Math_fround(0), $176 = Math_fround(0), $177 = 0, $178 = Math_fround(0), $179 = Math_fround(0), $18 = 0, $180 = 0, $181 = Math_fround(0), $182 = Math_fround(0), $183 = 0, $184 = Math_fround(0);
+ var $185 = Math_fround(0), $186 = 0, $187 = Math_fround(0), $188 = Math_fround(0), $189 = 0, $19 = 0, $190 = Math_fround(0), $191 = Math_fround(0), $192 = 0, $193 = Math_fround(0), $194 = Math_fround(0), $195 = 0, $196 = Math_fround(0), $197 = Math_fround(0), $198 = 0, $199 = Math_fround(0), $2 = Math_fround(0), $20 = 0, $200 = Math_fround(0), $201 = 0;
+ var $202 = Math_fround(0), $203 = Math_fround(0), $204 = 0, $205 = Math_fround(0), $206 = Math_fround(0), $207 = 0, $208 = Math_fround(0), $209 = Math_fround(0), $21 = 0, $210 = 0, $211 = Math_fround(0), $212 = Math_fround(0), $213 = 0, $214 = Math_fround(0), $215 = Math_fround(0), $216 = 0, $217 = Math_fround(0), $218 = Math_fround(0), $219 = Math_fround(0), $22 = 0;
+ var $220 = Math_fround(0), $221 = Math_fround(0), $222 = Math_fround(0), $223 = Math_fround(0), $224 = Math_fround(0), $225 = Math_fround(0), $226 = Math_fround(0), $227 = Math_fround(0), $228 = Math_fround(0), $229 = Math_fround(0), $23 = 0, $230 = Math_fround(0), $231 = 0, $232 = 0, $233 = Math_fround(0), $234 = Math_fround(0), $235 = Math_fround(0), $236 = Math_fround(0), $237 = Math_fround(0), $238 = Math_fround(0);
+ var $239 = Math_fround(0), $24 = 0, $240 = 0, $241 = Math_fround(0), $242 = Math_fround(0), $243 = Math_fround(0), $244 = Math_fround(0), $245 = Math_fround(0), $246 = Math_fround(0), $247 = Math_fround(0), $248 = Math_fround(0), $249 = Math_fround(0), $25 = 0, $250 = Math_fround(0), $251 = Math_fround(0), $252 = Math_fround(0), $253 = Math_fround(0), $254 = Math_fround(0), $255 = Math_fround(0), $256 = Math_fround(0);
+ var $257 = Math_fround(0), $258 = Math_fround(0), $259 = Math_fround(0), $26 = 0, $260 = Math_fround(0), $261 = Math_fround(0), $262 = Math_fround(0), $263 = Math_fround(0), $264 = Math_fround(0), $265 = Math_fround(0), $266 = Math_fround(0), $267 = Math_fround(0), $268 = Math_fround(0), $269 = Math_fround(0), $27 = 0, $270 = Math_fround(0), $271 = Math_fround(0), $272 = Math_fround(0), $273 = Math_fround(0), $274 = Math_fround(0);
+ var $275 = Math_fround(0), $276 = Math_fround(0), $277 = Math_fround(0), $278 = Math_fround(0), $279 = Math_fround(0), $28 = 0, $280 = Math_fround(0), $281 = Math_fround(0), $282 = Math_fround(0), $283 = Math_fround(0), $284 = Math_fround(0), $285 = Math_fround(0), $286 = Math_fround(0), $287 = Math_fround(0), $288 = Math_fround(0), $289 = Math_fround(0), $29 = 0, $290 = Math_fround(0), $291 = Math_fround(0), $292 = Math_fround(0);
+ var $293 = Math_fround(0), $294 = Math_fround(0), $295 = Math_fround(0), $296 = Math_fround(0), $297 = Math_fround(0), $298 = Math_fround(0), $299 = Math_fround(0), $3 = 0, $30 = 0, $300 = Math_fround(0), $301 = Math_fround(0), $302 = Math_fround(0), $303 = Math_fround(0), $304 = Math_fround(0), $305 = Math_fround(0), $306 = Math_fround(0), $307 = Math_fround(0), $308 = Math_fround(0), $309 = Math_fround(0), $31 = 0;
+ var $310 = Math_fround(0), $311 = Math_fround(0), $312 = Math_fround(0), $313 = Math_fround(0), $314 = Math_fround(0), $315 = Math_fround(0), $316 = Math_fround(0), $317 = Math_fround(0), $318 = Math_fround(0), $319 = Math_fround(0), $32 = 0, $320 = Math_fround(0), $321 = Math_fround(0), $322 = Math_fround(0), $323 = Math_fround(0), $324 = Math_fround(0), $325 = Math_fround(0), $326 = Math_fround(0), $327 = Math_fround(0), $328 = Math_fround(0);
+ var $329 = Math_fround(0), $33 = 0, $330 = Math_fround(0), $331 = Math_fround(0), $332 = Math_fround(0), $333 = Math_fround(0), $334 = Math_fround(0), $335 = Math_fround(0), $336 = Math_fround(0), $337 = Math_fround(0), $338 = 0, $339 = 0, $34 = 0, $340 = 0, $341 = 0, $342 = 0, $343 = 0, $35 = 0, $36 = 0, $37 = 0;
+ var $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = Math_fround(0), $42 = Math_fround(0), $43 = Math_fround(0), $44 = 0, $45 = Math_fround(0), $46 = 0, $47 = Math_fround(0), $48 = Math_fround(0), $49 = 0, $5 = 0, $50 = 0, $51 = Math_fround(0), $52 = 0, $53 = Math_fround(0), $54 = Math_fround(0), $55 = 0;
+ var $56 = 0, $57 = 0, $58 = 0, $59 = 0, $6 = Math_fround(0), $60 = Math_fround(0), $61 = Math_fround(0), $62 = Math_fround(0), $63 = Math_fround(0), $64 = Math_fround(0), $65 = Math_fround(0), $66 = Math_fround(0), $67 = Math_fround(0), $68 = Math_fround(0), $69 = Math_fround(0), $7 = Math_fround(0), $70 = Math_fround(0), $71 = Math_fround(0), $72 = 0, $73 = Math_fround(0);
+ var $74 = Math_fround(0), $75 = Math_fround(0), $76 = Math_fround(0), $77 = 0, $78 = Math_fround(0), $79 = Math_fround(0), $8 = 0, $80 = 0, $81 = Math_fround(0), $82 = Math_fround(0), $83 = Math_fround(0), $84 = Math_fround(0), $85 = Math_fround(0), $86 = Math_fround(0), $87 = Math_fround(0), $88 = Math_fround(0), $89 = Math_fround(0), $9 = 0, $90 = Math_fround(0), $91 = Math_fround(0);
+ var $92 = Math_fround(0), $93 = Math_fround(0), $94 = Math_fround(0), $95 = Math_fround(0), $96 = Math_fround(0), $97 = 0, $98 = Math_fround(0), $99 = Math_fround(0), $exitcond = 0, $spec$select = 0, $spec$select163 = 0, label = 0, sp = 0;
  sp = STACKTOP;
- $1 = ((($0)) + 16|0);
- $2 = HEAP32[$1>>2]|0;
- $3 = ((($2)) + 16|0);
+ $1 = (+_glfwGetTime());
+ $2 = Math_fround($1);
+ $3 = ((($0)) + 16|0);
  $4 = HEAP32[$3>>2]|0;
- $5 = (_glfwGetKey(($4|0),256)|0);
- $6 = ($5|0)==(1);
- if ($6) {
-  _glfwSetWindowShouldClose(($4|0),1);
- }
- $7 = HEAP32[$1>>2]|0;
- $8 = ((($7)) + 16|0);
- $9 = HEAP32[$8>>2]|0;
- $10 = (_glfwWindowShouldClose(($9|0))|0);
- $11 = ($10|0)==(1);
- if ($11) {
+ $5 = ((($4)) + 88|0);
+ $6 = Math_fround(HEAPF32[$5>>2]);
+ $7 = Math_fround($2 - $6);
+ $8 = ((($4)) + 84|0);
+ HEAPF32[$8>>2] = $7;
+ HEAPF32[$5>>2] = $2;
+ $9 = ((($4)) + 16|0);
+ $10 = HEAP32[$9>>2]|0;
+ _game_ProcessInput($0,$10);
+ $11 = HEAP32[$3>>2]|0;
+ $12 = ((($11)) + 16|0);
+ $13 = HEAP32[$12>>2]|0;
+ $14 = (_glfwWindowShouldClose(($13|0))|0);
+ $15 = ($14|0)==(1);
+ if ($15) {
   return;
  }
  _glClearColor(0.200000003,0.300000012,0.300000012,1.0);
  _glClear(16640);
  _glActiveTexture(33984);
- $12 = HEAP32[$1>>2]|0;
- $13 = ((($12)) + 8|0);
- $14 = HEAP32[$13>>2]|0;
- _glBindTexture(3553,($14|0));
+ $16 = HEAP32[$3>>2]|0;
+ $17 = ((($16)) + 8|0);
+ $18 = HEAP32[$17>>2]|0;
+ _glBindTexture(3553,($18|0));
  _glActiveTexture(33985);
- $15 = HEAP32[$1>>2]|0;
- $16 = ((($15)) + 12|0);
- $17 = HEAP32[$16>>2]|0;
- _glBindTexture(3553,($17|0));
- $18 = HEAP32[$1>>2]|0;
- $19 = ((($18)) + 20|0);
- $20 = HEAP32[$19>>2]|0;
- _shader_Use($20);
- $21 = (_g_malloc0_n(16,4)|0);
- $22 = ((($21)) + 4|0);
- $23 = ((($21)) + 20|0);
- $24 = ((($21)) + 24|0);
- $25 = ((($21)) + 16|0);
- HEAP32[$25>>2] = 0;
- HEAP32[$23>>2] = 1065353216;
- $26 = ((($21)) + 40|0);
- $27 = ((($21)) + 44|0);
- ;HEAP32[$24>>2]=0|0;HEAP32[$24+4>>2]=0|0;HEAP32[$24+8>>2]=0|0;HEAP32[$24+12>>2]=0|0;
- HEAP32[$26>>2] = 1065353216;
- $28 = ((($21)) + 60|0);
- ;HEAP32[$27>>2]=0|0;HEAP32[$27+4>>2]=0|0;HEAP32[$27+8>>2]=0|0;HEAP32[$27+12>>2]=0|0;
- HEAP32[$28>>2] = 1065353216;
- $29 = (_g_malloc0_n(16,4)|0);
- $30 = ((($29)) + 4|0);
+ $19 = HEAP32[$3>>2]|0;
+ $20 = ((($19)) + 12|0);
+ $21 = HEAP32[$20>>2]|0;
+ _glBindTexture(3553,($21|0));
+ $22 = HEAP32[$3>>2]|0;
+ $23 = ((($22)) + 20|0);
+ $24 = HEAP32[$23>>2]|0;
+ _shader_Use($24);
+ $25 = HEAP32[$3>>2]|0;
+ $26 = ((($25)) + 36|0);
+ $27 = HEAP32[$26>>2]|0;
+ $28 = ((($27)) + 4|0);
+ HEAP32[$27>>2] = 1065353216;
+ $29 = ((($27)) + 20|0);
+ $30 = ((($27)) + 24|0);
+ ;HEAP32[$28>>2]=0|0;HEAP32[$28+4>>2]=0|0;HEAP32[$28+8>>2]=0|0;HEAP32[$28+12>>2]=0|0;
  HEAP32[$29>>2] = 1065353216;
- $31 = ((($29)) + 20|0);
- $32 = ((($29)) + 24|0);
+ $31 = ((($27)) + 40|0);
+ $32 = ((($27)) + 44|0);
  ;HEAP32[$30>>2]=0|0;HEAP32[$30+4>>2]=0|0;HEAP32[$30+8>>2]=0|0;HEAP32[$30+12>>2]=0|0;
  HEAP32[$31>>2] = 1065353216;
- $33 = ((($29)) + 40|0);
- $34 = ((($29)) + 44|0);
+ $33 = ((($27)) + 60|0);
  ;HEAP32[$32>>2]=0|0;HEAP32[$32+4>>2]=0|0;HEAP32[$32+8>>2]=0|0;HEAP32[$32+12>>2]=0|0;
  HEAP32[$33>>2] = 1065353216;
- $35 = ((($29)) + 60|0);
- ;HEAP32[$34>>2]=0|0;HEAP32[$34+4>>2]=0|0;HEAP32[$34+8>>2]=0|0;HEAP32[$34+12>>2]=0|0;
- HEAP32[$35>>2] = 1065353216;
- $36 = (+_glfwGetTime());
- $37 = (_g_malloc0_n(3,4)|0);
- HEAPF32[$37>>2] = Math_fround(0.5);
- $38 = ((($37)) + 4|0);
- HEAPF32[$38>>2] = Math_fround(1.0);
- $39 = ((($37)) + 8|0);
- HEAPF32[$39>>2] = Math_fround(0.0);
- $40 = Math_fround($36);
- $41 = (Math_fround(_cosf($40)));
- $42 = Math_fround(Math_fround(1.0) - $41);
- $43 = Math_fround($42 * Math_fround(0.44721359));
- $44 = Math_fround($42 * Math_fround(0.89442718));
- $45 = Math_fround($42 * Math_fround(0.0));
- $46 = (Math_fround(_sinf($40)));
- $47 = Math_fround($46 * Math_fround(0.44721359));
- $48 = Math_fround($46 * Math_fround(0.89442718));
- $49 = Math_fround($46 * Math_fround(0.0));
- $50 = Math_fround($43 * Math_fround(0.44721359));
- $51 = Math_fround($43 * Math_fround(0.89442718));
- $52 = Math_fround($43 * Math_fround(0.0));
- $53 = Math_fround($44 * Math_fround(0.44721359));
- $54 = Math_fround($44 * Math_fround(0.89442718));
- $55 = Math_fround($44 * Math_fround(0.0));
- $56 = Math_fround($45 * Math_fround(0.44721359));
- $57 = Math_fround($45 * Math_fround(0.89442718));
- $58 = Math_fround($45 * Math_fround(0.0));
- $59 = Math_fround($41 + $50);
- $60 = Math_fround($53 - $49);
- $61 = Math_fround($48 + $56);
- $62 = Math_fround($49 + $51);
- $63 = Math_fround($41 + $54);
- $64 = Math_fround($57 - $47);
- $65 = Math_fround($52 - $48);
- $66 = Math_fround($47 + $55);
- $67 = Math_fround($41 + $58);
- $68 = ((($21)) + 8|0);
- $69 = ((($21)) + 12|0);
- $70 = ((($21)) + 16|0);
- $71 = ((($21)) + 28|0);
- $72 = ((($21)) + 32|0);
- $73 = ((($21)) + 36|0);
- $74 = Math_fround($62 * Math_fround(0.0));
- $75 = Math_fround($59 + $74);
- $76 = Math_fround($65 * Math_fround(0.0));
- $77 = Math_fround($76 + $75);
- HEAPF32[$21>>2] = $77;
- $78 = Math_fround($59 * Math_fround(0.0));
- $79 = Math_fround($78 + $62);
- $80 = Math_fround($79 + $76);
- HEAPF32[$22>>2] = $80;
- $81 = Math_fround($78 + $74);
- $82 = Math_fround($81 + $65);
- HEAPF32[$68>>2] = $82;
- $83 = Math_fround($81 + $76);
- HEAPF32[$69>>2] = $83;
- $84 = Math_fround($63 * Math_fround(0.0));
- $85 = Math_fround($60 + $84);
- $86 = Math_fround($66 * Math_fround(0.0));
- $87 = Math_fround($86 + $85);
- HEAPF32[$70>>2] = $87;
- $88 = Math_fround($60 * Math_fround(0.0));
- $89 = Math_fround($88 + $63);
- $90 = Math_fround($89 + $86);
- HEAPF32[$23>>2] = $90;
- $91 = Math_fround($88 + $84);
- $92 = Math_fround($91 + $66);
- HEAPF32[$24>>2] = $92;
- $93 = Math_fround($91 + $86);
- HEAPF32[$71>>2] = $93;
- $94 = Math_fround($64 * Math_fround(0.0));
- $95 = Math_fround($61 + $94);
- $96 = Math_fround($67 * Math_fround(0.0));
- $97 = Math_fround($96 + $95);
- HEAPF32[$72>>2] = $97;
- $98 = Math_fround($61 * Math_fround(0.0));
- $99 = Math_fround($98 + $64);
- $100 = Math_fround($99 + $96);
- HEAPF32[$73>>2] = $100;
- $101 = Math_fround($98 + $94);
- $102 = Math_fround($101 + $67);
- HEAPF32[$26>>2] = $102;
- $103 = Math_fround($101 + $96);
- HEAPF32[$27>>2] = $103;
- _g_free($37);
- $104 = (_g_malloc0_n(3,4)|0);
- HEAPF32[$104>>2] = Math_fround(0.0);
- $105 = ((($104)) + 4|0);
- HEAPF32[$105>>2] = Math_fround(0.0);
- $106 = ((($104)) + 8|0);
- HEAPF32[$106>>2] = Math_fround(-3.0);
- $107 = Math_fround(HEAPF32[$29>>2]);
- $108 = Math_fround($107 * Math_fround(0.0));
- $109 = Math_fround(HEAPF32[$30>>2]);
- $110 = Math_fround($109 * Math_fround(0.0));
- $111 = ((($29)) + 8|0);
- $112 = Math_fround(HEAPF32[$111>>2]);
- $113 = Math_fround($112 * Math_fround(0.0));
- $114 = ((($29)) + 12|0);
- $115 = Math_fround(HEAPF32[$114>>2]);
- $116 = Math_fround($115 * Math_fround(0.0));
- $117 = ((($29)) + 16|0);
- $118 = Math_fround(HEAPF32[$117>>2]);
- $119 = Math_fround($118 * Math_fround(0.0));
- $120 = Math_fround(HEAPF32[$31>>2]);
- $121 = Math_fround($120 * Math_fround(0.0));
- $122 = Math_fround(HEAPF32[$32>>2]);
- $123 = Math_fround($122 * Math_fround(0.0));
- $124 = ((($29)) + 28|0);
- $125 = Math_fround(HEAPF32[$124>>2]);
- $126 = Math_fround($125 * Math_fround(0.0));
- $127 = ((($29)) + 32|0);
- $128 = Math_fround(HEAPF32[$127>>2]);
- $129 = Math_fround($128 * Math_fround(3.0));
- $130 = ((($29)) + 36|0);
- $131 = Math_fround(HEAPF32[$130>>2]);
- $132 = Math_fround($131 * Math_fround(3.0));
- $133 = Math_fround(HEAPF32[$33>>2]);
- $134 = Math_fround($133 * Math_fround(3.0));
- $135 = Math_fround(HEAPF32[$34>>2]);
- $136 = Math_fround($135 * Math_fround(3.0));
- $137 = ((($29)) + 48|0);
- $138 = Math_fround(HEAPF32[$137>>2]);
- $139 = Math_fround($108 + $138);
- $140 = ((($29)) + 52|0);
- $141 = Math_fround(HEAPF32[$140>>2]);
- $142 = Math_fround($110 + $141);
- $143 = ((($29)) + 56|0);
- $144 = Math_fround(HEAPF32[$143>>2]);
- $145 = Math_fround($113 + $144);
- $146 = Math_fround(HEAPF32[$35>>2]);
- $147 = Math_fround($116 + $146);
- $148 = Math_fround($119 + $139);
- $149 = Math_fround($121 + $142);
- $150 = Math_fround($123 + $145);
- $151 = Math_fround($126 + $147);
- $152 = Math_fround($148 - $129);
- HEAPF32[$137>>2] = $152;
- $153 = Math_fround($149 - $132);
- HEAPF32[$140>>2] = $153;
- $154 = Math_fround($150 - $134);
- HEAPF32[$143>>2] = $154;
- $155 = Math_fround($151 - $136);
- HEAPF32[$35>>2] = $155;
- _g_free($104);
- $156 = HEAP32[$1>>2]|0;
- $157 = ((($156)) + 20|0);
- $158 = HEAP32[$157>>2]|0;
- _shader_SetMat4($158,140433,$21);
- $159 = HEAP32[$1>>2]|0;
- $160 = ((($159)) + 20|0);
- $161 = HEAP32[$160>>2]|0;
- _shader_SetMat4($161,140439,$29);
- $162 = HEAP32[$1>>2]|0;
- $163 = ((($162)) + 4|0);
- $164 = HEAP32[$163>>2]|0;
- _glBindVertexArray(($164|0));
- $165 = HEAP32[$1>>2]|0;
- $166 = ((($165)) + 4|0);
- $167 = HEAP32[$166>>2]|0;
- _glBindVertexArray(($167|0));
- _glDrawArrays(4,0,36);
- $168 = HEAP32[$1>>2]|0;
- $169 = ((($168)) + 16|0);
- $170 = HEAP32[$169>>2]|0;
- _glfwSwapBuffers(($170|0));
+ $34 = HEAP32[$3>>2]|0;
+ $35 = ((($34)) + 60|0);
+ $36 = HEAP32[$35>>2]|0;
+ $37 = ((($34)) + 64|0);
+ $38 = HEAP32[$37>>2]|0;
+ $39 = ((($34)) + 52|0);
+ $40 = HEAP32[$39>>2]|0;
+ $41 = Math_fround(HEAPF32[$36>>2]);
+ $42 = Math_fround(HEAPF32[$38>>2]);
+ $43 = Math_fround($41 + $42);
+ HEAPF32[$40>>2] = $43;
+ $44 = ((($36)) + 4|0);
+ $45 = Math_fround(HEAPF32[$44>>2]);
+ $46 = ((($38)) + 4|0);
+ $47 = Math_fround(HEAPF32[$46>>2]);
+ $48 = Math_fround($45 + $47);
+ $49 = ((($40)) + 4|0);
+ HEAPF32[$49>>2] = $48;
+ $50 = ((($36)) + 8|0);
+ $51 = Math_fround(HEAPF32[$50>>2]);
+ $52 = ((($38)) + 8|0);
+ $53 = Math_fround(HEAPF32[$52>>2]);
+ $54 = Math_fround($51 + $53);
+ $55 = ((($40)) + 8|0);
+ HEAPF32[$55>>2] = $54;
+ $56 = ((($34)) + 68|0);
+ $57 = HEAP32[$56>>2]|0;
+ $58 = ((($34)) + 36|0);
+ $59 = HEAP32[$58>>2]|0;
+ $60 = Math_fround(HEAPF32[$36>>2]);
+ $61 = Math_fround($43 - $60);
+ $62 = Math_fround(HEAPF32[$44>>2]);
+ $63 = Math_fround($48 - $62);
+ $64 = Math_fround(HEAPF32[$50>>2]);
+ $65 = Math_fround($54 - $64);
+ $66 = Math_fround($61 * $61);
+ $67 = Math_fround($63 * $63);
+ $68 = Math_fround($66 + $67);
+ $69 = Math_fround($65 * $65);
+ $70 = Math_fround($68 + $69);
+ $71 = (Math_fround(Math_sqrt((Math_fround($70)))));
+ $72 = $71 == Math_fround(0.0);
+ $73 = Math_fround(Math_fround(1.0) / $71);
+ $74 = Math_fround($61 * $73);
+ $75 = Math_fround($63 * $73);
+ $76 = Math_fround($65 * $73);
+ $$sroa$014$0$i = $72 ? Math_fround(0.0) : $74;
+ $$sroa$12$0$i = $72 ? Math_fround(0.0) : $75;
+ $$sroa$22$0$i = $72 ? Math_fround(0.0) : $76;
+ $77 = ((($57)) + 8|0);
+ $78 = Math_fround(HEAPF32[$77>>2]);
+ $79 = Math_fround($78 * $$sroa$12$0$i);
+ $80 = ((($57)) + 4|0);
+ $81 = Math_fround(HEAPF32[$80>>2]);
+ $82 = Math_fround($81 * $$sroa$22$0$i);
+ $83 = Math_fround($79 - $82);
+ $84 = Math_fround(HEAPF32[$57>>2]);
+ $85 = Math_fround($84 * $$sroa$22$0$i);
+ $86 = Math_fround($78 * $$sroa$014$0$i);
+ $87 = Math_fround($85 - $86);
+ $88 = Math_fround($81 * $$sroa$014$0$i);
+ $89 = Math_fround($84 * $$sroa$12$0$i);
+ $90 = Math_fround($88 - $89);
+ $91 = Math_fround($83 * $83);
+ $92 = Math_fround($87 * $87);
+ $93 = Math_fround($91 + $92);
+ $94 = Math_fround($90 * $90);
+ $95 = Math_fround($94 + $93);
+ $96 = (Math_fround(Math_sqrt((Math_fround($95)))));
+ $97 = $96 == Math_fround(0.0);
+ $98 = Math_fround(Math_fround(1.0) / $96);
+ $99 = Math_fround($83 * $98);
+ $100 = Math_fround($87 * $98);
+ $101 = Math_fround($90 * $98);
+ $102 = $97 ? Math_fround(0.0) : $101;
+ $103 = $97 ? Math_fround(0.0) : $100;
+ $104 = $97 ? Math_fround(0.0) : $99;
+ $105 = Math_fround($$sroa$22$0$i * $103);
+ $106 = Math_fround($$sroa$12$0$i * $102);
+ $107 = Math_fround($105 - $106);
+ $108 = Math_fround($$sroa$014$0$i * $102);
+ $109 = Math_fround($$sroa$22$0$i * $104);
+ $110 = Math_fround($108 - $109);
+ $111 = Math_fround($$sroa$12$0$i * $104);
+ $112 = Math_fround($$sroa$014$0$i * $103);
+ $113 = Math_fround($111 - $112);
+ HEAPF32[$59>>2] = $104;
+ $114 = ((($59)) + 4|0);
+ HEAPF32[$114>>2] = $107;
+ $115 = Math_fround(- $$sroa$014$0$i);
+ $116 = ((($59)) + 8|0);
+ HEAPF32[$116>>2] = $115;
+ $117 = ((($59)) + 16|0);
+ HEAPF32[$117>>2] = $103;
+ $118 = ((($59)) + 20|0);
+ HEAPF32[$118>>2] = $110;
+ $119 = Math_fround(- $$sroa$12$0$i);
+ $120 = ((($59)) + 24|0);
+ HEAPF32[$120>>2] = $119;
+ $121 = ((($59)) + 32|0);
+ HEAPF32[$121>>2] = $102;
+ $122 = ((($59)) + 36|0);
+ HEAPF32[$122>>2] = $113;
+ $123 = Math_fround(- $$sroa$22$0$i);
+ $124 = ((($59)) + 40|0);
+ HEAPF32[$124>>2] = $123;
+ $$val35$i = Math_fround(HEAPF32[$36>>2]);
+ $$idx36$val$i = Math_fround(HEAPF32[$44>>2]);
+ $$idx37$val$i = Math_fround(HEAPF32[$50>>2]);
+ $125 = Math_fround($$val35$i * $104);
+ $126 = Math_fround($$idx36$val$i * $103);
+ $127 = Math_fround($125 + $126);
+ $128 = Math_fround($$idx37$val$i * $102);
+ $129 = Math_fround($128 + $127);
+ $130 = Math_fround(- $129);
+ $131 = ((($59)) + 48|0);
+ HEAPF32[$131>>2] = $130;
+ $$val29$i = Math_fround(HEAPF32[$36>>2]);
+ $$idx30$val$i = Math_fround(HEAPF32[$44>>2]);
+ $$idx31$val$i = Math_fround(HEAPF32[$50>>2]);
+ $132 = Math_fround($$val29$i * $107);
+ $133 = Math_fround($110 * $$idx30$val$i);
+ $134 = Math_fround($132 + $133);
+ $135 = Math_fround($113 * $$idx31$val$i);
+ $136 = Math_fround($134 + $135);
+ $137 = Math_fround(- $136);
+ $138 = ((($59)) + 52|0);
+ HEAPF32[$138>>2] = $137;
+ $$val23$i = Math_fround(HEAPF32[$36>>2]);
+ $$idx24$val$i = Math_fround(HEAPF32[$44>>2]);
+ $$idx25$val$i = Math_fround(HEAPF32[$50>>2]);
+ $139 = Math_fround($$sroa$014$0$i * $$val23$i);
+ $140 = Math_fround($$sroa$12$0$i * $$idx24$val$i);
+ $141 = Math_fround($139 + $140);
+ $142 = Math_fround($$sroa$22$0$i * $$idx25$val$i);
+ $143 = Math_fround($141 + $142);
+ $144 = ((($59)) + 56|0);
+ HEAPF32[$144>>2] = $143;
+ $145 = ((($59)) + 44|0);
+ HEAPF32[$145>>2] = Math_fround(0.0);
+ $146 = ((($59)) + 28|0);
+ HEAPF32[$146>>2] = Math_fround(0.0);
+ $147 = ((($59)) + 12|0);
+ HEAPF32[$147>>2] = Math_fround(0.0);
+ $148 = ((($59)) + 60|0);
+ HEAPF32[$148>>2] = Math_fround(1.0);
+ $149 = ((($34)) + 20|0);
+ $150 = HEAP32[$149>>2]|0;
+ $151 = HEAP32[$58>>2]|0;
+ _shader_SetMat4($150,140434,$151);
+ $152 = HEAP32[$3>>2]|0;
+ $153 = ((($152)) + 4|0);
+ $154 = HEAP32[$153>>2]|0;
+ _glBindVertexArray(($154|0));
+ $155 = HEAP32[$3>>2]|0;
+ $157 = $155;$spec$select163 = 0;
+ while(1) {
+  $156 = ((($157)) + 32|0);
+  $158 = HEAP32[$156>>2]|0;
+  $159 = ((($158)) + 4|0);
+  HEAP32[$158>>2] = 1065353216;
+  $160 = ((($158)) + 20|0);
+  $161 = ((($158)) + 24|0);
+  ;HEAP32[$159>>2]=0|0;HEAP32[$159+4>>2]=0|0;HEAP32[$159+8>>2]=0|0;HEAP32[$159+12>>2]=0|0;
+  HEAP32[$160>>2] = 1065353216;
+  $162 = ((($158)) + 40|0);
+  $163 = ((($158)) + 44|0);
+  ;HEAP32[$161>>2]=0|0;HEAP32[$161+4>>2]=0|0;HEAP32[$161+8>>2]=0|0;HEAP32[$161+12>>2]=0|0;
+  HEAP32[$162>>2] = 1065353216;
+  $164 = ((($158)) + 60|0);
+  ;HEAP32[$163>>2]=0|0;HEAP32[$163+4>>2]=0|0;HEAP32[$163+8>>2]=0|0;HEAP32[$163+12>>2]=0|0;
+  HEAP32[$164>>2] = 1065353216;
+  $165 = HEAP32[$3>>2]|0;
+  $166 = ((($165)) + 32|0);
+  $167 = HEAP32[$166>>2]|0;
+  $168 = ((($165)) + 72|0);
+  $169 = HEAP32[$168>>2]|0;
+  $170 = (($169) + ($spec$select163<<2)|0);
+  $171 = HEAP32[$170>>2]|0;
+  $$val157 = Math_fround(HEAPF32[$171>>2]);
+  $$idx158 = ((($171)) + 4|0);
+  $$idx158$val = Math_fround(HEAPF32[$$idx158>>2]);
+  $$idx159 = ((($171)) + 8|0);
+  $$idx159$val = Math_fround(HEAPF32[$$idx159>>2]);
+  $172 = Math_fround(HEAPF32[$167>>2]);
+  $173 = Math_fround($$val157 * $172);
+  $174 = ((($167)) + 4|0);
+  $175 = Math_fround(HEAPF32[$174>>2]);
+  $176 = Math_fround($$val157 * $175);
+  $177 = ((($167)) + 8|0);
+  $178 = Math_fround(HEAPF32[$177>>2]);
+  $179 = Math_fround($$val157 * $178);
+  $180 = ((($167)) + 12|0);
+  $181 = Math_fround(HEAPF32[$180>>2]);
+  $182 = Math_fround($$val157 * $181);
+  $183 = ((($167)) + 16|0);
+  $184 = Math_fround(HEAPF32[$183>>2]);
+  $185 = Math_fround($$idx158$val * $184);
+  $186 = ((($167)) + 20|0);
+  $187 = Math_fround(HEAPF32[$186>>2]);
+  $188 = Math_fround($$idx158$val * $187);
+  $189 = ((($167)) + 24|0);
+  $190 = Math_fround(HEAPF32[$189>>2]);
+  $191 = Math_fround($$idx158$val * $190);
+  $192 = ((($167)) + 28|0);
+  $193 = Math_fround(HEAPF32[$192>>2]);
+  $194 = Math_fround($$idx158$val * $193);
+  $195 = ((($167)) + 32|0);
+  $196 = Math_fround(HEAPF32[$195>>2]);
+  $197 = Math_fround($$idx159$val * $196);
+  $198 = ((($167)) + 36|0);
+  $199 = Math_fround(HEAPF32[$198>>2]);
+  $200 = Math_fround($$idx159$val * $199);
+  $201 = ((($167)) + 40|0);
+  $202 = Math_fround(HEAPF32[$201>>2]);
+  $203 = Math_fround($$idx159$val * $202);
+  $204 = ((($167)) + 44|0);
+  $205 = Math_fround(HEAPF32[$204>>2]);
+  $206 = Math_fround($$idx159$val * $205);
+  $207 = ((($167)) + 48|0);
+  $208 = Math_fround(HEAPF32[$207>>2]);
+  $209 = Math_fround($173 + $208);
+  $210 = ((($167)) + 52|0);
+  $211 = Math_fround(HEAPF32[$210>>2]);
+  $212 = Math_fround($176 + $211);
+  $213 = ((($167)) + 56|0);
+  $214 = Math_fround(HEAPF32[$213>>2]);
+  $215 = Math_fround($179 + $214);
+  $216 = ((($167)) + 60|0);
+  $217 = Math_fround(HEAPF32[$216>>2]);
+  $218 = Math_fround($182 + $217);
+  $219 = Math_fround($185 + $209);
+  $220 = Math_fround($188 + $212);
+  $221 = Math_fround($191 + $215);
+  $222 = Math_fround($194 + $218);
+  $223 = Math_fround($197 + $219);
+  HEAPF32[$207>>2] = $223;
+  $224 = Math_fround($200 + $220);
+  HEAPF32[$210>>2] = $224;
+  $225 = Math_fround($203 + $221);
+  HEAPF32[$213>>2] = $225;
+  $226 = Math_fround($206 + $222);
+  HEAPF32[$216>>2] = $226;
+  $227 = (Math_fround(($spec$select163|0)));
+  $228 = Math_fround($227 * Math_fround(20.0));
+  $229 = Math_fround($228 * Math_fround(3.14159274));
+  $230 = Math_fround($229 / Math_fround(180.0));
+  $231 = ((($165)) + 44|0);
+  $232 = HEAP32[$231>>2]|0;
+  $$val160 = Math_fround(HEAPF32[$232>>2]);
+  $$idx161 = ((($232)) + 4|0);
+  $$idx161$val = Math_fround(HEAPF32[$$idx161>>2]);
+  $$idx162 = ((($232)) + 8|0);
+  $$idx162$val = Math_fround(HEAPF32[$$idx162>>2]);
+  $233 = (Math_fround(_cosf($230)));
+  $234 = Math_fround($$val160 * $$val160);
+  $235 = Math_fround($$idx161$val * $$idx161$val);
+  $236 = Math_fround($234 + $235);
+  $237 = Math_fround($$idx162$val * $$idx162$val);
+  $238 = Math_fround($236 + $237);
+  $239 = (Math_fround(Math_sqrt((Math_fround($238)))));
+  $240 = $239 == Math_fround(0.0);
+  $241 = Math_fround(Math_fround(1.0) / $239);
+  $242 = Math_fround($$val160 * $241);
+  $243 = Math_fround($$idx161$val * $241);
+  $244 = Math_fround($$idx162$val * $241);
+  $$sroa$011$0$i$i = $240 ? Math_fround(0.0) : $242;
+  $$sroa$9$0$i$i = $240 ? Math_fround(0.0) : $243;
+  $$sink$i$i$i = $240 ? Math_fround(0.0) : $244;
+  $245 = Math_fround(Math_fround(1.0) - $233);
+  $246 = Math_fround($245 * $$sroa$011$0$i$i);
+  $247 = Math_fround($245 * $$sroa$9$0$i$i);
+  $248 = Math_fround($245 * $$sink$i$i$i);
+  $249 = (Math_fround(_sinf($230)));
+  $250 = Math_fround($249 * $$sroa$011$0$i$i);
+  $251 = Math_fround($249 * $$sroa$9$0$i$i);
+  $252 = Math_fround($249 * $$sink$i$i$i);
+  $253 = Math_fround($$sroa$011$0$i$i * $246);
+  $254 = Math_fround($$sroa$9$0$i$i * $246);
+  $255 = Math_fround($$sink$i$i$i * $246);
+  $256 = Math_fround($$sroa$011$0$i$i * $247);
+  $257 = Math_fround($$sroa$9$0$i$i * $247);
+  $258 = Math_fround($$sink$i$i$i * $247);
+  $259 = Math_fround($$sroa$011$0$i$i * $248);
+  $260 = Math_fround($$sroa$9$0$i$i * $248);
+  $261 = Math_fround($$sink$i$i$i * $248);
+  $262 = Math_fround($233 + $253);
+  $263 = Math_fround($256 - $252);
+  $264 = Math_fround($251 + $259);
+  $265 = Math_fround($252 + $254);
+  $266 = Math_fround($233 + $257);
+  $267 = Math_fround($260 - $250);
+  $268 = Math_fround($255 - $251);
+  $269 = Math_fround($250 + $258);
+  $270 = Math_fround($233 + $261);
+  $271 = Math_fround(HEAPF32[$167>>2]);
+  $272 = Math_fround(HEAPF32[$174>>2]);
+  $273 = Math_fround(HEAPF32[$177>>2]);
+  $274 = Math_fround(HEAPF32[$180>>2]);
+  $275 = Math_fround(HEAPF32[$183>>2]);
+  $276 = Math_fround(HEAPF32[$186>>2]);
+  $277 = Math_fround(HEAPF32[$189>>2]);
+  $278 = Math_fround($271 * $262);
+  $279 = Math_fround($275 * $265);
+  $280 = Math_fround($278 + $279);
+  $281 = Math_fround($268 * $196);
+  $282 = Math_fround($281 + $280);
+  HEAPF32[$167>>2] = $282;
+  $283 = Math_fround($272 * $262);
+  $284 = Math_fround($276 * $265);
+  $285 = Math_fround($283 + $284);
+  $286 = Math_fround($268 * $199);
+  $287 = Math_fround($285 + $286);
+  HEAPF32[$174>>2] = $287;
+  $288 = Math_fround($273 * $262);
+  $289 = Math_fround($277 * $265);
+  $290 = Math_fround($288 + $289);
+  $291 = Math_fround($268 * $202);
+  $292 = Math_fround($290 + $291);
+  HEAPF32[$177>>2] = $292;
+  $293 = Math_fround($274 * $262);
+  $294 = Math_fround($193 * $265);
+  $295 = Math_fround($293 + $294);
+  $296 = Math_fround($268 * $205);
+  $297 = Math_fround($295 + $296);
+  HEAPF32[$180>>2] = $297;
+  $298 = Math_fround($271 * $263);
+  $299 = Math_fround($275 * $266);
+  $300 = Math_fround($298 + $299);
+  $301 = Math_fround($269 * $196);
+  $302 = Math_fround($301 + $300);
+  HEAPF32[$183>>2] = $302;
+  $303 = Math_fround($272 * $263);
+  $304 = Math_fround($276 * $266);
+  $305 = Math_fround($303 + $304);
+  $306 = Math_fround($269 * $199);
+  $307 = Math_fround($305 + $306);
+  HEAPF32[$186>>2] = $307;
+  $308 = Math_fround($273 * $263);
+  $309 = Math_fround($277 * $266);
+  $310 = Math_fround($308 + $309);
+  $311 = Math_fround($269 * $202);
+  $312 = Math_fround($310 + $311);
+  HEAPF32[$189>>2] = $312;
+  $313 = Math_fround($274 * $263);
+  $314 = Math_fround($193 * $266);
+  $315 = Math_fround($313 + $314);
+  $316 = Math_fround($269 * $205);
+  $317 = Math_fround($315 + $316);
+  HEAPF32[$192>>2] = $317;
+  $318 = Math_fround($271 * $264);
+  $319 = Math_fround($275 * $267);
+  $320 = Math_fround($318 + $319);
+  $321 = Math_fround($270 * $196);
+  $322 = Math_fround($321 + $320);
+  HEAPF32[$195>>2] = $322;
+  $323 = Math_fround($272 * $264);
+  $324 = Math_fround($276 * $267);
+  $325 = Math_fround($323 + $324);
+  $326 = Math_fround($270 * $199);
+  $327 = Math_fround($325 + $326);
+  HEAPF32[$198>>2] = $327;
+  $328 = Math_fround($273 * $264);
+  $329 = Math_fround($277 * $267);
+  $330 = Math_fround($328 + $329);
+  $331 = Math_fround($270 * $202);
+  $332 = Math_fround($330 + $331);
+  HEAPF32[$201>>2] = $332;
+  $333 = Math_fround($274 * $264);
+  $334 = Math_fround($193 * $267);
+  $335 = Math_fround($333 + $334);
+  $336 = Math_fround($270 * $205);
+  $337 = Math_fround($335 + $336);
+  HEAPF32[$204>>2] = $337;
+  $338 = ((($165)) + 20|0);
+  $339 = HEAP32[$338>>2]|0;
+  $340 = HEAP32[$166>>2]|0;
+  _shader_SetMat4($339,140439,$340);
+  _glDrawArrays(4,0,36);
+  $spec$select = (($spec$select163) + 1)|0;
+  $341 = HEAP32[$3>>2]|0;
+  $exitcond = ($spec$select|0)==(10);
+  if ($exitcond) {
+   break;
+  } else {
+   $157 = $341;$spec$select163 = $spec$select;
+  }
+ }
+ $342 = ((($341)) + 16|0);
+ $343 = HEAP32[$342>>2]|0;
+ _glfwSwapBuffers(($343|0));
  _glfwPollEvents();
- _g_free($29);
- _g_free($21);
+ return;
+}
+function _game_ProcessInput($0,$1) {
+ $0 = $0|0;
+ $1 = $1|0;
+ var $10 = Math_fround(0), $100 = Math_fround(0), $101 = Math_fround(0), $102 = Math_fround(0), $103 = Math_fround(0), $104 = Math_fround(0), $105 = 0, $106 = Math_fround(0), $107 = Math_fround(0), $108 = Math_fround(0), $109 = Math_fround(0), $11 = 0, $110 = Math_fround(0), $111 = Math_fround(0), $112 = Math_fround(0), $113 = Math_fround(0), $114 = Math_fround(0), $115 = Math_fround(0), $116 = 0, $117 = 0;
+ var $118 = Math_fround(0), $119 = Math_fround(0), $12 = 0, $120 = 0, $121 = Math_fround(0), $122 = Math_fround(0), $123 = Math_fround(0), $124 = 0, $125 = Math_fround(0), $126 = Math_fround(0), $127 = Math_fround(0), $128 = 0, $129 = 0, $13 = 0, $130 = 0, $131 = 0, $132 = 0, $133 = 0, $134 = 0, $135 = 0;
+ var $136 = Math_fround(0), $137 = 0, $138 = Math_fround(0), $139 = Math_fround(0), $14 = 0, $140 = 0, $141 = Math_fround(0), $142 = 0, $143 = Math_fround(0), $144 = Math_fround(0), $145 = Math_fround(0), $146 = Math_fround(0), $147 = Math_fround(0), $148 = Math_fround(0), $149 = Math_fround(0), $15 = 0, $150 = Math_fround(0), $151 = Math_fround(0), $152 = Math_fround(0), $153 = 0;
+ var $154 = Math_fround(0), $155 = Math_fround(0), $156 = Math_fround(0), $157 = Math_fround(0), $158 = Math_fround(0), $159 = Math_fround(0), $16 = Math_fround(0), $160 = Math_fround(0), $161 = 0, $162 = Math_fround(0), $163 = Math_fround(0), $164 = Math_fround(0), $165 = Math_fround(0), $166 = Math_fround(0), $167 = Math_fround(0), $168 = 0, $169 = Math_fround(0), $17 = Math_fround(0), $170 = Math_fround(0), $171 = Math_fround(0);
+ var $172 = Math_fround(0), $173 = Math_fround(0), $174 = Math_fround(0), $175 = Math_fround(0), $176 = Math_fround(0), $177 = Math_fround(0), $178 = Math_fround(0), $179 = 0, $18 = 0, $180 = 0, $181 = Math_fround(0), $182 = Math_fround(0), $183 = 0, $184 = Math_fround(0), $185 = Math_fround(0), $186 = Math_fround(0), $187 = 0, $188 = Math_fround(0), $189 = Math_fround(0), $19 = Math_fround(0);
+ var $190 = Math_fround(0), $191 = 0, $192 = 0, $2 = 0, $20 = Math_fround(0), $21 = 0, $22 = 0, $23 = Math_fround(0), $24 = Math_fround(0), $25 = 0, $26 = 0, $27 = 0, $28 = Math_fround(0), $29 = Math_fround(0), $3 = 0, $30 = 0, $31 = Math_fround(0), $32 = Math_fround(0), $33 = Math_fround(0), $34 = 0;
+ var $35 = Math_fround(0), $36 = Math_fround(0), $37 = Math_fround(0), $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $42 = 0, $43 = Math_fround(0), $44 = Math_fround(0), $45 = 0, $46 = Math_fround(0), $47 = Math_fround(0), $48 = 0, $49 = 0, $5 = 0, $50 = Math_fround(0), $51 = Math_fround(0), $52 = 0;
+ var $53 = 0, $54 = 0, $55 = Math_fround(0), $56 = Math_fround(0), $57 = 0, $58 = Math_fround(0), $59 = Math_fround(0), $6 = 0, $60 = Math_fround(0), $61 = 0, $62 = Math_fround(0), $63 = Math_fround(0), $64 = Math_fround(0), $65 = 0, $66 = 0, $67 = 0, $68 = 0, $69 = 0, $7 = 0, $70 = 0;
+ var $71 = 0, $72 = 0, $73 = Math_fround(0), $74 = 0, $75 = Math_fround(0), $76 = Math_fround(0), $77 = 0, $78 = Math_fround(0), $79 = 0, $8 = 0, $80 = Math_fround(0), $81 = Math_fround(0), $82 = Math_fround(0), $83 = Math_fround(0), $84 = Math_fround(0), $85 = Math_fround(0), $86 = Math_fround(0), $87 = Math_fround(0), $88 = Math_fround(0), $89 = Math_fround(0);
+ var $9 = Math_fround(0), $90 = 0, $91 = Math_fround(0), $92 = Math_fround(0), $93 = Math_fround(0), $94 = Math_fround(0), $95 = Math_fround(0), $96 = Math_fround(0), $97 = Math_fround(0), $98 = 0, $99 = Math_fround(0), label = 0, sp = 0;
+ sp = STACKTOP;
+ $2 = (_glm_vec3_new(Math_fround(0.0),Math_fround(0.0),Math_fround(0.0))|0);
+ $3 = (_glm_vec3_new(Math_fround(0.0),Math_fround(0.0),Math_fround(0.0))|0);
+ $4 = (_glfwGetKey(($1|0),256)|0);
+ $5 = ($4|0)==(1);
+ if ($5) {
+  _glfwSetWindowShouldClose(($1|0),1);
+ }
+ $6 = ((($0)) + 16|0);
+ $7 = HEAP32[$6>>2]|0;
+ $8 = ((($7)) + 84|0);
+ $9 = Math_fround(HEAPF32[$8>>2]);
+ $10 = Math_fround($9 * Math_fround(2.5));
+ $11 = (_glfwGetKey(($1|0),87)|0);
+ $12 = ($11|0)==(1);
+ if ($12) {
+  $13 = HEAP32[$6>>2]|0;
+  $14 = ((($13)) + 64|0);
+  $15 = HEAP32[$14>>2]|0;
+  $16 = Math_fround(HEAPF32[$15>>2]);
+  $17 = Math_fround($10 * $16);
+  HEAPF32[$2>>2] = $17;
+  $18 = ((($15)) + 4|0);
+  $19 = Math_fround(HEAPF32[$18>>2]);
+  $20 = Math_fround($10 * $19);
+  $21 = ((($2)) + 4|0);
+  HEAPF32[$21>>2] = $20;
+  $22 = ((($15)) + 8|0);
+  $23 = Math_fround(HEAPF32[$22>>2]);
+  $24 = Math_fround($10 * $23);
+  $25 = ((($2)) + 8|0);
+  HEAPF32[$25>>2] = $24;
+  $26 = ((($13)) + 60|0);
+  $27 = HEAP32[$26>>2]|0;
+  $28 = Math_fround(HEAPF32[$27>>2]);
+  $29 = Math_fround($17 + $28);
+  HEAPF32[$27>>2] = $29;
+  $30 = ((($27)) + 4|0);
+  $31 = Math_fround(HEAPF32[$30>>2]);
+  $32 = Math_fround(HEAPF32[$21>>2]);
+  $33 = Math_fround($31 + $32);
+  HEAPF32[$30>>2] = $33;
+  $34 = ((($27)) + 8|0);
+  $35 = Math_fround(HEAPF32[$34>>2]);
+  $36 = Math_fround(HEAPF32[$25>>2]);
+  $37 = Math_fround($35 + $36);
+  HEAPF32[$34>>2] = $37;
+ }
+ $38 = (_glfwGetKey(($1|0),83)|0);
+ $39 = ($38|0)==(1);
+ if ($39) {
+  $40 = HEAP32[$6>>2]|0;
+  $41 = ((($40)) + 64|0);
+  $42 = HEAP32[$41>>2]|0;
+  $43 = Math_fround(HEAPF32[$42>>2]);
+  $44 = Math_fround($10 * $43);
+  HEAPF32[$2>>2] = $44;
+  $45 = ((($42)) + 4|0);
+  $46 = Math_fround(HEAPF32[$45>>2]);
+  $47 = Math_fround($10 * $46);
+  $48 = ((($2)) + 4|0);
+  HEAPF32[$48>>2] = $47;
+  $49 = ((($42)) + 8|0);
+  $50 = Math_fround(HEAPF32[$49>>2]);
+  $51 = Math_fround($10 * $50);
+  $52 = ((($2)) + 8|0);
+  HEAPF32[$52>>2] = $51;
+  $53 = ((($40)) + 60|0);
+  $54 = HEAP32[$53>>2]|0;
+  $55 = Math_fround(HEAPF32[$54>>2]);
+  $56 = Math_fround($55 - $44);
+  HEAPF32[$54>>2] = $56;
+  $57 = ((($54)) + 4|0);
+  $58 = Math_fround(HEAPF32[$57>>2]);
+  $59 = Math_fround(HEAPF32[$48>>2]);
+  $60 = Math_fround($58 - $59);
+  HEAPF32[$57>>2] = $60;
+  $61 = ((($54)) + 8|0);
+  $62 = Math_fround(HEAPF32[$61>>2]);
+  $63 = Math_fround(HEAPF32[$52>>2]);
+  $64 = Math_fround($62 - $63);
+  HEAPF32[$61>>2] = $64;
+ }
+ $65 = (_glfwGetKey(($1|0),65)|0);
+ $66 = ($65|0)==(1);
+ if ($66) {
+  $67 = HEAP32[$6>>2]|0;
+  $68 = ((($67)) + 64|0);
+  $69 = HEAP32[$68>>2]|0;
+  $70 = ((($67)) + 68|0);
+  $71 = HEAP32[$70>>2]|0;
+  $72 = ((($69)) + 4|0);
+  $73 = Math_fround(HEAPF32[$72>>2]);
+  $74 = ((($71)) + 8|0);
+  $75 = Math_fround(HEAPF32[$74>>2]);
+  $76 = Math_fround($73 * $75);
+  $77 = ((($69)) + 8|0);
+  $78 = Math_fround(HEAPF32[$77>>2]);
+  $79 = ((($71)) + 4|0);
+  $80 = Math_fround(HEAPF32[$79>>2]);
+  $81 = Math_fround($78 * $80);
+  $82 = Math_fround($76 - $81);
+  HEAPF32[$3>>2] = $82;
+  $83 = Math_fround(HEAPF32[$77>>2]);
+  $84 = Math_fround(HEAPF32[$71>>2]);
+  $85 = Math_fround($83 * $84);
+  $86 = Math_fround(HEAPF32[$69>>2]);
+  $87 = Math_fround(HEAPF32[$74>>2]);
+  $88 = Math_fround($86 * $87);
+  $89 = Math_fround($85 - $88);
+  $90 = ((($3)) + 4|0);
+  HEAPF32[$90>>2] = $89;
+  $91 = Math_fround(HEAPF32[$69>>2]);
+  $92 = Math_fround(HEAPF32[$79>>2]);
+  $93 = Math_fround($91 * $92);
+  $94 = Math_fround(HEAPF32[$72>>2]);
+  $95 = Math_fround(HEAPF32[$71>>2]);
+  $96 = Math_fround($94 * $95);
+  $97 = Math_fround($93 - $96);
+  $98 = ((($3)) + 8|0);
+  HEAPF32[$98>>2] = $97;
+  $99 = Math_fround($82 * $82);
+  $100 = Math_fround($89 * $89);
+  $101 = Math_fround($99 + $100);
+  $102 = Math_fround($97 * $97);
+  $103 = Math_fround($101 + $102);
+  $104 = (Math_fround(Math_sqrt((Math_fround($103)))));
+  $105 = $104 == Math_fround(0.0);
+  if ($105) {
+   HEAPF32[$98>>2] = Math_fround(0.0);
+   HEAPF32[$90>>2] = Math_fround(0.0);
+   HEAPF32[$3>>2] = Math_fround(0.0);
+   $111 = Math_fround(0.0);$113 = Math_fround(0.0);$115 = Math_fround(0.0);
+  } else {
+   $106 = Math_fround(Math_fround(1.0) / $104);
+   $107 = Math_fround($82 * $106);
+   HEAPF32[$3>>2] = $107;
+   $108 = Math_fround($89 * $106);
+   HEAPF32[$90>>2] = $108;
+   $109 = Math_fround($97 * $106);
+   HEAPF32[$98>>2] = $109;
+   $111 = $107;$113 = $108;$115 = $109;
+  }
+  $110 = Math_fround($10 * $111);
+  HEAPF32[$3>>2] = $110;
+  $112 = Math_fround($10 * $113);
+  HEAPF32[$90>>2] = $112;
+  $114 = Math_fround($10 * $115);
+  HEAPF32[$98>>2] = $114;
+  $116 = ((($67)) + 60|0);
+  $117 = HEAP32[$116>>2]|0;
+  $118 = Math_fround(HEAPF32[$117>>2]);
+  $119 = Math_fround($118 - $110);
+  HEAPF32[$117>>2] = $119;
+  $120 = ((($117)) + 4|0);
+  $121 = Math_fround(HEAPF32[$120>>2]);
+  $122 = Math_fround(HEAPF32[$90>>2]);
+  $123 = Math_fround($121 - $122);
+  HEAPF32[$120>>2] = $123;
+  $124 = ((($117)) + 8|0);
+  $125 = Math_fround(HEAPF32[$124>>2]);
+  $126 = Math_fround(HEAPF32[$98>>2]);
+  $127 = Math_fround($125 - $126);
+  HEAPF32[$124>>2] = $127;
+ }
+ $128 = (_glfwGetKey(($1|0),68)|0);
+ $129 = ($128|0)==(1);
+ if ($129) {
+  $130 = HEAP32[$6>>2]|0;
+  $131 = ((($130)) + 64|0);
+  $132 = HEAP32[$131>>2]|0;
+  $133 = ((($130)) + 68|0);
+  $134 = HEAP32[$133>>2]|0;
+  $135 = ((($132)) + 4|0);
+  $136 = Math_fround(HEAPF32[$135>>2]);
+  $137 = ((($134)) + 8|0);
+  $138 = Math_fround(HEAPF32[$137>>2]);
+  $139 = Math_fround($136 * $138);
+  $140 = ((($132)) + 8|0);
+  $141 = Math_fround(HEAPF32[$140>>2]);
+  $142 = ((($134)) + 4|0);
+  $143 = Math_fround(HEAPF32[$142>>2]);
+  $144 = Math_fround($141 * $143);
+  $145 = Math_fround($139 - $144);
+  HEAPF32[$3>>2] = $145;
+  $146 = Math_fround(HEAPF32[$140>>2]);
+  $147 = Math_fround(HEAPF32[$134>>2]);
+  $148 = Math_fround($146 * $147);
+  $149 = Math_fround(HEAPF32[$132>>2]);
+  $150 = Math_fround(HEAPF32[$137>>2]);
+  $151 = Math_fround($149 * $150);
+  $152 = Math_fround($148 - $151);
+  $153 = ((($3)) + 4|0);
+  HEAPF32[$153>>2] = $152;
+  $154 = Math_fround(HEAPF32[$132>>2]);
+  $155 = Math_fround(HEAPF32[$142>>2]);
+  $156 = Math_fround($154 * $155);
+  $157 = Math_fround(HEAPF32[$135>>2]);
+  $158 = Math_fround(HEAPF32[$134>>2]);
+  $159 = Math_fround($157 * $158);
+  $160 = Math_fround($156 - $159);
+  $161 = ((($3)) + 8|0);
+  HEAPF32[$161>>2] = $160;
+  $162 = Math_fround($145 * $145);
+  $163 = Math_fround($152 * $152);
+  $164 = Math_fround($162 + $163);
+  $165 = Math_fround($160 * $160);
+  $166 = Math_fround($164 + $165);
+  $167 = (Math_fround(Math_sqrt((Math_fround($166)))));
+  $168 = $167 == Math_fround(0.0);
+  if ($168) {
+   HEAPF32[$161>>2] = Math_fround(0.0);
+   HEAPF32[$153>>2] = Math_fround(0.0);
+   HEAPF32[$3>>2] = Math_fround(0.0);
+   $174 = Math_fround(0.0);$176 = Math_fround(0.0);$178 = Math_fround(0.0);
+  } else {
+   $169 = Math_fround(Math_fround(1.0) / $167);
+   $170 = Math_fround($145 * $169);
+   HEAPF32[$3>>2] = $170;
+   $171 = Math_fround($152 * $169);
+   HEAPF32[$153>>2] = $171;
+   $172 = Math_fround($160 * $169);
+   HEAPF32[$161>>2] = $172;
+   $174 = $170;$176 = $171;$178 = $172;
+  }
+  $173 = Math_fround($10 * $174);
+  HEAPF32[$3>>2] = $173;
+  $175 = Math_fround($10 * $176);
+  HEAPF32[$153>>2] = $175;
+  $177 = Math_fround($10 * $178);
+  HEAPF32[$161>>2] = $177;
+  $179 = ((($130)) + 60|0);
+  $180 = HEAP32[$179>>2]|0;
+  $181 = Math_fround(HEAPF32[$180>>2]);
+  $182 = Math_fround($173 + $181);
+  HEAPF32[$180>>2] = $182;
+  $183 = ((($180)) + 4|0);
+  $184 = Math_fround(HEAPF32[$183>>2]);
+  $185 = Math_fround(HEAPF32[$153>>2]);
+  $186 = Math_fround($184 + $185);
+  HEAPF32[$183>>2] = $186;
+  $187 = ((($180)) + 8|0);
+  $188 = Math_fround(HEAPF32[$187>>2]);
+  $189 = Math_fround(HEAPF32[$161>>2]);
+  $190 = Math_fround($188 + $189);
+  HEAPF32[$187>>2] = $190;
+  label = 18;
+ } else {
+  $191 = ($3|0)==(0|0);
+  if (!($191)) {
+   label = 18;
+  }
+ }
+ if ((label|0) == 18) {
+  _glm_vec3_unref($3);
+ }
+ $192 = ($2|0)==(0|0);
+ if ($192) {
+  return;
+ }
+ _glm_vec3_unref($2);
  return;
 }
 function _game_class_init($0) {
@@ -68659,7 +69377,7 @@ function _game_class_init($0) {
  sp = STACKTOP;
  $1 = (_g_type_class_peek_parent($0)|0);
  HEAP32[36036] = $1;
- _g_type_class_add_private($0,40);
+ _g_type_class_add_private($0,92);
  $2 = (_g_type_check_class_cast($0,80)|0);
  $3 = ((($0)) + 36|0);
  HEAP32[$3>>2] = 455;
@@ -68667,13 +69385,14 @@ function _game_class_init($0) {
 }
 function _game_instance_init($0) {
  $0 = $0|0;
- var $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, label = 0, sp = 0;
+ var $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0, $27 = 0;
+ var $28 = 0, $29 = 0, $3 = 0, $30 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
  sp = STACKTOP;
  $1 = (_g_once_init_enter(144140)|0);
  $2 = ($1|0)==(0);
  if (!($2)) {
   $3 = (_object_get_type()|0);
-  $4 = (_g_type_register_static($3,140444,120352,0)|0);
+  $4 = (_g_type_register_static($3,140445,120352,0)|0);
   _g_once_init_leave(144140,$4);
  }
  $5 = HEAP32[36035]|0;
@@ -68681,18 +69400,54 @@ function _game_instance_init($0) {
  $7 = ((($0)) + 16|0);
  HEAP32[$7>>2] = $6;
  ;HEAP32[$6>>2]=0|0;HEAP32[$6+4>>2]=0|0;HEAP32[$6+8>>2]=0|0;HEAP32[$6+12>>2]=0|0;
+ $8 = (_glm_vec3_new(Math_fround(1.0),Math_fround(0.300000012),Math_fround(0.5))|0);
+ $9 = HEAP32[$7>>2]|0;
+ $10 = ((($9)) + 44|0);
+ HEAP32[$10>>2] = $8;
+ $11 = (_glm_vec3_new(Math_fround(0.0),Math_fround(0.0),Math_fround(-3.0))|0);
+ $12 = HEAP32[$7>>2]|0;
+ $13 = ((($12)) + 48|0);
+ HEAP32[$13>>2] = $11;
+ $14 = (_glm_vec3_new(Math_fround(0.0),Math_fround(0.0),Math_fround(0.0))|0);
+ $15 = HEAP32[$7>>2]|0;
+ $16 = ((($15)) + 52|0);
+ HEAP32[$16>>2] = $14;
+ $17 = (_glm_vec3_new(Math_fround(0.0),Math_fround(1.0),Math_fround(0.0))|0);
+ $18 = HEAP32[$7>>2]|0;
+ $19 = ((($18)) + 56|0);
+ HEAP32[$19>>2] = $17;
+ $20 = (_glm_vec3_new(Math_fround(0.0),Math_fround(0.0),Math_fround(3.0))|0);
+ $21 = HEAP32[$7>>2]|0;
+ $22 = ((($21)) + 60|0);
+ HEAP32[$22>>2] = $20;
+ $23 = (_glm_vec3_new(Math_fround(0.0),Math_fround(0.0),Math_fround(-1.0))|0);
+ $24 = HEAP32[$7>>2]|0;
+ $25 = ((($24)) + 64|0);
+ HEAP32[$25>>2] = $23;
+ $26 = (_glm_vec3_new(Math_fround(0.0),Math_fround(1.0),Math_fround(0.0))|0);
+ $27 = HEAP32[$7>>2]|0;
+ $28 = ((($27)) + 68|0);
+ HEAP32[$28>>2] = $26;
+ $29 = ((($27)) + 84|0);
+ HEAPF32[$29>>2] = Math_fround(0.0);
+ $30 = ((($27)) + 88|0);
+ HEAPF32[$30>>2] = Math_fround(0.0);
  return;
 }
 function _game_finalize($0) {
  $0 = $0|0;
- var $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0, $27 = 0;
- var $28 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
+ var $$01$i$i = 0, $1 = 0, $10 = 0, $100 = 0, $101 = 0, $102 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0;
+ var $24 = 0, $25 = 0, $26 = 0, $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0;
+ var $42 = 0, $43 = 0, $44 = 0, $45 = 0, $46 = 0, $47 = 0, $48 = 0, $49 = 0, $5 = 0, $50 = 0, $51 = 0, $52 = 0, $53 = 0, $54 = 0, $55 = 0, $56 = 0, $57 = 0, $58 = 0, $59 = 0, $6 = 0;
+ var $60 = 0, $61 = 0, $62 = 0, $63 = 0, $64 = 0, $65 = 0, $66 = 0, $67 = 0, $68 = 0, $69 = 0, $7 = 0, $70 = 0, $71 = 0, $72 = 0, $73 = 0, $74 = 0, $75 = 0, $76 = 0, $77 = 0, $78 = 0;
+ var $79 = 0, $8 = 0, $80 = 0, $81 = 0, $82 = 0, $83 = 0, $84 = 0, $85 = 0, $86 = 0, $87 = 0, $88 = 0, $89 = 0, $9 = 0, $90 = 0, $91 = 0, $92 = 0, $93 = 0, $94 = 0, $95 = 0, $96 = 0;
+ var $97 = 0, $98 = 0, $99 = 0, $exitcond$i$i = 0, $or$cond$i$i = 0, label = 0, sp = 0;
  sp = STACKTOP;
  $1 = (_g_once_init_enter(144140)|0);
  $2 = ($1|0)==(0);
  if (!($2)) {
   $3 = (_object_get_type()|0);
-  $4 = (_g_type_register_static($3,140444,120352,0)|0);
+  $4 = (_g_type_register_static($3,140445,120352,0)|0);
   _g_once_init_leave(144140,$4);
  }
  $5 = HEAP32[36035]|0;
@@ -68725,15 +69480,180 @@ function _game_finalize($0) {
  }
  $20 = ((($21)) + 28|0);
  $22 = HEAP32[$20>>2]|0;
- _g_free($22);
- $23 = HEAP32[$7>>2]|0;
- $24 = ((($23)) + 28|0);
- HEAP32[$24>>2] = 0;
- $25 = HEAP32[36036]|0;
- $26 = (_g_type_check_class_cast($25,80)|0);
- $27 = ((($25)) + 36|0);
- $28 = HEAP32[$27>>2]|0;
- ftCall_vi($28|0,$0);
+ $23 = ($22|0)==(0|0);
+ if ($23) {
+  $27 = $21;
+ } else {
+  _glm_mat4_unref($22);
+  $24 = HEAP32[$7>>2]|0;
+  $25 = ((($24)) + 28|0);
+  HEAP32[$25>>2] = 0;
+  $27 = $24;
+ }
+ $26 = ((($27)) + 32|0);
+ $28 = HEAP32[$26>>2]|0;
+ $29 = ($28|0)==(0|0);
+ if ($29) {
+  $33 = $27;
+ } else {
+  _glm_mat4_unref($28);
+  $30 = HEAP32[$7>>2]|0;
+  $31 = ((($30)) + 32|0);
+  HEAP32[$31>>2] = 0;
+  $33 = $30;
+ }
+ $32 = ((($33)) + 36|0);
+ $34 = HEAP32[$32>>2]|0;
+ $35 = ($34|0)==(0|0);
+ if ($35) {
+  $39 = $33;
+ } else {
+  _glm_mat4_unref($34);
+  $36 = HEAP32[$7>>2]|0;
+  $37 = ((($36)) + 36|0);
+  HEAP32[$37>>2] = 0;
+  $39 = $36;
+ }
+ $38 = ((($39)) + 40|0);
+ $40 = HEAP32[$38>>2]|0;
+ $41 = ($40|0)==(0|0);
+ if ($41) {
+  $45 = $39;
+ } else {
+  _glm_vec3_unref($40);
+  $42 = HEAP32[$7>>2]|0;
+  $43 = ((($42)) + 40|0);
+  HEAP32[$43>>2] = 0;
+  $45 = $42;
+ }
+ $44 = ((($45)) + 44|0);
+ $46 = HEAP32[$44>>2]|0;
+ $47 = ($46|0)==(0|0);
+ if ($47) {
+  $51 = $45;
+ } else {
+  _glm_vec3_unref($46);
+  $48 = HEAP32[$7>>2]|0;
+  $49 = ((($48)) + 44|0);
+  HEAP32[$49>>2] = 0;
+  $51 = $48;
+ }
+ $50 = ((($51)) + 48|0);
+ $52 = HEAP32[$50>>2]|0;
+ $53 = ($52|0)==(0|0);
+ if ($53) {
+  $57 = $51;
+ } else {
+  _glm_vec3_unref($52);
+  $54 = HEAP32[$7>>2]|0;
+  $55 = ((($54)) + 48|0);
+  HEAP32[$55>>2] = 0;
+  $57 = $54;
+ }
+ $56 = ((($57)) + 52|0);
+ $58 = HEAP32[$56>>2]|0;
+ $59 = ($58|0)==(0|0);
+ if ($59) {
+  $63 = $57;
+ } else {
+  _glm_vec3_unref($58);
+  $60 = HEAP32[$7>>2]|0;
+  $61 = ((($60)) + 52|0);
+  HEAP32[$61>>2] = 0;
+  $63 = $60;
+ }
+ $62 = ((($63)) + 56|0);
+ $64 = HEAP32[$62>>2]|0;
+ $65 = ($64|0)==(0|0);
+ if ($65) {
+  $69 = $63;
+ } else {
+  _glm_vec3_unref($64);
+  $66 = HEAP32[$7>>2]|0;
+  $67 = ((($66)) + 56|0);
+  HEAP32[$67>>2] = 0;
+  $69 = $66;
+ }
+ $68 = ((($69)) + 60|0);
+ $70 = HEAP32[$68>>2]|0;
+ $71 = ($70|0)==(0|0);
+ if ($71) {
+  $75 = $69;
+ } else {
+  _glm_vec3_unref($70);
+  $72 = HEAP32[$7>>2]|0;
+  $73 = ((($72)) + 60|0);
+  HEAP32[$73>>2] = 0;
+  $75 = $72;
+ }
+ $74 = ((($75)) + 64|0);
+ $76 = HEAP32[$74>>2]|0;
+ $77 = ($76|0)==(0|0);
+ if ($77) {
+  $81 = $75;
+ } else {
+  _glm_vec3_unref($76);
+  $78 = HEAP32[$7>>2]|0;
+  $79 = ((($78)) + 64|0);
+  HEAP32[$79>>2] = 0;
+  $81 = $78;
+ }
+ $80 = ((($81)) + 68|0);
+ $82 = HEAP32[$80>>2]|0;
+ $83 = ($82|0)==(0|0);
+ if ($83) {
+  $87 = $81;
+ } else {
+  _glm_vec3_unref($82);
+  $84 = HEAP32[$7>>2]|0;
+  $85 = ((($84)) + 68|0);
+  HEAP32[$85>>2] = 0;
+  $87 = $84;
+ }
+ $86 = ((($87)) + 72|0);
+ $88 = HEAP32[$86>>2]|0;
+ $89 = ((($87)) + 76|0);
+ $90 = HEAP32[$89>>2]|0;
+ $91 = ($88|0)!=(0|0);
+ $92 = ($90|0)>(0);
+ $or$cond$i$i = $91 & $92;
+ if (!($or$cond$i$i)) {
+  _g_free($88);
+  $97 = HEAP32[$7>>2]|0;
+  $98 = ((($97)) + 72|0);
+  HEAP32[$98>>2] = 0;
+  $99 = HEAP32[36036]|0;
+  $100 = (_g_type_check_class_cast($99,80)|0);
+  $101 = ((($99)) + 36|0);
+  $102 = HEAP32[$101>>2]|0;
+  ftCall_vi($102|0,$0);
+  return;
+ }
+ $$01$i$i = 0;
+ while(1) {
+  $93 = (($88) + ($$01$i$i<<2)|0);
+  $94 = HEAP32[$93>>2]|0;
+  $95 = ($94|0)==(0|0);
+  if (!($95)) {
+   _glm_vec3_unref($94);
+  }
+  $96 = (($$01$i$i) + 1)|0;
+  $exitcond$i$i = ($96|0)==($90|0);
+  if ($exitcond$i$i) {
+   break;
+  } else {
+   $$01$i$i = $96;
+  }
+ }
+ _g_free($88);
+ $97 = HEAP32[$7>>2]|0;
+ $98 = ((($97)) + 72|0);
+ HEAP32[$98>>2] = 0;
+ $99 = HEAP32[36036]|0;
+ $100 = (_g_type_check_class_cast($99,80)|0);
+ $101 = ((($99)) + 36|0);
+ $102 = HEAP32[$101>>2]|0;
+ ftCall_vi($102|0,$0);
  return;
 }
 function _main($0,$1) {
@@ -68800,7 +69720,7 @@ function _image_construct($0,$1) {
   STACKTOP = sp;return ($5|0);
  }
  HEAP32[$vararg_buffer>>2] = $1;
- _g_print(140449,$vararg_buffer);
+ _g_print(140450,$vararg_buffer);
  STACKTOP = sp;return ($5|0);
 }
 function _image_new($0) {
@@ -68811,7 +69731,7 @@ function _image_new($0) {
  $2 = ($1|0)==(0);
  if (!($2)) {
   $3 = (_object_get_type()|0);
-  $4 = (_g_type_register_static($3,140468,120392,0)|0);
+  $4 = (_g_type_register_static($3,140469,120392,0)|0);
   _g_once_init_leave(144148,$4);
  }
  $5 = HEAP32[36037]|0;
@@ -68832,19 +69752,19 @@ function _image_class_init($0) {
  $5 = ((($0)) + 36|0);
  HEAP32[$5>>2] = 457;
  $6 = (_g_type_check_class_cast($0,80)|0);
- $7 = (_g_param_spec_int(140474,140474,140474,-2147483648,2147483647,0,225)|0);
+ $7 = (_g_param_spec_int(140475,140475,140475,-2147483648,2147483647,0,225)|0);
  HEAP32[(142484)>>2] = $7;
  _g_object_class_install_property($0,1,$7);
  $8 = (_g_type_check_class_cast($0,80)|0);
- $9 = (_g_param_spec_int(140480,140480,140480,-2147483648,2147483647,0,225)|0);
+ $9 = (_g_param_spec_int(140481,140481,140481,-2147483648,2147483647,0,225)|0);
  HEAP32[(142488)>>2] = $9;
  _g_object_class_install_property($0,2,$9);
  $10 = (_g_type_check_class_cast($0,80)|0);
- $11 = (_g_param_spec_int(140487,140487,140487,-2147483648,2147483647,0,225)|0);
+ $11 = (_g_param_spec_int(140488,140488,140488,-2147483648,2147483647,0,225)|0);
  HEAP32[(142492)>>2] = $11;
  _g_object_class_install_property($0,3,$11);
  $12 = (_g_type_check_class_cast($0,80)|0);
- $13 = (_g_param_spec_pointer(140496,140496,140496,225)|0);
+ $13 = (_g_param_spec_pointer(140497,140497,140497,225)|0);
  HEAP32[(142496)>>2] = $13;
  _g_object_class_install_property($0,4,$13);
  return;
@@ -68857,7 +69777,7 @@ function _image_instance_init($0) {
  $2 = ($1|0)==(0);
  if (!($2)) {
   $3 = (_object_get_type()|0);
-  $4 = (_g_type_register_static($3,140468,120392,0)|0);
+  $4 = (_g_type_register_static($3,140469,120392,0)|0);
   _g_once_init_leave(144148,$4);
  }
  $5 = HEAP32[36037]|0;
@@ -68880,7 +69800,7 @@ function __vala_image_get_property($0,$1,$2,$3) {
  $5 = ($4|0)==(0);
  if (!($5)) {
   $6 = (_object_get_type()|0);
-  $7 = (_g_type_register_static($6,140468,120392,0)|0);
+  $7 = (_g_type_register_static($6,140469,120392,0)|0);
   _g_once_init_leave(144148,$7);
  }
  $8 = HEAP32[36037]|0;
@@ -68930,11 +69850,11 @@ function __vala_image_get_property($0,$1,$2,$3) {
   $30 = HEAP32[$0>>2]|0;
   $31 = HEAP32[$30>>2]|0;
   $32 = (_g_type_name($31)|0);
-  HEAP32[$vararg_buffer>>2] = 140503;
+  HEAP32[$vararg_buffer>>2] = 140504;
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
-  HEAP32[$vararg_ptr1>>2] = 259;
+  HEAP32[$vararg_ptr1>>2] = 277;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -68943,7 +69863,7 @@ function __vala_image_get_property($0,$1,$2,$3) {
   HEAP32[$vararg_ptr5>>2] = $29;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $32;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
  }
@@ -68956,7 +69876,7 @@ function _image_finalize($0) {
  $2 = ($1|0)==(0);
  if (!($2)) {
   $3 = (_object_get_type()|0);
-  $4 = (_g_type_register_static($3,140468,120392,0)|0);
+  $4 = (_g_type_register_static($3,140469,120392,0)|0);
   _g_once_init_leave(144148,$4);
  }
  $5 = HEAP32[36037]|0;
@@ -69008,395 +69928,32 @@ function _image_get_Pixels($0) {
  $4 = HEAP32[$3>>2]|0;
  return ($4|0);
 }
-function _shader_construct($0,$1,$2) {
- $0 = $0|0;
- $1 = $1|0;
- $2 = $2|0;
- var $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0, $27 = 0, $28 = 0, $29 = 0;
- var $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $42 = 0, $43 = 0, $44 = 0, $45 = 0, $46 = 0, $47 = 0;
- var $48 = 0, $49 = 0, $5 = 0, $50 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- $3 = (_object_construct($0)|0);
- $4 = (_shader_readTextFile($1)|0);
- $5 = (_shader_readTextFile($2)|0);
- $6 = (_g_strdup(140616)|0);
- $7 = (_g_strdup(140632)|0);
- $8 = (_g_strdup($4)|0);
- $9 = (_g_malloc0_n(4,4)|0);
- HEAP32[$9>>2] = $6;
- $10 = ((($9)) + 4|0);
- HEAP32[$10>>2] = $7;
- $11 = ((($9)) + 8|0);
- HEAP32[$11>>2] = $8;
- $12 = (_strlen($4)|0);
- $13 = (_g_malloc0_n(3,4)|0);
- HEAP32[$13>>2] = 15;
- $14 = ((($13)) + 4|0);
- HEAP32[$14>>2] = 53;
- $15 = ((($13)) + 8|0);
- HEAP32[$15>>2] = $12;
- $16 = (_g_strdup(140616)|0);
- $17 = (_g_strdup(140632)|0);
- $18 = (_g_strdup($5)|0);
- $19 = (_g_malloc0_n(4,4)|0);
- HEAP32[$19>>2] = $16;
- $20 = ((($19)) + 4|0);
- HEAP32[$20>>2] = $17;
- $21 = ((($19)) + 8|0);
- HEAP32[$21>>2] = $18;
- $22 = (_strlen($5)|0);
- $23 = (_g_malloc0_n(3,4)|0);
- HEAP32[$23>>2] = 15;
- $24 = ((($23)) + 4|0);
- HEAP32[$24>>2] = 53;
- $25 = ((($23)) + 8|0);
- HEAP32[$25>>2] = $22;
- $26 = (_glCreateShader(35633)|0);
- _glShaderSource(($26|0),3,($9|0),($13|0));
- _glCompileShader(($26|0));
- _shader_checkCompileErrors($26,0);
- $27 = (_glCreateShader(35632)|0);
- _glShaderSource(($27|0),3,($19|0),($23|0));
- _glCompileShader(($27|0));
- _shader_checkCompileErrors($27,1);
- $28 = (_glCreateProgram()|0);
- $29 = ((($3)) + 16|0);
- $30 = HEAP32[$29>>2]|0;
- HEAP32[$30>>2] = $28;
- _glAttachShader(($28|0),($26|0));
- $31 = HEAP32[$29>>2]|0;
- $32 = HEAP32[$31>>2]|0;
- _glAttachShader(($32|0),($27|0));
- $33 = HEAP32[$29>>2]|0;
- $34 = HEAP32[$33>>2]|0;
- _glLinkProgram(($34|0));
- $35 = HEAP32[$29>>2]|0;
- $36 = HEAP32[$35>>2]|0;
- _shader_checkCompileErrors($36,2);
- _glDeleteShader(($26|0));
- _glDeleteShader(($27|0));
- _g_free($23);
- $37 = ($19|0)==(0|0);
- if (!($37)) {
-  $38 = HEAP32[$19>>2]|0;
-  $39 = ($38|0)==(0|0);
-  if (!($39)) {
-   _g_free($38);
-  }
-  $40 = HEAP32[$20>>2]|0;
-  $41 = ($40|0)==(0|0);
-  if (!($41)) {
-   _g_free($40);
-  }
-  $42 = HEAP32[$21>>2]|0;
-  $43 = ($42|0)==(0|0);
-  if (!($43)) {
-   _g_free($42);
-  }
- }
- _g_free($19);
- _g_free($13);
- $44 = ($9|0)==(0|0);
- if ($44) {
-  _g_free($9);
-  _g_free($5);
-  _g_free($4);
-  return ($3|0);
- }
- $45 = HEAP32[$9>>2]|0;
- $46 = ($45|0)==(0|0);
- if (!($46)) {
-  _g_free($45);
- }
- $47 = HEAP32[$10>>2]|0;
- $48 = ($47|0)==(0|0);
- if (!($48)) {
-  _g_free($47);
- }
- $49 = HEAP32[$11>>2]|0;
- $50 = ($49|0)==(0|0);
- if ($50) {
-  _g_free($9);
-  _g_free($5);
-  _g_free($4);
-  return ($3|0);
- }
- _g_free($49);
- _g_free($9);
- _g_free($5);
- _g_free($4);
- return ($3|0);
-}
-function _shader_readTextFile($0) {
- $0 = $0|0;
- var $$014122 = 0, $$014321 = 0, $$2 = 0, $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0;
- var $25 = 0, $26 = 0, $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $42 = 0;
- var $43 = 0, $44 = 0, $45 = 0, $46 = 0, $47 = 0, $48 = 0, $49 = 0, $5 = 0, $50 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $vararg_buffer = 0, $vararg_buffer16 = 0, $vararg_buffer2 = 0, $vararg_buffer23 = 0, $vararg_buffer27 = 0, $vararg_buffer9 = 0, $vararg_ptr1 = 0;
- var $vararg_ptr12 = 0, $vararg_ptr13 = 0, $vararg_ptr14 = 0, $vararg_ptr15 = 0, $vararg_ptr19 = 0, $vararg_ptr20 = 0, $vararg_ptr21 = 0, $vararg_ptr22 = 0, $vararg_ptr26 = 0, $vararg_ptr30 = 0, $vararg_ptr5 = 0, $vararg_ptr6 = 0, $vararg_ptr7 = 0, $vararg_ptr8 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 112|0;
- $vararg_buffer27 = sp + 88|0;
- $vararg_buffer23 = sp + 80|0;
- $vararg_buffer16 = sp + 56|0;
- $vararg_buffer9 = sp + 32|0;
- $vararg_buffer2 = sp + 8|0;
- $vararg_buffer = sp;
- $1 = sp + 96|0;
- HEAP32[$1>>2] = 0;
- $2 = (_g_strdup(144793)|0);
- HEAP32[$vararg_buffer>>2] = $0;
- $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
- HEAP32[$vararg_ptr1>>2] = 0;
- $3 = (_g_strconcat(140846,$vararg_buffer)|0);
- $4 = (_system_io_file_handle_new($3,4)|0);
- _g_free($3);
- $5 = ((($4)) + 20|0);
- $6 = HEAP32[$5>>2]|0;
- $7 = (_system_io_file_input_stream_new_FromFile($6,$1)|0);
- $8 = HEAP32[$1>>2]|0;
- $9 = ($8|0)==(0|0);
- if (!($9)) {
-  $10 = ($4|0)==(0|0);
-  if (!($10)) {
-   _g_object_unref($4);
-  }
-  _g_free($2);
-  _g_free(0);
-  $11 = HEAP32[$1>>2]|0;
-  $12 = ((($11)) + 8|0);
-  $13 = HEAP32[$12>>2]|0;
-  $14 = HEAP32[$11>>2]|0;
-  $15 = (_g_quark_to_string($14)|0);
-  $16 = ((($11)) + 4|0);
-  $17 = HEAP32[$16>>2]|0;
-  HEAP32[$vararg_buffer2>>2] = 140908;
-  $vararg_ptr5 = ((($vararg_buffer2)) + 4|0);
-  HEAP32[$vararg_ptr5>>2] = 692;
-  $vararg_ptr6 = ((($vararg_buffer2)) + 8|0);
-  HEAP32[$vararg_ptr6>>2] = $13;
-  $vararg_ptr7 = ((($vararg_buffer2)) + 12|0);
-  HEAP32[$vararg_ptr7>>2] = $15;
-  $vararg_ptr8 = ((($vararg_buffer2)) + 16|0);
-  HEAP32[$vararg_ptr8>>2] = $17;
-  _g_log(0,8,140862,$vararg_buffer2);
-  _g_clear_error($1);
-  $$2 = 0;
-  STACKTOP = sp;return ($$2|0);
- }
- $18 = (_system_io_input_stream_reader_new($7)|0);
- $19 = (_system_io_buffered_reader_new($18,8192,$1)|0);
- $20 = ($18|0)==(0|0);
- if (!($20)) {
-  _g_object_unref($18);
- }
- $21 = HEAP32[$1>>2]|0;
- $22 = ($21|0)==(0|0);
- if (!($22)) {
-  $23 = ($7|0)==(0|0);
-  if (!($23)) {
-   _g_object_unref($7);
-  }
-  $24 = ($4|0)==(0|0);
-  if (!($24)) {
-   _g_object_unref($4);
-  }
-  _g_free($2);
-  _g_free(0);
-  $25 = HEAP32[$1>>2]|0;
-  $26 = ((($25)) + 8|0);
-  $27 = HEAP32[$26>>2]|0;
-  $28 = HEAP32[$25>>2]|0;
-  $29 = (_g_quark_to_string($28)|0);
-  $30 = ((($25)) + 4|0);
-  $31 = HEAP32[$30>>2]|0;
-  HEAP32[$vararg_buffer9>>2] = 140908;
-  $vararg_ptr12 = ((($vararg_buffer9)) + 4|0);
-  HEAP32[$vararg_ptr12>>2] = 707;
-  $vararg_ptr13 = ((($vararg_buffer9)) + 8|0);
-  HEAP32[$vararg_ptr13>>2] = $27;
-  $vararg_ptr14 = ((($vararg_buffer9)) + 12|0);
-  HEAP32[$vararg_ptr14>>2] = $29;
-  $vararg_ptr15 = ((($vararg_buffer9)) + 16|0);
-  HEAP32[$vararg_ptr15>>2] = $31;
-  _g_log(0,8,140862,$vararg_buffer9);
-  _g_clear_error($1);
-  $$2 = 0;
-  STACKTOP = sp;return ($$2|0);
- }
- $$014122 = 0;$$014321 = $2;
- while(1) {
-  $32 = (_system_io_buffered_reader_ReadLine($19,0,$1)|0);
-  $33 = HEAP32[$1>>2]|0;
-  $34 = ($33|0)==(0|0);
-  if (!($34)) {
-   label = 15;
-   break;
-  }
-  _g_free($$014122);
-  HEAP32[$vararg_buffer23>>2] = $32;
-  $vararg_ptr26 = ((($vararg_buffer23)) + 4|0);
-  HEAP32[$vararg_ptr26>>2] = 0;
-  $45 = (_g_strconcat($$014321,$vararg_buffer23)|0);
-  HEAP32[$vararg_buffer27>>2] = 140927;
-  $vararg_ptr30 = ((($vararg_buffer27)) + 4|0);
-  HEAP32[$vararg_ptr30>>2] = 0;
-  $46 = (_g_strconcat($45,$vararg_buffer27)|0);
-  _g_free($$014321);
-  _g_free($45);
-  _g_free(0);
-  $47 = ($32|0)==(0|0);
-  if ($47) {
-   label = 23;
-   break;
-  } else {
-   $$014122 = $32;$$014321 = $46;
-  }
- }
- if ((label|0) == 15) {
-  $35 = ($19|0)==(0|0);
-  if (!($35)) {
-   _g_object_unref($19);
-  }
-  $36 = ($7|0)==(0|0);
-  if (!($36)) {
-   _g_object_unref($7);
-  }
-  $37 = ($4|0)==(0|0);
-  if (!($37)) {
-   _g_object_unref($4);
-  }
-  _g_free($$014321);
-  _g_free($$014122);
-  $38 = HEAP32[$1>>2]|0;
-  $39 = ((($38)) + 8|0);
-  $40 = HEAP32[$39>>2]|0;
-  $41 = HEAP32[$38>>2]|0;
-  $42 = (_g_quark_to_string($41)|0);
-  $43 = ((($38)) + 4|0);
-  $44 = HEAP32[$43>>2]|0;
-  HEAP32[$vararg_buffer16>>2] = 140908;
-  $vararg_ptr19 = ((($vararg_buffer16)) + 4|0);
-  HEAP32[$vararg_ptr19>>2] = 741;
-  $vararg_ptr20 = ((($vararg_buffer16)) + 8|0);
-  HEAP32[$vararg_ptr20>>2] = $40;
-  $vararg_ptr21 = ((($vararg_buffer16)) + 12|0);
-  HEAP32[$vararg_ptr21>>2] = $42;
-  $vararg_ptr22 = ((($vararg_buffer16)) + 16|0);
-  HEAP32[$vararg_ptr22>>2] = $44;
-  _g_log(0,8,140862,$vararg_buffer16);
-  _g_clear_error($1);
-  $$2 = 0;
-  STACKTOP = sp;return ($$2|0);
- }
- else if ((label|0) == 23) {
-  $48 = ($19|0)==(0|0);
-  if (!($48)) {
-   _g_object_unref($19);
-  }
-  $49 = ($7|0)==(0|0);
-  if (!($49)) {
-   _g_object_unref($7);
-  }
-  $50 = ($4|0)==(0|0);
-  if (!($50)) {
-   _g_object_unref($4);
-  }
-  _g_free(0);
-  $$2 = $46;
-  STACKTOP = sp;return ($$2|0);
- }
- return (0)|0;
-}
-function _shader_checkCompileErrors($0,$1) {
- $0 = $0|0;
- $1 = $1|0;
- var $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0, $27 = 0, $28 = 0;
- var $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $vararg_buffer = 0, $vararg_buffer2 = 0, $vararg_ptr1 = 0, $vararg_ptr5 = 0, label = 0, sp = 0;
- sp = STACKTOP;
- STACKTOP = STACKTOP + 1056|0;
- $vararg_buffer2 = sp + 1032|0;
- $vararg_buffer = sp + 1024|0;
- $2 = sp + 1040|0;
- $3 = sp;
- _memset(($3|0),0,1024)|0;
- HEAP32[$2>>2] = 0;
- $4 = ($1|0)==(2);
- if ($4) {
-  _glGetProgramiv(($0|0),35714,($2|0));
-  $17 = HEAP32[$2>>2]|0;
-  $18 = ($17|0)==(1);
-  if ($18) {
-   STACKTOP = sp;return;
-  }
-  _glGetProgramInfoLog(($0|0),1024,(0|0),($3|0));
-  $19 = (_g_once_init_enter(144156)|0);
-  $20 = ($19|0)==(0);
-  if (!($20)) {
-   $21 = (_g_enum_register_static(140521,114864)|0);
-   _g_once_init_leave(144156,$21);
-  }
-  $22 = HEAP32[36039]|0;
-  $23 = (_g_type_class_ref($22)|0);
-  $24 = (_g_enum_get_value($23,2)|0);
-  $25 = ($24|0)==(0|0);
-  if ($25) {
-   $28 = 0;
-  } else {
-   $26 = ((($24)) + 4|0);
-   $27 = HEAP32[$26>>2]|0;
-   $28 = $27;
-  }
-  HEAP32[$vararg_buffer2>>2] = $3;
-  $vararg_ptr5 = ((($vararg_buffer2)) + 4|0);
-  HEAP32[$vararg_ptr5>>2] = $28;
-  _g_print(140767,$vararg_buffer2);
-  STACKTOP = sp;return;
- } else {
-  _glGetShaderiv(($0|0),35713,($2|0));
-  $5 = HEAP32[$2>>2]|0;
-  $6 = ($5|0)==(1);
-  if ($6) {
-   STACKTOP = sp;return;
-  }
-  _glGetShaderInfoLog(($0|0),1024,(0|0),($3|0));
-  $7 = (_g_once_init_enter(144156)|0);
-  $8 = ($7|0)==(0);
-  if (!($8)) {
-   $9 = (_g_enum_register_static(140521,114864)|0);
-   _g_once_init_leave(144156,$9);
-  }
-  $10 = HEAP32[36039]|0;
-  $11 = (_g_type_class_ref($10)|0);
-  $12 = (_g_enum_get_value($11,$1)|0);
-  $13 = ($12|0)==(0|0);
-  if ($13) {
-   $16 = 0;
-  } else {
-   $14 = ((($12)) + 4|0);
-   $15 = HEAP32[$14>>2]|0;
-   $16 = $15;
-  }
-  HEAP32[$vararg_buffer>>2] = $3;
-  $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
-  HEAP32[$vararg_ptr1>>2] = $16;
-  _g_print(140686,$vararg_buffer);
-  STACKTOP = sp;return;
- }
-}
 function _shader_new($0,$1) {
  $0 = $0|0;
  $1 = $1|0;
- var $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, label = 0, sp = 0;
+ var $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
  sp = STACKTOP;
- $2 = (_g_once_init_enter(144160)|0);
+ $2 = (_g_once_init_enter(144156)|0);
  $3 = ($2|0)==(0);
  if (!($3)) {
   $4 = (_object_get_type()|0);
-  $5 = (_g_type_register_static($4,140929,120428,0)|0);
-  _g_once_init_leave(144160,$5);
+  $5 = (_g_type_register_static($4,140522,120428,0)|0);
+  _g_once_init_leave(144156,$5);
  }
- $6 = HEAP32[36040]|0;
- $7 = (_shader_construct($6,$0,$1)|0);
+ $6 = HEAP32[36039]|0;
+ $7 = (_object_construct($6)|0);
+ $8 = ((($7)) + 16|0);
+ $9 = HEAP32[$8>>2]|0;
+ $10 = ((($9)) + 4|0);
+ HEAP32[$10>>2] = $0;
+ $11 = (_g_strdup($1)|0);
+ $12 = HEAP32[$8>>2]|0;
+ $13 = ((($12)) + 8|0);
+ $14 = HEAP32[$13>>2]|0;
+ _g_free($14);
+ $15 = HEAP32[$8>>2]|0;
+ $16 = ((($15)) + 8|0);
+ HEAP32[$16>>2] = $11;
  return ($7|0);
 }
 function _shader_class_init($0) {
@@ -69404,8 +69961,8 @@ function _shader_class_init($0) {
  var $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, label = 0, sp = 0;
  sp = STACKTOP;
  $1 = (_g_type_class_peek_parent($0)|0);
- HEAP32[36041] = $1;
- _g_type_class_add_private($0,4);
+ HEAP32[36040] = $1;
+ _g_type_class_add_private($0,12);
  $2 = (_g_type_check_class_cast($0,80)|0);
  $3 = ((($0)) + 28|0);
  HEAP32[$3>>2] = 458;
@@ -69413,8 +69970,8 @@ function _shader_class_init($0) {
  $5 = ((($0)) + 36|0);
  HEAP32[$5>>2] = 459;
  $6 = (_g_type_check_class_cast($0,80)|0);
- $7 = (_g_param_spec_uint(140936,140936,140936,0,-1,0,225)|0);
- HEAP32[(144172)>>2] = $7;
+ $7 = (_g_param_spec_uint(140529,140529,140529,0,-1,0,225)|0);
+ HEAP32[(144168)>>2] = $7;
  _g_object_class_install_property($0,1,$7);
  return;
 }
@@ -69422,14 +69979,14 @@ function _shader_instance_init($0) {
  $0 = $0|0;
  var $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, label = 0, sp = 0;
  sp = STACKTOP;
- $1 = (_g_once_init_enter(144160)|0);
+ $1 = (_g_once_init_enter(144156)|0);
  $2 = ($1|0)==(0);
  if (!($2)) {
   $3 = (_object_get_type()|0);
-  $4 = (_g_type_register_static($3,140929,120428,0)|0);
-  _g_once_init_leave(144160,$4);
+  $4 = (_g_type_register_static($3,140522,120428,0)|0);
+  _g_once_init_leave(144156,$4);
  }
- $5 = HEAP32[36040]|0;
+ $5 = HEAP32[36039]|0;
  $6 = (_g_type_instance_get_private($0,$5)|0);
  $7 = ((($0)) + 16|0);
  HEAP32[$7>>2] = $6;
@@ -69445,14 +70002,14 @@ function __vala_shader_get_property($0,$1,$2,$3) {
  sp = STACKTOP;
  STACKTOP = STACKTOP + 32|0;
  $vararg_buffer = sp;
- $4 = (_g_once_init_enter(144160)|0);
+ $4 = (_g_once_init_enter(144156)|0);
  $5 = ($4|0)==(0);
  if (!($5)) {
   $6 = (_object_get_type()|0);
-  $7 = (_g_type_register_static($6,140929,120428,0)|0);
-  _g_once_init_leave(144160,$7);
+  $7 = (_g_type_register_static($6,140522,120428,0)|0);
+  _g_once_init_leave(144156,$7);
  }
- $8 = HEAP32[36040]|0;
+ $8 = HEAP32[36039]|0;
  $9 = (_g_type_check_instance_cast($0,$8)|0);
  $cond = ($1|0)==(1);
  if ($cond) {
@@ -69470,11 +70027,11 @@ function __vala_shader_get_property($0,$1,$2,$3) {
   $18 = HEAP32[$0>>2]|0;
   $19 = HEAP32[$18>>2]|0;
   $20 = (_g_type_name($19)|0);
-  HEAP32[$vararg_buffer>>2] = 140908;
+  HEAP32[$vararg_buffer>>2] = 140586;
   $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
-  HEAP32[$vararg_ptr1>>2] = 825;
+  HEAP32[$vararg_ptr1>>2] = 861;
   $vararg_ptr2 = ((($vararg_buffer)) + 8|0);
-  HEAP32[$vararg_ptr2>>2] = 140993;
+  HEAP32[$vararg_ptr2>>2] = 140605;
   $vararg_ptr3 = ((($vararg_buffer)) + 12|0);
   HEAP32[$vararg_ptr3>>2] = $1;
   $vararg_ptr4 = ((($vararg_buffer)) + 16|0);
@@ -69483,29 +70040,392 @@ function __vala_shader_get_property($0,$1,$2,$3) {
   HEAP32[$vararg_ptr5>>2] = $17;
   $vararg_ptr6 = ((($vararg_buffer)) + 24|0);
   HEAP32[$vararg_ptr6>>2] = $20;
-  _g_log(0,16,140939,$vararg_buffer);
+  _g_log(0,16,140532,$vararg_buffer);
   STACKTOP = sp;return;
  }
 }
 function _shader_finalize($0) {
  $0 = $0|0;
- var $1 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
+ var $1 = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $2 = 0, $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
  sp = STACKTOP;
- $1 = (_g_once_init_enter(144160)|0);
+ $1 = (_g_once_init_enter(144156)|0);
  $2 = ($1|0)==(0);
  if (!($2)) {
   $3 = (_object_get_type()|0);
-  $4 = (_g_type_register_static($3,140929,120428,0)|0);
-  _g_once_init_leave(144160,$4);
+  $4 = (_g_type_register_static($3,140522,120428,0)|0);
+  _g_once_init_leave(144156,$4);
  }
- $5 = HEAP32[36040]|0;
- (_g_type_check_instance_cast($0,$5)|0);
- $6 = HEAP32[36041]|0;
- $7 = (_g_type_check_class_cast($6,80)|0);
- $8 = ((($6)) + 36|0);
- $9 = HEAP32[$8>>2]|0;
- ftCall_vi($9|0,$0);
+ $5 = HEAP32[36039]|0;
+ $6 = (_g_type_check_instance_cast($0,$5)|0);
+ $7 = ((($0)) + 16|0);
+ $8 = HEAP32[$7>>2]|0;
+ $9 = ((($8)) + 8|0);
+ $10 = HEAP32[$9>>2]|0;
+ _g_free($10);
+ $11 = HEAP32[$7>>2]|0;
+ $12 = ((($11)) + 8|0);
+ HEAP32[$12>>2] = 0;
+ $13 = HEAP32[36040]|0;
+ $14 = (_g_type_check_class_cast($13,80)|0);
+ $15 = ((($13)) + 36|0);
+ $16 = HEAP32[$15>>2]|0;
+ ftCall_vi($16|0,$0);
  return;
+}
+function _shader_Load($0,$1,$2,$3) {
+ $0 = $0|0;
+ $1 = $1|0;
+ $2 = $2|0;
+ $3 = $3|0;
+ var $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ $4 = (_shader_loadShader($0,35633,$1)|0);
+ $5 = (_shader_loadShader($0,35632,$2)|0);
+ $6 = (_glCreateProgram()|0);
+ $7 = ((($0)) + 16|0);
+ $8 = HEAP32[$7>>2]|0;
+ HEAP32[$8>>2] = $6;
+ _glAttachShader(($6|0),($4|0));
+ $9 = HEAP32[$7>>2]|0;
+ $10 = HEAP32[$9>>2]|0;
+ _glAttachShader(($10|0),($5|0));
+ $11 = HEAP32[$7>>2]|0;
+ $12 = HEAP32[$11>>2]|0;
+ _glLinkProgram(($12|0));
+ $13 = HEAP32[$7>>2]|0;
+ $14 = HEAP32[$13>>2]|0;
+ _shader_checkCompileErrors($14,-1);
+ _glDeleteShader(($4|0));
+ _glDeleteShader(($5|0));
+ $15 = ($0|0)==(0|0);
+ if ($15) {
+  $17 = 0;
+  return ($17|0);
+ }
+ $16 = (_g_object_ref($0)|0);
+ $17 = $0;
+ return ($17|0);
+}
+function _shader_loadShader($0,$1,$2) {
+ $0 = $0|0;
+ $1 = $1|0;
+ $2 = $2|0;
+ var $$0 = 0, $$014122$i = 0, $$014321$i = 0, $$2$i = 0, $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0;
+ var $26 = 0, $27 = 0, $28 = 0, $29 = 0, $3 = 0, $30 = 0, $31 = 0, $32 = 0, $33 = 0, $34 = 0, $35 = 0, $36 = 0, $37 = 0, $38 = 0, $39 = 0, $4 = 0, $40 = 0, $41 = 0, $42 = 0, $43 = 0;
+ var $44 = 0, $45 = 0, $46 = 0, $47 = 0, $48 = 0, $49 = 0, $5 = 0, $50 = 0, $51 = 0, $52 = 0, $53 = 0, $54 = 0, $55 = 0, $56 = 0, $57 = 0, $58 = 0, $59 = 0, $6 = 0, $60 = 0, $61 = 0;
+ var $62 = 0, $63 = 0, $64 = 0, $65 = 0, $66 = 0, $67 = 0, $68 = 0, $69 = 0, $7 = 0, $70 = 0, $71 = 0, $72 = 0, $73 = 0, $74 = 0, $75 = 0, $76 = 0, $77 = 0, $78 = 0, $8 = 0, $9 = 0;
+ var $vararg_buffer = 0, $vararg_buffer13 = 0, $vararg_buffer2 = 0, $vararg_buffer20 = 0, $vararg_buffer27 = 0, $vararg_buffer31 = 0, $vararg_buffer6 = 0, $vararg_ptr1 = 0, $vararg_ptr10 = 0, $vararg_ptr11 = 0, $vararg_ptr12 = 0, $vararg_ptr16 = 0, $vararg_ptr17 = 0, $vararg_ptr18 = 0, $vararg_ptr19 = 0, $vararg_ptr23 = 0, $vararg_ptr24 = 0, $vararg_ptr25 = 0, $vararg_ptr26 = 0, $vararg_ptr30 = 0;
+ var $vararg_ptr34 = 0, $vararg_ptr5 = 0, $vararg_ptr9 = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ STACKTOP = STACKTOP + 112|0;
+ $vararg_buffer31 = sp + 96|0;
+ $vararg_buffer27 = sp + 88|0;
+ $vararg_buffer20 = sp + 64|0;
+ $vararg_buffer13 = sp + 40|0;
+ $vararg_buffer6 = sp + 16|0;
+ $vararg_buffer2 = sp + 8|0;
+ $vararg_buffer = sp;
+ $3 = ($2|0)==(0|0);
+ if ($3) {
+  $$0 = 0;
+  STACKTOP = sp;return ($$0|0);
+ }
+ $4 = ((($0)) + 16|0);
+ $5 = HEAP32[$4>>2]|0;
+ $6 = ((($5)) + 4|0);
+ $7 = HEAP32[$6>>2]|0;
+ $8 = ((($5)) + 8|0);
+ $9 = HEAP32[$8>>2]|0;
+ HEAP32[$vararg_buffer>>2] = $7;
+ $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
+ HEAP32[$vararg_ptr1>>2] = $9;
+ $10 = (_g_strdup_printf(140869,$vararg_buffer)|0);
+ HEAP32[$vararg_buffer>>2] = 0;
+ $11 = (_g_strdup(144793)|0);
+ HEAP32[$vararg_buffer2>>2] = $2;
+ $vararg_ptr5 = ((($vararg_buffer2)) + 4|0);
+ HEAP32[$vararg_ptr5>>2] = 0;
+ $12 = (_g_strconcat(140884,$vararg_buffer2)|0);
+ $13 = (_system_io_file_handle_new($12,4)|0);
+ _g_free($12);
+ $14 = ((($13)) + 20|0);
+ $15 = HEAP32[$14>>2]|0;
+ $16 = (_system_io_file_input_stream_new_FromFile($15,$vararg_buffer)|0);
+ $17 = HEAP32[$vararg_buffer>>2]|0;
+ $18 = ($17|0)==(0|0);
+ do {
+  if ($18) {
+   $27 = (_system_io_input_stream_reader_new($16)|0);
+   $28 = (_system_io_buffered_reader_new($27,8192,$vararg_buffer)|0);
+   $29 = ($27|0)==(0|0);
+   if (!($29)) {
+    _g_object_unref($27);
+   }
+   $30 = HEAP32[$vararg_buffer>>2]|0;
+   $31 = ($30|0)==(0|0);
+   if (!($31)) {
+    $32 = ($16|0)==(0|0);
+    if (!($32)) {
+     _g_object_unref($16);
+    }
+    $33 = ($13|0)==(0|0);
+    if (!($33)) {
+     _g_object_unref($13);
+    }
+    _g_free($11);
+    _g_free(0);
+    $34 = HEAP32[$vararg_buffer>>2]|0;
+    $35 = ((($34)) + 8|0);
+    $36 = HEAP32[$35>>2]|0;
+    $37 = HEAP32[$34>>2]|0;
+    $38 = (_g_quark_to_string($37)|0);
+    $39 = ((($34)) + 4|0);
+    $40 = HEAP32[$39>>2]|0;
+    HEAP32[$vararg_buffer13>>2] = 140586;
+    $vararg_ptr16 = ((($vararg_buffer13)) + 4|0);
+    HEAP32[$vararg_ptr16>>2] = 742;
+    $vararg_ptr17 = ((($vararg_buffer13)) + 8|0);
+    HEAP32[$vararg_ptr17>>2] = $36;
+    $vararg_ptr18 = ((($vararg_buffer13)) + 12|0);
+    HEAP32[$vararg_ptr18>>2] = $38;
+    $vararg_ptr19 = ((($vararg_buffer13)) + 16|0);
+    HEAP32[$vararg_ptr19>>2] = $40;
+    _g_log(0,8,140900,$vararg_buffer13);
+    _g_clear_error($vararg_buffer);
+    $$2$i = 0;
+    break;
+   }
+   $$014122$i = 0;$$014321$i = $11;
+   while(1) {
+    $41 = (_system_io_buffered_reader_ReadLine($28,0,$vararg_buffer)|0);
+    $42 = HEAP32[$vararg_buffer>>2]|0;
+    $43 = ($42|0)==(0|0);
+    if (!($43)) {
+     label = 16;
+     break;
+    }
+    _g_free($$014122$i);
+    HEAP32[$vararg_buffer27>>2] = $41;
+    $vararg_ptr30 = ((($vararg_buffer27)) + 4|0);
+    HEAP32[$vararg_ptr30>>2] = 0;
+    $54 = (_g_strconcat($$014321$i,$vararg_buffer27)|0);
+    HEAP32[$vararg_buffer31>>2] = 140946;
+    $vararg_ptr34 = ((($vararg_buffer31)) + 4|0);
+    HEAP32[$vararg_ptr34>>2] = 0;
+    $55 = (_g_strconcat($54,$vararg_buffer31)|0);
+    _g_free($$014321$i);
+    _g_free($54);
+    _g_free(0);
+    $56 = ($41|0)==(0|0);
+    if ($56) {
+     label = 24;
+     break;
+    } else {
+     $$014122$i = $41;$$014321$i = $55;
+    }
+   }
+   if ((label|0) == 16) {
+    $44 = ($28|0)==(0|0);
+    if (!($44)) {
+     _g_object_unref($28);
+    }
+    $45 = ($16|0)==(0|0);
+    if (!($45)) {
+     _g_object_unref($16);
+    }
+    $46 = ($13|0)==(0|0);
+    if (!($46)) {
+     _g_object_unref($13);
+    }
+    _g_free($$014321$i);
+    _g_free($$014122$i);
+    $47 = HEAP32[$vararg_buffer>>2]|0;
+    $48 = ((($47)) + 8|0);
+    $49 = HEAP32[$48>>2]|0;
+    $50 = HEAP32[$47>>2]|0;
+    $51 = (_g_quark_to_string($50)|0);
+    $52 = ((($47)) + 4|0);
+    $53 = HEAP32[$52>>2]|0;
+    HEAP32[$vararg_buffer20>>2] = 140586;
+    $vararg_ptr23 = ((($vararg_buffer20)) + 4|0);
+    HEAP32[$vararg_ptr23>>2] = 776;
+    $vararg_ptr24 = ((($vararg_buffer20)) + 8|0);
+    HEAP32[$vararg_ptr24>>2] = $49;
+    $vararg_ptr25 = ((($vararg_buffer20)) + 12|0);
+    HEAP32[$vararg_ptr25>>2] = $51;
+    $vararg_ptr26 = ((($vararg_buffer20)) + 16|0);
+    HEAP32[$vararg_ptr26>>2] = $53;
+    _g_log(0,8,140900,$vararg_buffer20);
+    _g_clear_error($vararg_buffer);
+    $$2$i = 0;
+    break;
+   }
+   else if ((label|0) == 24) {
+    $57 = ($28|0)==(0|0);
+    if (!($57)) {
+     _g_object_unref($28);
+    }
+    $58 = ($16|0)==(0|0);
+    if (!($58)) {
+     _g_object_unref($16);
+    }
+    $59 = ($13|0)==(0|0);
+    if (!($59)) {
+     _g_object_unref($13);
+    }
+    _g_free(0);
+    $$2$i = $55;
+    break;
+   }
+  } else {
+   $19 = ($13|0)==(0|0);
+   if (!($19)) {
+    _g_object_unref($13);
+   }
+   _g_free($11);
+   _g_free(0);
+   $20 = HEAP32[$vararg_buffer>>2]|0;
+   $21 = ((($20)) + 8|0);
+   $22 = HEAP32[$21>>2]|0;
+   $23 = HEAP32[$20>>2]|0;
+   $24 = (_g_quark_to_string($23)|0);
+   $25 = ((($20)) + 4|0);
+   $26 = HEAP32[$25>>2]|0;
+   HEAP32[$vararg_buffer6>>2] = 140586;
+   $vararg_ptr9 = ((($vararg_buffer6)) + 4|0);
+   HEAP32[$vararg_ptr9>>2] = 727;
+   $vararg_ptr10 = ((($vararg_buffer6)) + 8|0);
+   HEAP32[$vararg_ptr10>>2] = $22;
+   $vararg_ptr11 = ((($vararg_buffer6)) + 12|0);
+   HEAP32[$vararg_ptr11>>2] = $24;
+   $vararg_ptr12 = ((($vararg_buffer6)) + 16|0);
+   HEAP32[$vararg_ptr12>>2] = $26;
+   _g_log(0,8,140900,$vararg_buffer6);
+   _g_clear_error($vararg_buffer);
+   $$2$i = 0;
+  }
+ } while(0);
+ $60 = (_g_strdup($10)|0);
+ $61 = (_g_strdup(140948)|0);
+ $62 = (_g_strdup($$2$i)|0);
+ $63 = (_g_malloc0_n(4,4)|0);
+ HEAP32[$63>>2] = $60;
+ $64 = ((($63)) + 4|0);
+ HEAP32[$64>>2] = $61;
+ $65 = ((($63)) + 8|0);
+ HEAP32[$65>>2] = $62;
+ $66 = (_strlen($10)|0);
+ $67 = (_strlen($$2$i)|0);
+ $68 = (_g_malloc0_n(3,4)|0);
+ HEAP32[$68>>2] = $66;
+ $69 = ((($68)) + 4|0);
+ HEAP32[$69>>2] = 53;
+ $70 = ((($68)) + 8|0);
+ HEAP32[$70>>2] = $67;
+ $71 = (_glCreateShader(($1|0))|0);
+ _glShaderSource(($71|0),3,($63|0),($68|0));
+ _glCompileShader(($71|0));
+ _shader_checkCompileErrors($71,$1);
+ _g_free($68);
+ $72 = ($63|0)==(0|0);
+ if (!($72)) {
+  $73 = HEAP32[$63>>2]|0;
+  $74 = ($73|0)==(0|0);
+  if (!($74)) {
+   _g_free($73);
+  }
+  $75 = HEAP32[$64>>2]|0;
+  $76 = ($75|0)==(0|0);
+  if (!($76)) {
+   _g_free($75);
+  }
+  $77 = HEAP32[$65>>2]|0;
+  $78 = ($77|0)==(0|0);
+  if (!($78)) {
+   _g_free($77);
+  }
+ }
+ _g_free($63);
+ _g_free($$2$i);
+ _g_free($10);
+ $$0 = $71;
+ STACKTOP = sp;return ($$0|0);
+}
+function _shader_checkCompileErrors($0,$1) {
+ $0 = $0|0;
+ $1 = $1|0;
+ var $10 = 0, $11 = 0, $12 = 0, $13 = 0, $14 = 0, $15 = 0, $16 = 0, $17 = 0, $18 = 0, $19 = 0, $2 = 0, $20 = 0, $21 = 0, $22 = 0, $23 = 0, $24 = 0, $25 = 0, $26 = 0, $27 = 0, $28 = 0;
+ var $3 = 0, $4 = 0, $5 = 0, $6 = 0, $7 = 0, $8 = 0, $9 = 0, $vararg_buffer = 0, $vararg_buffer2 = 0, $vararg_ptr1 = 0, $vararg_ptr5 = 0, label = 0, sp = 0;
+ sp = STACKTOP;
+ STACKTOP = STACKTOP + 1056|0;
+ $vararg_buffer2 = sp + 1032|0;
+ $vararg_buffer = sp + 1024|0;
+ $2 = sp + 1040|0;
+ $3 = sp;
+ _memset(($3|0),0,1024)|0;
+ HEAP32[$2>>2] = 0;
+ $4 = ($1|0)==(-1);
+ if ($4) {
+  _glGetProgramiv(($0|0),35714,($2|0));
+  $17 = HEAP32[$2>>2]|0;
+  $18 = ($17|0)==(1);
+  if ($18) {
+   STACKTOP = sp;return;
+  }
+  _glGetProgramInfoLog(($0|0),1024,(0|0),($3|0));
+  $19 = (_g_once_init_enter(144172)|0);
+  $20 = ($19|0)==(0);
+  if (!($20)) {
+   $21 = (_g_enum_register_static(140614,114864)|0);
+   _g_once_init_leave(144172,$21);
+  }
+  $22 = HEAP32[36043]|0;
+  $23 = (_g_type_class_ref($22)|0);
+  $24 = (_g_enum_get_value($23,-1)|0);
+  $25 = ($24|0)==(0|0);
+  if ($25) {
+   $28 = 0;
+  } else {
+   $26 = ((($24)) + 4|0);
+   $27 = HEAP32[$26>>2]|0;
+   $28 = $27;
+  }
+  HEAP32[$vararg_buffer2>>2] = $3;
+  $vararg_ptr5 = ((($vararg_buffer2)) + 4|0);
+  HEAP32[$vararg_ptr5>>2] = $28;
+  _g_print(140706,$vararg_buffer2);
+  STACKTOP = sp;return;
+ } else {
+  _glGetShaderiv(($0|0),35713,($2|0));
+  $5 = HEAP32[$2>>2]|0;
+  $6 = ($5|0)==(1);
+  if ($6) {
+   STACKTOP = sp;return;
+  }
+  _glGetShaderInfoLog(($0|0),1024,(0|0),($3|0));
+  $7 = (_g_once_init_enter(144172)|0);
+  $8 = ($7|0)==(0);
+  if (!($8)) {
+   $9 = (_g_enum_register_static(140614,114864)|0);
+   _g_once_init_leave(144172,$9);
+  }
+  $10 = HEAP32[36043]|0;
+  $11 = (_g_type_class_ref($10)|0);
+  $12 = (_g_enum_get_value($11,$1)|0);
+  $13 = ($12|0)==(0|0);
+  if ($13) {
+   $16 = 0;
+  } else {
+   $14 = ((($12)) + 4|0);
+   $15 = HEAP32[$14>>2]|0;
+   $16 = $15;
+  }
+  HEAP32[$vararg_buffer>>2] = $3;
+  $vararg_ptr1 = ((($vararg_buffer)) + 4|0);
+  HEAP32[$vararg_ptr1>>2] = $16;
+  _g_print(140625,$vararg_buffer);
+  STACKTOP = sp;return;
+ }
 }
 function _shader_Use($0) {
  $0 = $0|0;
@@ -81564,6 +82484,6 @@ var FUNCTION_TABLE_X = [b0,_boxed_proxy_value_init,_boxed_proxy_value_free,_boxe
 
 
 
-  return { ___emscripten_environ_constructor: ___emscripten_environ_constructor, ___errno_location: ___errno_location, ___muldi3: ___muldi3, ___udivdi3: ___udivdi3, __get_daylight: __get_daylight, __get_environ: __get_environ, __get_timezone: __get_timezone, __get_tzname: __get_tzname, _bitshift64Lshr: _bitshift64Lshr, _bitshift64Shl: _bitshift64Shl, _free: _free, _i64Add: _i64Add, _i64Subtract: _i64Subtract, _llvm_bswap_i32: _llvm_bswap_i32, _llvm_minnum_f32: _llvm_minnum_f32, _llvm_minnum_f64: _llvm_minnum_f64, _main: _main, _malloc: _malloc, _memcpy: _memcpy, _memmove: _memmove, _memset: _memset, _realloc: _realloc, _sbrk: _sbrk, _zerog_init_ctor: _zerog_init_ctor, establishStackSpace: establishStackSpace, getTempRet0: getTempRet0, runPostSets: runPostSets, setTempRet0: setTempRet0, setThrew: setThrew, stackAlloc: stackAlloc, stackRestore: stackRestore, stackSave: stackSave };
+  return { ___emscripten_environ_constructor: ___emscripten_environ_constructor, ___errno_location: ___errno_location, ___muldi3: ___muldi3, ___udivdi3: ___udivdi3, __get_daylight: __get_daylight, __get_environ: __get_environ, __get_timezone: __get_timezone, __get_tzname: __get_tzname, _bitshift64Lshr: _bitshift64Lshr, _bitshift64Shl: _bitshift64Shl, _free: _free, _i64Add: _i64Add, _i64Subtract: _i64Subtract, _llvm_bswap_i32: _llvm_bswap_i32, _llvm_minnum_f32: _llvm_minnum_f32, _llvm_minnum_f64: _llvm_minnum_f64, _main: _main, _malloc: _malloc, _memcpy: _memcpy, _memmove: _memmove, _memset: _memset, _sbrk: _sbrk, _zerog_init_ctor: _zerog_init_ctor, establishStackSpace: establishStackSpace, getTempRet0: getTempRet0, runPostSets: runPostSets, setTempRet0: setTempRet0, setThrew: setThrew, stackAlloc: stackAlloc, stackRestore: stackRestore, stackSave: stackSave };
 })
 ;

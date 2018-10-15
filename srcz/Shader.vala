@@ -1,6 +1,6 @@
 using GL;
 using GLFW;
-using cglm;
+using glm;
 using System;
 using System.IO;
 #if (__EMSCRIPTEN__)
@@ -25,7 +25,7 @@ public class Shader : Object
     {
         VERTEX = GL_VERTEX_SHADER, 
         FRAGMENT = GL_FRAGMENT_SHADER, 
-        // GEOMETRY = GL_GEOMETRY_SHADER, 
+        GEOMETRY = GL_GEOMETRY_SHADER, 
         PROGRAM = -1
     }
 
@@ -46,19 +46,19 @@ public class Shader : Object
     {
         var vertex = loadShader((Type)GL_VERTEX_SHADER, vertexPath);
         var fragment = loadShader((Type)GL_FRAGMENT_SHADER, fragmentPath);
-        // var geometry = loadShader((Type)GL_GEOMETRY_SHADER, geometryPath);
+        var geometry = loadShader((Type)GL_GEOMETRY_SHADER, geometryPath);
 
         // link program
         id = glCreateProgram();
         glAttachShader(id, vertex);
         glAttachShader(id, fragment);
-        // if (geometryPath != null) glAttachShader(id, geometry);
+        if (geometryPath != null) glAttachShader(id, geometry);
         glLinkProgram(id);
         checkCompileErrors(id, Type.PROGRAM);
         // delete the shaders as they're linked into our program now and no longer necessery
         glDeleteShader(vertex);
         glDeleteShader(fragment);
-        // if (geometryPath != null) glDeleteShader(geometry);
+        if (geometryPath != null) glDeleteShader(geometry);
         return this;
     }
 
@@ -89,7 +89,7 @@ public class Shader : Object
     // ------------------------------------------------------------------------
     public void SetVec2v(string name, Vec2 value) 
     { 
-        glUniform2fv(glGetUniformLocation(id, name), 1, value); 
+        glUniform2fv(glGetUniformLocation(id, name), 1, &value.data[0]); 
     }
 
     public void SetVec2(string name, float x, float y) 
@@ -99,7 +99,7 @@ public class Shader : Object
     // ------------------------------------------------------------------------
     public void SetVec3v(string name, Vec3 value) 
     { 
-        glUniform3fv(glGetUniformLocation(id, name), 1, value); 
+        glUniform3fv(glGetUniformLocation(id, name), 1, &value.data[0]); 
     }
 
     public void SetVec3(string name, float x, float y, float z) 
@@ -109,7 +109,7 @@ public class Shader : Object
     // ------------------------------------------------------------------------
     public void SetVec4v(string name, Vec4 value) 
     { 
-        glUniform4fv(glGetUniformLocation(id, name), 1, value); 
+        glUniform4fv(glGetUniformLocation(id, name), 1, &value.data[0]); 
     }
 
     public void SetVec4(string name, float x, float y, float z, float w) 
@@ -119,12 +119,12 @@ public class Shader : Object
     // ------------------------------------------------------------------------
     public void SetMat3(string name, Mat3 mat) 
     {
-        glUniformMatrix3fv(glGetUniformLocation(id, name), 1, GL_FALSE, mat);
+        glUniformMatrix3fv(glGetUniformLocation(id, name), 1, GL_FALSE, &mat.data[0][0]);
     }
     // ------------------------------------------------------------------------
     public void SetMat4(string name, Mat4 mat) 
     {
-        glUniformMatrix4fv(glGetUniformLocation(id, name), 1, GL_FALSE, mat);
+        glUniformMatrix4fv(glGetUniformLocation(id, name), 1, GL_FALSE, (float*)&mat);
     }
 
 

@@ -34,10 +34,10 @@
                 "-s", "EMULATE_FUNCTION_POINTER_CASTS=1",
                 "-s", "USE_WEBGL2=1",
                 "-s", "USE_GLFW=3",
-                "-s", "USE_LIBPNG=1",
+                // "-s", "USE_LIBPNG=1",
                 "-s", "FULL_ES3=1",
-                "--embed-file", "assets/shaders/6.2.texture.fs",
-                "--embed-file", "assets/shaders/6.2.texture.vs",
+                "--embed-file", "assets/shaders/7.2.camera.fs",
+                "--embed-file", "assets/shaders/7.2.camera.vs",
                 "--preload-file", "assets/images/awesomeface.png",
                 "--preload-file", "assets/images/container.jpg",
                 "--use-preload-plugins",
@@ -208,6 +208,7 @@
                 // Application:
                 //
                 "src/stb.c",
+                "src/cglm.c",
                 "build/src/Game.c",
                 "build/src/Image.c",
                 "build/src/Shader.c"

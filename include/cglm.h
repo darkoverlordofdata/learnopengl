@@ -1,20 +1,9 @@
 #ifndef _GLM_H_
 #define _GLM_H_
-
-#include "cglm/cglm.h"
-/*
- *   well I thunk thunk thunk thunk 
- *   a lot about it 
- *   realized my thunk is nuthin' 
- *   but a lot of funk - Jefferson Airplane
+/**
+ * Vector/Matrix types for use with Vala
  */
-
-typedef struct _Thunk Thunk;
-typedef struct _Thunk 
-{
-    int ref_count;
-    int size;
-};
+#include "cglm/cglm.h"
 
 typedef struct _Vec2 Vec2;
 typedef struct _Vec2
@@ -26,6 +15,7 @@ typedef struct _Vec2
             float y;
         };
     };
+    int ref_count;
 };
 
 typedef struct _Vec3 Vec3;
@@ -39,6 +29,7 @@ typedef struct _Vec3
             float z;
         };
     };
+    int ref_count;
 };
 
 typedef struct _Vec4 Vec4;
@@ -53,6 +44,7 @@ typedef struct _Vec4
             float z;
         };
     };
+    int ref_count;
 };
 
 typedef struct _Quat Quat;
@@ -67,76 +59,50 @@ typedef struct _Quat
             float z;
         };
     };
+    int ref_count;
 };
 
 typedef struct _Mat3 Mat3;
 typedef struct _Mat3 
 {
     mat3 data;    
+    int ref_count;
 };
 
 typedef struct _Mat4 Mat4;
 typedef struct _Mat4
 {
     mat4 data;    
+    int ref_count;
 };
+
+
 
 /**
- * Thunked versions of all the objects
+ * Api extension
  */
-typedef struct _ThunkVec2 ThunkVec2;
-typedef struct _ThunkVec2
-{
-    Thunk thunk;
-    Vec2 data;
-};
-
-typedef struct _ThunkVec3 ThunkVec3;
-typedef struct _ThunkVec3 
-{
-    Thunk thunk;
-    Vec3 data;
-};
-
-typedef struct _ThunkVec4 ThunkVec4;
-typedef struct _ThunkVec4 
-{
-    Thunk thunk;
-    Vec4 data;
-};
-
-typedef struct _ThunkQuat ThunkQuat;
-typedef struct _ThunkQuat 
-{
-    Thunk thunk;
-    Vec4 data;
-};
-
-typedef struct _ThunkMat3 ThunkMat3;
-typedef struct _ThunkMat3 
-{
-    Thunk thunk;
-    mat3 data;    
-};
-
-typedef struct _ThunkMat4 ThunkMat4;
-typedef struct _ThunkMat4
-{
-    Thunk thunk;
-    mat4 data;    
-};
-
-/**
- * New functions
- */
-void* glm_ref(void* this);
-void  glm_unref(void* this);
 Vec2* glm_vec2_new(float x, float y);
-Vec3* glm_vec3_new(float x, float y, float z);
-Vec4* glm_vec4_new(float w, float x, float y, float z);
-Quat* glm_quat_new();
-Mat3* glm_mat3_new(float value);
-Mat4* glm_mat4_new(float value);
+Vec2* glm_vec2_ref(Vec2* this);
+void  glm_vec2_unref(Vec2* this);
 
+Vec3* glm_vec3_new(float x, float y, float z);
+Vec3* glm_vec3_ref(Vec3* this);
+void  glm_vec3_unref(Vec3* this);
+
+Vec4* glm_vec4_new(float w, float x, float y, float z);
+Vec4* glm_vec4_ref(Vec4* this);
+void  glm_vec4_unref(Vec4* this);
+
+Quat* glm_quat_new();
+Quat* glm_quat_ref(Quat* this);
+void  glm_quat_unref(Quat* this);
+
+Mat3* glm_mat3_new(float value);
+Mat3* glm_mat3_ref(Mat3* this);
+void  glm_mat3_unref(Mat3* this);
+
+Mat4* glm_mat4_new(float value);
+Mat4* glm_mat4_ref(Mat4* this);
+void  glm_mat4_unref(Mat4* this);
 
 #endif // _GLM_H_

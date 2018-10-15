@@ -46,3 +46,18 @@ while ( game should run )
 
   timeAccumulator += currentTime() - startTime 
 }
+===========================================================================
+===========================================================================
+===========================================================================
+===========================================================================
+
+glm by-val or struct based
+cglm - by-ref or class based
+
+
+There are no classes anyway in c, so ultimately, this is not struct vs class. This is about by-ref vs by-val semantics.
+
+When using explicit by val structs, I have to use a ref or address-of operator for almost every call. The main differene is that with classes, the address-of is implicit. The real difference is assigning a copy. By value makes a deep copy. by ref only copies the ref. 
+
+Missing one might trigger an obscure bug somewhere else, or it might be a performance issue, or it may crash the program. I don't see the benefit.
+Construction might be faster by an unmeasurable amount...

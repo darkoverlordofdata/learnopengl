@@ -1,8 +1,7 @@
 using GL;
 using GLFW;
 using System;
-using cglm; // class based version
-
+using glm;
 
 static int main (string[] args) 
 {
@@ -10,6 +9,9 @@ static int main (string[] args)
 }
 public class Game : Object
 {
+    const Vec3 AXIS = { 0.5f, 1.0f, 0.0f };
+    const Vec3 XLATE = { 0.0f, 0.0f, -3.0f };
+
     const int FPS = 60;
     const double FRAME_RATE = 1.0/(double)FPS;
     const GLsizei SCR_WIDTH = 800;
@@ -22,23 +24,9 @@ public class Game : Object
     GLFWwindow* window;
     Shader ourShader;
     Image img;
-    Mat4 projection;
-    Mat4 model;
-    Mat4 view;
-    Vec3 eye;
-    Vec3 axis = new Vec3(1.0f, 0.3f, 0.5f);
-    Vec3 pivot = new Vec3(0.0f, 0.0f, -3.0f);
-    Vec3 center = new Vec3(0.0f, 0.0f, 0.0f);
-    Vec3 up = new Vec3(0.0f, 1.0f, 0.0f);
-    Vec3 cameraPos   = new Vec3(0.0f, 0.0f,  3.0f);
-    Vec3 cameraFront = new Vec3(0.0f, 0.0f, -1.0f);
-    Vec3 cameraUp    = new Vec3(0.0f, 1.0f,  0.0f);
-    Vec3[] cubePositions;
-
-    // timing
-    float deltaTime = 0.0f;	// time between current frame and last frame
-    float lastFrame = 0.0f;
-
+    Vec3 axis = AXIS;
+    Vec3 xlate = XLATE;
+    
     public Game()
     {
         Instance = this;
@@ -83,7 +71,7 @@ public class Game : Object
 
         glEnable(GL_DEPTH_TEST);
 
-        ourShader = new Shader().Load("7.2.camera.vs", "7.2.camera.fs");
+        ourShader = new Shader().Load("6.2.texture.vs", "6.2.texture.fs");
 
         float vertices[] = 
         {
@@ -129,25 +117,13 @@ public class Game : Object
             -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
             -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
         };   
-        // world space positions of our cubes
-        cubePositions = {
-            new Vec3( 0.0f,  0.0f,  0.0f),
-            new Vec3( 2.0f,  5.0f, -15.0f),
-            new Vec3(-1.5f, -2.2f, -2.5f),
-            new Vec3(-3.8f, -2.0f, -12.3f),
-            new Vec3 (2.4f, -0.4f, -3.5f),
-            new Vec3(-1.7f,  3.0f, -7.5f),
-            new Vec3( 1.3f, -2.0f, -2.5f),
-            new Vec3( 1.5f,  2.0f, -2.5f),
-            new Vec3( 1.5f,  0.2f, -1.5f),
-            new Vec3(-1.3f,  1.0f, -1.5f)
-        };
-    
+
         VBO = 0;
         VAO = 0;
         glGenVertexArrays(1, &VAO);
         glGenBuffers(1, &VBO);
-
+        // bind the Vertex Array Object first, then bind and set 
+        // vertex buffer(s), and then configure vertex attributes(s).
         glBindVertexArray(VAO);
 
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -191,17 +167,17 @@ public class Game : Object
         glGenerateMipmap(GL_TEXTURE_2D);
 
         // note: since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
-        model = new Mat4();
-        view = new Mat4();
-        projection = new Mat4();
-        glm_perspective(glm_rad(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f, projection);
-                
+        var projection = new Mat4();
+        glm_perspective(glm_rad(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f, &projection);
+        
         // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
         // -------------------------------------------------------------------------------------------
         ourShader.Use(); 
         ourShader.SetInt("texture1", 0);
         ourShader.SetInt("texture2", 1);
         ourShader.SetMat4("projection", projection);
+        
+
 
 #if (__EMSCRIPTEN__) 
 
@@ -212,28 +188,19 @@ public class Game : Object
         while (glfwWindowShouldClose(window) != GL_TRUE) Update();
         glDeleteVertexArrays(1, &VAO);
         glDeleteBuffers(1, &VBO);
+
         glfwTerminate();
+
 #endif
         return 0;
     }
 
-
     public void Update()
     {
-        // per-frame time logic
-        // --------------------
-        float currentFrame = (float)glfwGetTime();
-        deltaTime = currentFrame - lastFrame;
-        lastFrame = currentFrame;
-
-        // input
-        // -----
         ProcessInput(window);
         if (glfwWindowShouldClose(window) == GL_TRUE) 
             return;
             
-        // render
-        // ------
         glClearColor(0.2f, 0.3f, 0.3f, 1f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -245,30 +212,21 @@ public class Game : Object
 
         // activate ourShader
         ourShader.Use();
-        //========================================================
+        var model = new Mat4();
+        var view = Mat4();
+        
+        glm_rotate(&model, (float)glfwGetTime(), &axis);
+        glm_translate(&view, &xlate);
 
-        // camera/view transformation
-        glm_mat4_identity(view);
-        glm_vec_add(cameraPos, cameraFront, center);
-        glm_lookat(cameraPos, center, cameraUp, view);
+        // glm_rotatef(&model, (float)glfwGetTime(), { 0.5f, 1.0f, 0.0f });
+        // glm_translatef(&view, { 0.0f, 0.0f, -3.0f });
+        // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
+        ourShader.SetMat4("model", model);
         ourShader.SetMat4("view", view);
 
-        // render boxes
-        glBindVertexArray(VAO);
-        for (int i = 0; i < 10; i++)
-        {
-            // calculate the model matrix for each object and pass it to shader before drawing
-            glm_mat4_identity(model);
-            glm_translate(model, cubePositions[i]);
-            float angle = 20.0f * i;
-            glm_rotate(model, glm_rad(angle), axis);
-            ourShader.SetMat4("model", model);
+        glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
+        glDrawArrays(GL_TRIANGLES, 0, 36);
 
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
-        //========================================================
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
         glfwPollEvents();
 #if (!__EMSCRIPTEN__) 
@@ -278,43 +236,11 @@ public class Game : Object
 
     public void ProcessInput(GLFWwindow* window)
     {
-        var scaled = new Vec3();
-        var cross = new Vec3();
-
         if (glfwGetKey(window, Key.ESCAPE) == ButtonState.PRESS)
         {
             glfwSetWindowShouldClose(window, GL_TRUE);
         }
-
-        float cameraSpeed = 2.5f * deltaTime; 
-        if (glfwGetKey(window, Key.W) == ButtonState.PRESS)
-        {
-            glm_vec_scale(cameraFront, cameraSpeed, scaled);
-            glm_vec_add(cameraPos, scaled, cameraPos);
-            // cameraPos += cameraSpeed * cameraFront;
-        }
-        if (glfwGetKey(window, Key.S) == ButtonState.PRESS)
-        {
-            glm_vec_scale(cameraFront, cameraSpeed, scaled);
-            glm_vec_sub(cameraPos, scaled, cameraPos);
-            // cameraPos -= cameraSpeed * cameraFront;
-        }
-        if (glfwGetKey(window, Key.A) == ButtonState.PRESS)
-        {
-            glm_cross(cameraFront, cameraUp, cross);
-            glm_normalize(cross);
-            glm_vec_scale(cross, cameraSpeed, cross);
-            glm_vec_sub(cameraPos, cross, cameraPos);
-            // cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-        }
-        if (glfwGetKey(window, Key.D) == ButtonState.PRESS)
-        {
-            glm_cross(cameraFront, cameraUp, cross);
-            glm_normalize(cross);
-            glm_vec_scale(cross, cameraSpeed, cross);
-            glm_vec_add(cameraPos, cross, cameraPos);
-            // cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-        }
     }
+
 }
 
