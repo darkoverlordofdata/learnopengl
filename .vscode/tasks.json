@@ -34,7 +34,6 @@
                 "-s", "EMULATE_FUNCTION_POINTER_CASTS=1",
                 "-s", "USE_WEBGL2=1",
                 "-s", "USE_GLFW=3",
-                // "-s", "USE_LIBPNG=1",
                 "-s", "FULL_ES3=1",
                 "--embed-file", "assets/shaders/7.2.camera.fs",
                 "--embed-file", "assets/shaders/7.2.camera.vs",
@@ -207,7 +206,11 @@
                 "build/.lib/system/src/Collections/Generic/TimSort.c",                //
                 // Application:
                 //
-                "src/stb.c",
+                // "src/stb.c",
+                "src/soil/image_DXT.c",
+                "src/soil/image_helper.c",
+                "src/soil/SOIL.c",
+                "src/soil/stb_image_aug.c",
                 "src/cglm.c",
                 "build/src/Game.c",
                 "build/src/Image.c",

@@ -1,7 +1,7 @@
 using GL;
 using GLFW;
 using System;
-using cglm; // class based version
+using glm; // class based version
 
 
 static int main (string[] args) 
@@ -26,15 +26,21 @@ public class Game : Object
     Mat4 model;
     Mat4 view;
     Vec3 eye;
-    Vec3 axis = new Vec3(1.0f, 0.3f, 0.5f);
-    Vec3 pivot = new Vec3(0.0f, 0.0f, -3.0f);
-    Vec3 center = new Vec3(0.0f, 0.0f, 0.0f);
-    Vec3 up = new Vec3(0.0f, 1.0f, 0.0f);
-    Vec3 cameraPos   = new Vec3(0.0f, 0.0f,  3.0f);
-    Vec3 cameraFront = new Vec3(0.0f, 0.0f, -1.0f);
-    Vec3 cameraUp    = new Vec3(0.0f, 1.0f,  0.0f);
+    Vec3 axis        = new Vec3(1.0f,  0.3f,  0.5f);
+    Vec3 pivot       = new Vec3(0.0f,  0.0f, -3.0f);
+    Vec3 center      = new Vec3(0.0f,  0.0f,  0.0f);
+    Vec3 up          = new Vec3(0.0f,  1.0f,  0.0f);
+    Vec3 cameraPos   = new Vec3(0.0f,  0.0f,  3.0f);
+    Vec3 cameraFront = new Vec3(0.0f,  0.0f, -1.0f);
+    Vec3 cameraUp    = new Vec3(0.0f,  1.0f,  0.0f);
     Vec3[] cubePositions;
 
+    public bool firstMouse = true;
+    public float yaw   = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
+    public float pitch =  0.0f;
+    public float lastX =  800.0f / 2.0f;
+    public float lastY =  600.0f / 2.0f;
+    public float fov   =  45.0f;
     // timing
     float deltaTime = 0.0f;	// time between current frame and last frame
     float lastFrame = 0.0f;
@@ -72,6 +78,48 @@ public class Game : Object
         glfwMakeContextCurrent(window);
         glfwSetFramebufferSizeCallback(window, 
             (window, width, height) => glViewport(0, 0, width, height));
+
+        glfwSetCursorPosCallback(window, (winddow, xpos, ypos) => {
+            if (Instance.firstMouse)
+            {
+                Instance.lastX = (float)xpos;
+                Instance.lastY = (float)ypos;
+                Instance.firstMouse = false;
+            }
+
+            float xoffset = (float)xpos - Instance.lastX;
+            float yoffset = Instance.lastY - (float)ypos; // reversed since y-coordinates go from bottom to top
+            Instance.lastX = (float)xpos;
+            Instance.lastY = (float)ypos;
+
+            float sensitivity = 0.05f; // change this value to your liking
+            xoffset *= sensitivity;
+            yoffset *= sensitivity;
+
+            Instance.yaw += xoffset;
+            Instance.pitch += yoffset;
+
+            // make sure that when pitch is out of bounds, screen doesn't get flipped
+            if (Instance.pitch > 89.0f)
+                Instance.pitch = 89.0f;
+            if (Instance.pitch < -89.0f)
+                Instance.pitch = -89.0f;
+
+            var front = new Vec3();
+            front.x = Math.cosf(glm_rad(Instance.yaw)) * Math.cosf(glm_rad(Instance.pitch));
+            front.y = Math.sinf(glm_rad(Instance.pitch));
+            front.z = Math.sinf(glm_rad(Instance.yaw)) * Math.cosf(glm_rad(Instance.pitch));
+            glm_normalize_to(front, Instance.cameraFront);
+        });
+
+        glfwSetScrollCallback(window, (window, xoffset, yoffset) => {
+            if (Instance.fov >= 1.0f && Instance.fov <= 45.0f)
+                Instance.fov -= (float)yoffset;
+            if (Instance.fov <= 1.0f)
+                Instance.fov = 1.0f;
+            if (Instance.fov >= 45.0f)
+                Instance.fov = 45.0f;
+        });
 
         #if (!__EMSCRIPTEN__)
         if (gladLoadGL() == 0)
@@ -194,7 +242,7 @@ public class Game : Object
         model = new Mat4();
         view = new Mat4();
         projection = new Mat4();
-        glm_perspective(glm_rad(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f, projection);
+        // glm_perspective(glm_rad(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f, projection);
                 
         // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
         // -------------------------------------------------------------------------------------------
@@ -247,7 +295,13 @@ public class Game : Object
         ourShader.Use();
         //========================================================
 
-        // camera/view transformation
+        // pass projection matrix to shader (note that in this case it could change every frame)
+        glm_mat4_identity(projection);
+        glm_perspective(glm_rad(fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f, projection);
+
+        ourShader.SetMat4("projection", projection);
+
+        // camera/view transformation)
         glm_mat4_identity(view);
         glm_vec_add(cameraPos, cameraFront, center);
         glm_lookat(cameraPos, center, cameraUp, view);
@@ -266,6 +320,7 @@ public class Game : Object
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
+
         //========================================================
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

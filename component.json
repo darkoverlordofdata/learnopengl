@@ -9,21 +9,19 @@
   "private": true,
   "dependencies": {
     "zerog": "git://github.com/darkoverlordofdata/doran-zerog",
-    "system": "git://github.com/darkoverlordofdata/doran-system"
+    "system": "git://github.com/darkoverlordofdata/doran-system",
+    "soil": "git://github.com/darkoverlordofdata/doran-soil",
+    "glm": "git://github.com/darkoverlordofdata/doran-glm"
   },
   "source": "src",
   "files": [
-    "src/Camera.vala",
-    "src/glad.c",
     "src/Image.vala",
-    "src/Game.vala",
+    "src/glad.c",
     "src/Shader.vala",
-    "src/stb.c",
-    "src/vapis/cglm.vapi",
-    "src/vapis/emscripten.vapi",
-    "src/vapis/glfw3.vapi",
+    "src/Game.vala",
     "src/vapis/gl.vapi",
-    "src/vapis/stb.vapi"
+    "src/vapis/glfw3.vapi",
+    "src/vapis/emscripten.vapi"
   ],
   "packages": [],
   "includes": [

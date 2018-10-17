@@ -1,6 +1,6 @@
 using GL;
 using GLFW;
-using cglm;
+using glm;
 using System;
 using System.IO;
 #if (__EMSCRIPTEN__)
