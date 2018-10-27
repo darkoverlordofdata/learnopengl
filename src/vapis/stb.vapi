@@ -16,27 +16,27 @@
  * ***********************************************************************
  * 
  */
-[CCode (lower_case_cprefix ="stbi_", cheader_filename="stb/stb_image.h")]
-namespace StbI
+[CCode (lower_case_cprefix ="stbi_", cheader_filename="stb/stb_image.h,stb/stb_truetype.h")]
+namespace Stb
 {
-    /**
-     * Really just a data ptr, I re-define it as a compact class
-     * so that lifetime management will auto free the memory.
-     */
     [Compact, CCode(cname = "stbi_uc", free_function = "stbi_image_free")]
-    public class Image { }
+    public class Image : IntPtr
+    { 
+        [CCode (cname = "stbi_set_flip_vertically_on_load")]
+        public static void FlipVertically (int flip);
+        [CCode (cname = "stbi_load")]
+        public static Image Load (string filename, out int width, out int height, out int channels_in_file, int desired_channels = 0);
+        [CCode (cname = "stbi_image_free")]
+        public void Dispose ();
 
-    public Image load (string filename, out int width, out int height, out int channels_in_file, int desired_channels);
+    }
+    public IntPtr load (string filename, out int width, out int height, out int channels_in_file, int desired_channels);
     public void image_free (void* retval_from_stbi_load);
     public void set_flip_vertically_on_load (int flag_true_if_should_flip);
 
-}
-[CCode (lower_case_cprefix ="stbtt_", cheader_filename="stb/stb_truetype.h")]
-namespace StbTT
-{
 
-    [Contact, CCode (cprefix = "stbtt_", cname = "stbtt_fontinfo", unref_function = "")]
-    public class Font 
+    [Contact, CCode (cprefix = "stbtt_", cname = "stbtt_fontinfo", unref_function = "", cheader_filename="stb/stb_truetype.h")]
+    public class Font : IntPtr 
     { 
         public void* userdata;
         public uchar* data;

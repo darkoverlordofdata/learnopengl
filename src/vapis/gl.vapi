@@ -20,11 +20,12 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-#if (__EMSCRIPTEN__) /** Use the right header for the platform */
-[CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="GLES3/gl3.h")]
-#else
-[CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="glad/glad.h")]
-#endif
+//  #if (__EMSCRIPTEN__) /** Use the right header for the platform */
+//  [CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="GLES3/gl3.h")]
+//  #else
+//  [CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="glad/glad.h")]
+//  #endif
+[CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="GL/glew.h,GL/gl.h")]
 namespace GL
 {
 	[CCode (cprefix = "GL_", cname = "int", has_type_id = false)]
@@ -160,77 +161,59 @@ namespace GL
      *-----------------------------------------------------------------------*/
      
     [SimpleType]
-    public struct GLvoid {
-    }
+    public struct GLvoid { }
      
     [SimpleType]
-    public struct GLchar: char {
-    }
+    public struct GLchar: char { }
     
     [SimpleType]
-    public struct GLenum: int {
-    }
+    public struct GLenum: int { }
     
     [SimpleType]
-    public struct GLboolean: uint8 {
-    }
+    public struct GLboolean: uint8 { }
     
     [SimpleType]
-    public struct GLbitfield: uint8 {
-    }
+    public struct GLbitfield: uint8 { }
     
     [SimpleType]
-    public struct GLbyte: char {
-    }
+    public struct GLbyte: char { }
     
     [SimpleType]
-    public struct GLshort: short {
-    }
+    public struct GLshort: short { }
     
     [SimpleType]
-    public struct GLint: int {
-    }
+    public struct GLint: int { }
     
     [SimpleType]
-    public struct GLsizei: int {
-    }
+    public struct GLsizei: int { }
     
     [SimpleType]
-    public struct GLubyte: uchar {
-    }
+    public struct GLubyte: uchar { }
     
     [SimpleType]
-    public struct GLushort: ushort {
-    }
+    public struct GLushort: ushort { }
     
     [SimpleType]
-    public struct GLuint: uint {
-    }
+    public struct GLuint: uint { }
     
     [SimpleType]
-    public struct GLfloat: float {
-    }
+    public struct GLfloat: float { }
     
     [SimpleType]
-    public struct GLdouble: double {
-    }
+    public struct GLdouble: double { }
     
     [SimpleType]
-    public struct GLclampf: float {
-    }
+    public struct GLclampf: float { }
     
     [SimpleType]
-    public struct GLfixed: int32 {
-    }
+    public struct GLfixed: int32 { }
 
     /* GL types for handling large vertex buffer objects */
     [SimpleType]
-    public struct GLintptr: size_t {
-    }
+    public struct GLintptr: size_t { }
     
     [SimpleType]
-    public struct GLsizeiptr: size_t {
-    }
+    public struct GLsizeiptr: size_t { }
 
     public const GLboolean GL_FALSE;
     public const GLboolean GL_TRUE;

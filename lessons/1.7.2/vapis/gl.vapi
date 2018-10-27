@@ -660,6 +660,44 @@ namespace GL
     /*-------------------------------------------------------------------------
      * GL core functions.
      *-----------------------------------------------------------------------*/
+    // glOrtho
+    // glFrustum
+    // glPushMatrix
+    // glPopMatrix
+    // glVertex3f
+    // glTexCoord2f
+    // glGetTexLevelParameteriv
+    // glDisableClientState
+    // glBegin
+    // glEnd
+
+    public void glOrtho (GLdouble left,
+        GLdouble right,
+        GLdouble bottom,
+        GLdouble top,
+        GLdouble nearVal,
+        GLdouble farVal);
+
+    public void glFrustum (GLdouble left,
+        GLdouble right,
+        GLdouble bottom,
+        GLdouble top,
+        GLdouble nearVal,
+        GLdouble farVal);
+
+    public void glPushMatrix ();
+    public void glPopMatrix ();
+    public void glVertex3f ();
+    public void glTexCoord2f (GLfloat s,
+        GLfloat t);
+    public void glGetTexLevelParameteriv (GLenum target,
+        GLint level,
+        GLenum pname,
+        GLint * params);
+
+    public void glDisableClientState (GLenum cap);
+    public void glBegin ();
+    public void glEnd ();
 
     public void glActiveTexture (GLenum texture);
     public void glAttachShader (GLuint program, GLuint shader);

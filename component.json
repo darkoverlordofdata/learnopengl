@@ -11,24 +11,38 @@
     "zerog": "git://github.com/darkoverlordofdata/doran-zerog",
     "system": "git://github.com/darkoverlordofdata/doran-system",
     "soil": "git://github.com/darkoverlordofdata/doran-soil",
-    "glm": "git://github.com/darkoverlordofdata/doran-glm"
+    "glm": "git://github.com/darkoverlordofdata/doran-glm",
+    "jasmine": "git://github.com/darkoverlordofdata/doran-jasmine"
   },
   "source": "src",
   "files": [
-    "src/Image.vala",
-    "src/glad.c",
-    "src/Shader.vala",
-    "src/Game.vala",
+    "src/vapis/emscripten.vapi",
     "src/vapis/gl.vapi",
+    "src/vapis/glew.vapi",
     "src/vapis/glfw3.vapi",
-    "src/vapis/emscripten.vapi"
+    "src/vapis/stb.vapi",
+    "src/BallObject.vala",
+    "src/Camera.vala",
+    "src/Game.vala",
+    "src/GameLevel.vala",
+    "src/GameObject.vala",
+    "src/glad.c",
+    "src/Image.vala",
+    "src/main.vala",
+    "src/ResourceManager.vala",
+    "src/Shader.vala",
+    "src/SpriteRenderer.vala",
+    "src/stb.c",
+    "src/Texture.vala"
   ],
   "packages": [],
   "includes": [
     "./include"
   ],
   "libraries": [
-    "glfw3"
+    "glfw3",
+    "glew32",
+    "opengl32"
   ],
   "options": {
     "VERSION": "0.0.1",
@@ -39,6 +53,6 @@
     "__EMSCRIPTEN__"
   ],
   "copy": null,
-  "vapidir": "/src/vapis",
+  "vapidir": null,
   "console": false
 }

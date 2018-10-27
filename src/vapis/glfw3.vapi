@@ -59,13 +59,14 @@
  *
  *************************************************************************/
 /** use the loader for the platform - ensure the headers are included in the right order */
-#if (__EMSCRIPTEN__) 
-[CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="GLES3/gl3.h,GLFW/glfw3.h")]
-#else
-[CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="glad/glad.h,GLFW/glfw3.h")]
-#endif
+//  #if (__EMSCRIPTEN__) 
+//  [CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="GLES3/gl3.h,GLFW/glfw3.h")]
+//  #else
+//  [CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="glad/glad.h,GLFW/glfw3.h")]
+//  #endif
 
-namespace GLFW {
+[CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="GL/glew.h,GLFW/glfw3.h")]
+namespace GLFW3 {
 
 	/*************************************************************************
 	 * GLFW API types
@@ -768,6 +769,13 @@ namespace GLFW {
 	public const int GLFW_CONTEXT_VERSION_MAJOR;
 	public const int GLFW_CONTEXT_VERSION_MINOR;
 
+	public const int GLFW_RESIZABLE;
+	public const int GLFW_KEY_ESCAPE;
+	public const int GLFW_PRESS;
+	public const int GLFW_RELEASE;
+	public const int GLFW_KEY_A;
+	public const int GLFW_KEY_D;
+	public const int GLFW_KEY_SPACE;
 
 	[CCode (cprefix = "GLFW_", cname = "int", has_type_id = false)]
 	public enum ErrorCode {

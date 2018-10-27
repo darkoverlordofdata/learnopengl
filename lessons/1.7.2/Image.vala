@@ -1,11 +1,13 @@
 using System;
+using Soil;
 
 public class Image : Object
 {
     int width;
     int height;
     int channels;
-    StbI.Image pixels;
+    // StbI.Image pixels;
+    Soil.Image pixels;
     static bool first = true;
 
     /**
@@ -33,13 +35,14 @@ public class Image : Object
      */
     public Image(string path)
     {
-        if (first)
-        {
-            StbI.set_flip_vertically_on_load(1);
-            first = false;
-        }
+        // if (first)
+        // {
+        //     StbI.set_flip_vertically_on_load(1);
+        //     first = false;
+        // }
 
-        pixels = StbI.load(path, out width, out height, out channels, 0);
+        // pixels = StbI.load(path, out width, out height, out channels, 0);
+        pixels = Soil.LoadImage(path, out width, out height, out channels, 0);
         if (pixels == null) 
             print("Unable to open %s\n", path);
     }
@@ -50,6 +53,7 @@ public class Image : Object
     public void Dispose()
     {
         if (pixels != null) 
-            StbI.image_free(pixels);
+            Soil.FreeImageData(pixels);
+            // StbI.image_free(pixels);
     }
 }

@@ -12,7 +12,7 @@ uses [doran package manager](https://github.com/darkoverlordofdata/doran.git)
 glfw3 for window and event handling.
 emscripten - optional 
 uses glad loader for desktop, gles handle loading in emscripten.
-stbi for image loading.
+soil for image loading.
 cglm headers for matrix math.
 
 ## emscripten
@@ -26,4 +26,11 @@ When __EMSCRIPTEM__ is set, you will get this error from cmake:
     [build]          ^~~~~~~~~~~~~~~~~~~~~~~~~
     [build] 1 error generated.
 
-At that point, use ctrl-B to tun the emcc build. F5 to launch chrome.
+At that point, use ctrl-B to tun the emcc build. F5 to launch in chrome.
+
+
+## goal
+
+re-boot vala game, instead of SDL2/OpenGL/Corange
+
+use GLFW/OpenGL/glm/soil

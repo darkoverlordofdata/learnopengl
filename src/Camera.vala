@@ -1,6 +1,7 @@
 using GL;
-using GLFW;
-using cglm;
+using GLEW;
+using GLFW3;
+using Glm;
 using System;
 #if (__EMSCRIPTEN__)
 using Emscripten;
@@ -165,9 +166,9 @@ public struct Vector3
     void updateCameraVectors()
     {
         // Calculate the new Front vector
-        front.x = Math.cosf(glm_rad(Yaw)) * Math.cosf(glm_rad(Pitch));
-        front.y = Math.sinf(glm_rad(Pitch));
-        front.z = Math.sinf(glm_rad(Yaw)) * Math.cosf(glm_rad(Pitch));
+        front.X = Math.cosf(glm_rad(Yaw)) * Math.cosf(glm_rad(Pitch));
+        front.Y = Math.sinf(glm_rad(Pitch));
+        front.Z = Math.sinf(glm_rad(Yaw)) * Math.cosf(glm_rad(Pitch));
 
         glm_normalize_to(front, Front);
         // Also re-calculate the Right and Up vector

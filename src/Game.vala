@@ -1,375 +1,310 @@
+/*******************************************************************
+** This code is part of Breakout.
+**
+** Breakout is free software: you can redistribute it and/or modify
+** it under the terms of the CC BY 4.0 license as published by
+** Creative Commons, either version 4 of the License, or (at your
+** option) any later version.
+******************************************************************/
 using GL;
-using GLFW;
+using GLEW;
+using GLFW3;
 using System;
-using glm; // class based version
+using System.Collections.Generic;
+using Glm;
 
-
-static int main (string[] args) 
-{
-    return new Game().Run();
+// Represents the current state of the game
+public enum GameState {
+    GAME_ACTIVE,
+    GAME_MENU,
+    GAME_WIN
 }
+public enum Direction {
+	UP,
+	RIGHT,
+	DOWN,
+	LEFT
+}
+
+public struct Collision
+{
+    public bool isTrue;
+    public Direction dir;
+    public Vec2 vec;
+}
+
+Direction VectorDirection(Vec2 target)
+{
+    Vec2[] compass = {
+        new Vec2( 0f, 1f),	// up
+        new Vec2( 1f, 0f),	// right
+        new Vec2( 0f,-1f),	// down
+        new Vec2(-1f, 0f)	// left
+    };
+    float max = 0f;
+    int best_match = -1;
+    glm_vec2_normalize(target);
+    for (int i = 0; i < 4; i++)
+    {
+        float dot_product = glm_vec2_dot(target, compass[i]);
+        if (dot_product > max)
+        {
+            max = dot_product;
+            best_match = i;
+        }
+    }
+    return (Direction)best_match;
+}    
+
+
+public Collision CheckCollision(BallObject one, GameObject two) // AABB - AABB collision
+{
+    // Get center point circle first 
+    var center = new Vec2(one.Position.X + one.Radius, one.Position.Y + one.Radius);
+    // Calculate AABB info (center, half-extents)
+    var aabb2e = new Vec2(two.Size.X / 2, two.Size.Y / 2);
+    var aabb_center = new Vec2(
+        two.Position.X + aabb2e.X, 
+        two.Position.Y + aabb2e.Y
+    );
+    // Get difference vector between both centers
+    var clamped = new Vec2(center.X-aabb_center.X, center.Y-aabb_center.Y);
+    var aabb2eNeg = new Vec3(-aabb2e.X, -aabb2e.Y);
+    glm_vec2_clampv(clamped, aabb2eNeg, aabb2e);
+    // Add clamped value to AABB_center and we get the value of box closest to circle
+    var closest = new Vec2(aabb_center.X + clamped.X, aabb_center.Y + clamped.Y);
+    // Retrieve vector between center circle and closest point AABB and check if length <= radius
+    var difference = new Vec2(closest.X - center.X, closest.Y - center.Y);
+    //return glm_vec2_len(difference) < one.Radius;
+    if (glm_vec2_len(difference) <= one.Radius)
+        return { true, VectorDirection(difference), difference };
+    else
+        return { false, Direction.UP, new Vec2(0, 0) };
+
+}
+
+// Game holds all game-related state and functionality.
+// Combines all game-related data into a single class for
+// easy access to each of the components and manageability.
 public class Game : Object
 {
-    const int FPS = 60;
-    const double FRAME_RATE = 1.0/(double)FPS;
-    const GLsizei SCR_WIDTH = 800;
-    const GLsizei SCR_HEIGHT = 600;
-    static Game Instance;
-    uint VBO = 0;
-    uint VAO = 0;
-    uint texture1 = 0;
-    uint texture2 = 0;
-    GLFWwindow* window;
-    Shader ourShader;
-    Image img;
-    Mat4 projection;
-    Mat4 model;
-    Mat4 view;
-    Vec3 eye;
-    Vec3 axis        = new Vec3(1.0f,  0.3f,  0.5f);
-    Vec3 pivot       = new Vec3(0.0f,  0.0f, -3.0f);
-    Vec3 center      = new Vec3(0.0f,  0.0f,  0.0f);
-    Vec3 up          = new Vec3(0.0f,  1.0f,  0.0f);
-    Vec3 cameraPos   = new Vec3(0.0f,  0.0f,  3.0f);
-    Vec3 cameraFront = new Vec3(0.0f,  0.0f, -1.0f);
-    Vec3 cameraUp    = new Vec3(0.0f,  1.0f,  0.0f);
-    Vec3[] cubePositions;
+    public GameState State;
+    public bool Keys[1024];
+    public int Width;
+    public int Height;
+    SpriteRenderer Renderer;
+    ArrayList<GameLevel> Levels = new ArrayList<GameLevel>();
+    int Level;
 
-    public bool firstMouse = true;
-    public float yaw   = -90.0f;	// yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right so we initially rotate a bit to the left.
-    public float pitch =  0.0f;
-    public float lastX =  800.0f / 2.0f;
-    public float lastY =  600.0f / 2.0f;
-    public float fov   =  45.0f;
-    // timing
-    float deltaTime = 0.0f;	// time between current frame and last frame
-    float lastFrame = 0.0f;
+    Vec2 PLAYER_SIZE = new Vec2(100, 20);
+    const float PLAYER_VELOCITY = 500f;
+    GameObject Player;
 
-    public Game()
-    {
-        Instance = this;
-    }
-
-    public int Run() 
-    {
-        print("Compiled with Vala %s\n", Constants.VALA_VERSION);
-        print("Starting GLFW context, OpenGL 3.0\n");
-
-        glfwInit();
-        #if (__EMSCRIPTEN__)
-        glfwWindowHint(GLFW_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_VERSION_MINOR, 0);
-        #else
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);        
-        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-        #if (__APPLE__)
-        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-        #endif
-        #endif
-
-        window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL with Vala", null, null);
-        if (window == null)
-        {
-            print("Failed to create GLFW window" );
-            glfwTerminate();
-            return -1;
-        }
-        glfwMakeContextCurrent(window);
-        glfwSetFramebufferSizeCallback(window, 
-            (window, width, height) => glViewport(0, 0, width, height));
-
-        glfwSetCursorPosCallback(window, (winddow, xpos, ypos) => {
-            if (Instance.firstMouse)
-            {
-                Instance.lastX = (float)xpos;
-                Instance.lastY = (float)ypos;
-                Instance.firstMouse = false;
-            }
-
-            float xoffset = (float)xpos - Instance.lastX;
-            float yoffset = Instance.lastY - (float)ypos; // reversed since y-coordinates go from bottom to top
-            Instance.lastX = (float)xpos;
-            Instance.lastY = (float)ypos;
-
-            float sensitivity = 0.05f; // change this value to your liking
-            xoffset *= sensitivity;
-            yoffset *= sensitivity;
-
-            Instance.yaw += xoffset;
-            Instance.pitch += yoffset;
-
-            // make sure that when pitch is out of bounds, screen doesn't get flipped
-            if (Instance.pitch > 89.0f)
-                Instance.pitch = 89.0f;
-            if (Instance.pitch < -89.0f)
-                Instance.pitch = -89.0f;
-
-            var front = new Vec3();
-            front.x = Math.cosf(glm_rad(Instance.yaw)) * Math.cosf(glm_rad(Instance.pitch));
-            front.y = Math.sinf(glm_rad(Instance.pitch));
-            front.z = Math.sinf(glm_rad(Instance.yaw)) * Math.cosf(glm_rad(Instance.pitch));
-            glm_normalize_to(front, Instance.cameraFront);
-        });
-
-        glfwSetScrollCallback(window, (window, xoffset, yoffset) => {
-            if (Instance.fov >= 1.0f && Instance.fov <= 45.0f)
-                Instance.fov -= (float)yoffset;
-            if (Instance.fov <= 1.0f)
-                Instance.fov = 1.0f;
-            if (Instance.fov >= 45.0f)
-                Instance.fov = 45.0f;
-        });
-
-        #if (!__EMSCRIPTEN__)
-        if (gladLoadGL() == 0)
-        {
-            print("Failed to initialize OpenGL context\n");
-            return -1;
-        }
-        #endif
-
-        glEnable(GL_DEPTH_TEST);
-
-        ourShader = new Shader().Load("7.2.camera.vs", "7.2.camera.fs");
-
-        float vertices[] = 
-        {
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-             0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-        };   
-        // world space positions of our cubes
-        cubePositions = {
-            new Vec3( 0.0f,  0.0f,  0.0f),
-            new Vec3( 2.0f,  5.0f, -15.0f),
-            new Vec3(-1.5f, -2.2f, -2.5f),
-            new Vec3(-3.8f, -2.0f, -12.3f),
-            new Vec3 (2.4f, -0.4f, -3.5f),
-            new Vec3(-1.7f,  3.0f, -7.5f),
-            new Vec3( 1.3f, -2.0f, -2.5f),
-            new Vec3( 1.5f,  2.0f, -2.5f),
-            new Vec3( 1.5f,  0.2f, -1.5f),
-            new Vec3(-1.3f,  1.0f, -1.5f)
-        };
+    // Initial velocity of the Ball
+    Vec2 INITIAL_BALL_VELOCITY = new Vec2(100f, -350f);
+    // Radius of the ball object
+    const float BALL_RADIUS = 12.5f;
     
-        VBO = 0;
-        VAO = 0;
-        glGenVertexArrays(1, &VAO);
-        glGenBuffers(1, &VBO);
+    BallObject Ball; 
+  
 
-        glBindVertexArray(VAO);
 
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, vertices.length*sizeof(float), vertices, GL_STATIC_DRAW);
+    public Game(int width, int height)
+    {
+        Width = width;
+        Height = height;
+        State = GameState.GAME_ACTIVE;
+        // new ResourceManager(330, "core");
+        new ResourceManager(300, "es");
+    }   
 
-        // position attribute
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * (int)sizeof(float), (void*)0);
-        glEnableVertexAttribArray(0);
-        // texture coord attribute
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * (int)sizeof(float), (void*)(3 * sizeof(float)));
-        glEnableVertexAttribArray(1);
+    ~Game()
+    {
+        Renderer = null;
+        Player = null;
+        Ball = null;
+        print("Bye!\n");
 
-        // load and create a texture 
-        // -------------------------
-        glGenTextures(1, &texture1);
-        glBindTexture(GL_TEXTURE_2D, texture1); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
-        // set the texture wrapping parameters
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        // set texture filtering parameters
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        img = new Image("assets/images/container.jpg");
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img.Width, img.Height, 0, GL_RGB, GL_UNSIGNED_BYTE, img.Pixels);
-        glGenerateMipmap(GL_TEXTURE_2D);
-
-        // texture 2
-        // ---------
-        glGenTextures(1, &texture2);
-        glBindTexture(GL_TEXTURE_2D, texture2);
-        // set the texture wrapping parameters
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        // set texture filtering parameters
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        img = new Image("assets/images/awesomeface.png");
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img.Width, img.Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, img.Pixels);
-        glGenerateMipmap(GL_TEXTURE_2D);
-
-        // note: since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
-        model = new Mat4();
-        view = new Mat4();
-        projection = new Mat4();
-        // glm_perspective(glm_rad(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f, projection);
-                
-        // tell opengl for each sampler to which texture unit it belongs to (only has to be done once)
-        // -------------------------------------------------------------------------------------------
-        ourShader.Use(); 
-        ourShader.SetInt("texture1", 0);
-        ourShader.SetInt("texture2", 1);
-        ourShader.SetMat4("projection", projection);
-
-#if (__EMSCRIPTEN__) 
-
-        // Emscripten.set_main_loop(() => Instance.Update(), FPS, 0);
-        Emscripten.set_main_loop(() => Instance.Update(), -1, 0);
-
-#else
-        while (glfwWindowShouldClose(window) != GL_TRUE) Update();
-        glDeleteVertexArrays(1, &VAO);
-        glDeleteBuffers(1, &VBO);
-        glfwTerminate();
-#endif
-        return 0;
     }
 
-
-    public void Update()
+    public void Init()
     {
-        // per-frame time logic
-        // --------------------
-        float currentFrame = (float)glfwGetTime();
-        deltaTime = currentFrame - lastFrame;
-        lastFrame = currentFrame;
-
-        // input
-        // -----
-        ProcessInput(window);
-        if (glfwWindowShouldClose(window) == GL_TRUE) 
-            return;
-            
-        // render
-        // ------
-        glClearColor(0.2f, 0.3f, 0.3f, 1f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        // bind textures on corresponding texture units
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture1);
-        glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, texture2);
-
-        // activate ourShader
-        ourShader.Use();
-        //========================================================
-
-        // pass projection matrix to shader (note that in this case it could change every frame)
+        // Load shaders
+        ResourceManager.LoadShader("shaders/sprite.vs", "shaders/sprite.frag", null, "sprite");
+        // Configure shaders
+        Mat4 projection = new Mat4();
         glm_mat4_identity(projection);
-        glm_perspective(glm_rad(fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f, projection);
+        glm_ortho(0f, (float)Width, (float)Height, 0f, -1f, 1f, projection);
+        ResourceManager.GetShader("sprite").Use().SetInteger("image", 0);
+        ResourceManager.GetShader("sprite").SetMatrix4("projection", projection);
+        // Set render-specific controls
+        Renderer = new SpriteRenderer(ResourceManager.GetShader("sprite"));
+        // Load textures
+        ResourceManager.LoadTexture("textures/awesomeface.png", true, "face");
+        ResourceManager.LoadTexture("textures/paddle.png", true, "paddle");
+        // Load textures
+        ResourceManager.LoadTexture("textures/background.jpg", false, "background");
+        ResourceManager.LoadTexture("textures/awesomeface.png", true, "face");
+        ResourceManager.LoadTexture("textures/block.png", false, "block");
+        ResourceManager.LoadTexture("textures/block_solid.png", false, "block_solid");
+        // Load levels
+        var one = new GameLevel();  one.Load("levels/one.lvl", Width, (int)(Height * 0.5));
+        var two = new GameLevel();  two.Load("levels/two.lvl", Width, (int)(Height * 0.5));
+        var three = new GameLevel(); three.Load("levels/three.lvl", Width, (int)(Height * 0.5));
+        var four = new GameLevel(); four.Load("levels/four.lvl", Width, (int)(Height * 0.5));
+        Levels.Add(one);
+        Levels.Add(two);
+        Levels.Add(three);
+        Levels.Add(four);
+        Level = 1;        
 
-        ourShader.SetMat4("projection", projection);
+        var playerPos = new Vec2(
+            Width / 2 - PLAYER_SIZE.X / 2, 
+            Height - PLAYER_SIZE.Y
+        );
+        Player = new GameObject(playerPos, PLAYER_SIZE, ResourceManager.GetTexture("paddle"));
 
-        // camera/view transformation)
-        glm_mat4_identity(view);
-        glm_vec_add(cameraPos, cameraFront, center);
-        glm_lookat(cameraPos, center, cameraUp, view);
-        ourShader.SetMat4("view", view);
+        var ballPos = new Vec2(
+            playerPos.X + PLAYER_SIZE.X / 2 - BALL_RADIUS,
+            playerPos.Y + -BALL_RADIUS * 2
+        );
+        Ball = new BallObject(ballPos, BALL_RADIUS, INITIAL_BALL_VELOCITY,
+            ResourceManager.GetTexture("face"));
 
-        // render boxes
-        glBindVertexArray(VAO);
-        for (int i = 0; i < 10; i++)
-        {
-            // calculate the model matrix for each object and pass it to shader before drawing
-            glm_mat4_identity(model);
-            glm_translate(model, cubePositions[i]);
-            float angle = 20.0f * i;
-            glm_rotate(model, glm_rad(angle), axis);
-            ourShader.SetMat4("model", model);
-
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
-
-        //========================================================
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-#if (!__EMSCRIPTEN__) 
-        glfwWaitEventsTimeout(FRAME_RATE);
-#endif
     }
 
-    public void ProcessInput(GLFWwindow* window)
+    public void Update(float dt)
     {
-        var scaled = new Vec3();
-        var cross = new Vec3();
+        // Update objects
+        Ball.Move(dt, Width);
+        // Check for collisions
+        DoCollisions();
+        if (Ball.Position.Y >= Height) // Did ball reach bottom edge?
+        {
+            ResetLevel();
+            ResetPlayer();
+        }        
+    }
 
-        if (glfwGetKey(window, Key.ESCAPE) == ButtonState.PRESS)
+    public void ProcessInput(float dt)
+    {
+        if (State == GameState.GAME_ACTIVE)
         {
-            glfwSetWindowShouldClose(window, GL_TRUE);
+            float velocity = PLAYER_VELOCITY * dt;
+            // Move playerboard
+            if (Keys[GLFW_KEY_A])
+            {
+                if (Player.Position.X >= 0)
+                    Player.Position.X -= velocity;
+                    if (Ball.Stuck)
+                        Ball.Position.X -= velocity;
+            }
+            if (Keys[GLFW_KEY_D])
+            {
+                if (Player.Position.X <= Width - Player.Size.X)
+                    Player.Position.X += velocity;
+                    if (Ball.Stuck)
+                        Ball.Position.X += velocity;
+            }
+            if (Keys[GLFW_KEY_SPACE])
+                Ball.Stuck = false;
+        }
+    }
+
+    public void Render()
+    {
+        // Renderer.DrawSprite(ResourceManager.GetTexture("face"), 
+        //     new Vec2(200, 200), new Vec2(300, 400), 45f, new Vec3(0f, 1f, 0f));
+        if (State == GameState.GAME_ACTIVE)
+        {
+            // Draw background
+            Renderer.DrawSprite(ResourceManager.GetTexture("background"), new Vec2(0, 0), new Vec2(Width, Height), 0f);
+            // Draw level
+            Levels[Level].Draw(Renderer);
+            // print("(%f,%f)\n", Player.Position.X, Player.Position.Y);
+            Player.Draw(Renderer);          
+            Ball.Draw(Renderer);
+        }
+    }
+    public void DoCollisions()
+    {
+        foreach (GameObject box in Levels[Level].Bricks)
+        {
+            if (!box.Destroyed)
+            {
+                Collision collision = CheckCollision(Ball, box);
+                if (collision.isTrue)
+                {
+                    // Destroy block if not solid
+                    if (!box.IsSolid)
+                        box.Destroyed = true;
+                    // Collision resolution
+                    Direction dir = collision.dir;
+                    Vec2 diff_vector = collision.vec;
+                    if (dir == Direction.LEFT || dir == Direction.RIGHT) // Horizontal collision
+                    {
+                        Ball.Velocity.X = -Ball.Velocity.X; // Reverse horizontal velocity
+                        // Relocate
+                        float penetration = Ball.Radius - Math.fabsf(diff_vector.X);
+                        if (dir == Direction.LEFT)
+                            Ball.Position.X += penetration; // Move ball to right
+                        else
+                            Ball.Position.X -= penetration; // Move ball to left;
+                    }
+                    else // Vertical collision
+                    {
+                        Ball.Velocity.Y = -Ball.Velocity.Y; // Reverse vertical velocity
+                        // Relocate
+                        float penetration = Ball.Radius - Math.fabsf(diff_vector.Y);
+                        if (dir == Direction.UP)
+                            Ball.Position.Y -= penetration; // Move ball back up
+                        else
+                            Ball.Position.Y += penetration; // Move ball back down
+                    }
+                }
+            }
         }
 
-        float cameraSpeed = 2.5f * deltaTime; 
-        if (glfwGetKey(window, Key.W) == ButtonState.PRESS)
+
+        Collision result = CheckCollision(Ball, Player);
+        if (!Ball.Stuck && result.isTrue)
         {
-            glm_vec_scale(cameraFront, cameraSpeed, scaled);
-            glm_vec_add(cameraPos, scaled, cameraPos);
-            // cameraPos += cameraSpeed * cameraFront;
-        }
-        if (glfwGetKey(window, Key.S) == ButtonState.PRESS)
-        {
-            glm_vec_scale(cameraFront, cameraSpeed, scaled);
-            glm_vec_sub(cameraPos, scaled, cameraPos);
-            // cameraPos -= cameraSpeed * cameraFront;
-        }
-        if (glfwGetKey(window, Key.A) == ButtonState.PRESS)
-        {
-            glm_cross(cameraFront, cameraUp, cross);
-            glm_normalize(cross);
-            glm_vec_scale(cross, cameraSpeed, cross);
-            glm_vec_sub(cameraPos, cross, cameraPos);
-            // cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-        }
-        if (glfwGetKey(window, Key.D) == ButtonState.PRESS)
-        {
-            glm_cross(cameraFront, cameraUp, cross);
-            glm_normalize(cross);
-            glm_vec_scale(cross, cameraSpeed, cross);
-            glm_vec_add(cameraPos, cross, cameraPos);
-            // cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-        }
+            // Check where it hit the board, and change velocity based on where it hit the board
+            float centerBoard = Player.Position.X + Player.Size.X / 2;
+            float distance = (Ball.Position.X + Ball.Radius) - centerBoard;
+            float percentage = distance / (Player.Size.X / 2);
+            // Then move accordingly
+            float strength = 2f;
+            Vec2 oldVelocity = Ball.Velocity;
+            Ball.Velocity.X = INITIAL_BALL_VELOCITY.X * percentage * strength; 
+            // Ball.Velocity.Y = -Ball.Velocity.Y;
+            Ball.Velocity.Y = -1 * Math.fabsf(Ball.Velocity.Y);
+
+            var length = glm_vec2_len(oldVelocity);
+            glm_vec2_normalize(Ball.Velocity);
+            Ball.Velocity.X *= length;
+            Ball.Velocity.Y *= length;
+         } 
+    }
+
+    void ResetLevel()
+    {
+        if (Level == 0)Levels[0].Load("levels/one.lvl", Width, (int)(Height * 0.5f));
+        else if (Level == 1)
+            Levels[1].Load("levels/two.lvl", Width, (int)(Height * 0.5f));
+        else if (Level == 2)
+            Levels[2].Load("levels/three.lvl", Width, (int)(Height * 0.5f));
+        else if (Level == 3)
+            Levels[3].Load("levels/four.lvl", Width, (int)(Height * 0.5f));
+    }
+
+    void ResetPlayer()
+    {
+        // Reset player/ball stats
+        Player.Size = PLAYER_SIZE;
+        Player.Position = new Vec2(Width / 2 - PLAYER_SIZE.X / 2, Height - PLAYER_SIZE.Y);
+        var pos = new Vec2(PLAYER_SIZE.X / 2 - BALL_RADIUS, -(BALL_RADIUS * 2));
+        Ball.Reset(new Vec2(Player.Position.X + pos.X, Player.Position.Y + pos.Y), INITIAL_BALL_VELOCITY);
     }
 }
 

@@ -1,155 +1,165 @@
+/*******************************************************************
+** This code is part of Breakout.
+**
+** Breakout is free software: you can redistribute it and/or modify
+** it under the terms of the CC BY 4.0 license as published by
+** Creative Commons, either version 4 of the License, or (at your
+** option) any later version.
+******************************************************************/
 using GL;
-using GLFW;
-using glm;
+using GLEW;
+using GLFW3;
 using System;
 using System.IO;
-#if (__EMSCRIPTEN__)
-using Emscripten;
-#endif
+using Glm; 
 
-/**
- * Shaders class
- *
- * manage a set of shaders
- */
+// General purpsoe shader object. Compiles from file, generates
+// compile/link-time error messages and hosts several utility 
+// functions for easy management.
 public class Shader : Object
 {
-    public uint ID { get { return id; } }
-
-    const string ROOT = "assets/shaders/";
-    uint id;
-    int version;
-    string profile;
-
     enum Type
     {
         VERTEX = GL_VERTEX_SHADER, 
         FRAGMENT = GL_FRAGMENT_SHADER, 
-        // GEOMETRY = GL_GEOMETRY_SHADER, 
+        GEOMETRY = GL_GEOMETRY_SHADER, 
         PROGRAM = -1
     }
 
-    /** 
-     * Create a new shader
-     * Use version 300 es for emscripten
-     */
+    // State
+    public GLuint ID; 
+    public int Version;
+    public string Profile;
+    // Constructor
     public Shader(int version=300, string profile="es")
     {
-        this.version = version;
-        this.profile = profile;
+        /** 
+        * Create a new shader
+        * Use version 300 es for emscripten
+        */
+        Version = version;
+        Profile = profile;
     }
-
-    /**
-     * Load in the glsl files
-     */
-    public Shader Load(string vertexPath, string fragmentPath, string? geometryPath = null)
+    // Sets the current shader as active
+    public Shader Use()
     {
-        var vertex = loadShader((Type)GL_VERTEX_SHADER, vertexPath);
-        var fragment = loadShader((Type)GL_FRAGMENT_SHADER, fragmentPath);
-        // var geometry = loadShader((Type)GL_GEOMETRY_SHADER, geometryPath);
-
-        // link program
-        id = glCreateProgram();
-        glAttachShader(id, vertex);
-        glAttachShader(id, fragment);
-        // if (geometryPath != null) glAttachShader(id, geometry);
-        glLinkProgram(id);
-        checkCompileErrors(id, Type.PROGRAM);
-        // delete the shaders as they're linked into our program now and no longer necessery
-        glDeleteShader(vertex);
-        glDeleteShader(fragment);
-        // if (geometryPath != null) glDeleteShader(geometry);
+        glUseProgram(ID);
         return this;
     }
-
-    // Set this as the current shader to use
-    // ------------------------------------------------------------------------
-    public void Use()
+    // Compiles the shader from given source code
+    // Note: geometry source code is optional 
+    public void Compile(string vertexSource, string fragmentSource, string? geometrySource = null) 
     {
-        glUseProgram(id);
-    }
+        GLuint sVertex, sFragment, gShader = 0;
+        string[] source;
+        int[] length;
+        var version = VERSION.printf(Version, Profile);
 
-    // utility uniform functions
-    // ------------------------------------------------------------------------
-    public void SetBool(string name, bool value)
-    {         
-        glUniform1i(glGetUniformLocation(id, name), (int)value); 
-    }
-    // ------------------------------------------------------------------------
-    public void SetInt(string name, int value)
-    { 
-        glUniform1i(glGetUniformLocation(id, name), value); 
-    }
-    // ------------------------------------------------------------------------
-    public void SetFloat(string name, float value) 
-    { 
-        glUniform1f(glGetUniformLocation(id, name), value); 
-    }
+        // Vertex Shader
+        source = { version, HEADER, vertexSource };
+        length = { version.length, HEADER.length, vertexSource.length };
+        sVertex = glCreateShader(GL_VERTEX_SHADER);
+        glShaderSource(sVertex, source.length, source, length);
+        glCompileShader(sVertex);
+        checkCompileErrors(sVertex, Type.VERTEX);
+        // Fragment Shader
+        source = { version, HEADER, fragmentSource };
+        length = { version.length, HEADER.length, fragmentSource.length };
+        sFragment = glCreateShader(GL_FRAGMENT_SHADER);
+        glShaderSource(sFragment, source.length, source, length);
+        glCompileShader(sFragment);
+        checkCompileErrors(sFragment, Type.FRAGMENT);
+        // If geometry shader source code is given, also compile geometry shader
+        if (geometrySource != null)
+        {
+            source = { version, HEADER, geometrySource };
+            length = { version.length, HEADER.length, geometrySource.length };
+            gShader = glCreateShader(GL_GEOMETRY_SHADER);
+            glShaderSource(gShader, source.length, source, length);
+            glCompileShader(gShader);
+            checkCompileErrors(gShader, Type.GEOMETRY);
+        }
+        // Shader Program
+        this.ID = glCreateProgram();
+        glAttachShader(this.ID, sVertex);
+        glAttachShader(this.ID, sFragment);
+        if (geometrySource != null)
+            glAttachShader(this.ID, gShader);
+        glLinkProgram(this.ID);
+        checkCompileErrors(this.ID, Type.PROGRAM);
+        // Delete the shaders as they're linked into our program now and no longer necessery
+        glDeleteShader(sVertex);
+        glDeleteShader(sFragment);
+        if (geometrySource != null)
+            glDeleteShader(gShader);
 
-    // ------------------------------------------------------------------------
-    public void SetVec2v(string name, Vec2 value) 
-    { 
-        glUniform2fv(glGetUniformLocation(id, name), 1, value); 
     }
-
-    public void SetVec2(string name, float x, float y) 
-    { 
-        glUniform2f(glGetUniformLocation(id, name), x, y); 
-    }
-    // ------------------------------------------------------------------------
-    public void SetVec3v(string name, Vec3 value) 
-    { 
-        glUniform3fv(glGetUniformLocation(id, name), 1, value); 
-    }
-
-    public void SetVec3(string name, float x, float y, float z) 
-    { 
-        glUniform3f(glGetUniformLocation(id, name), x, y, z); 
-    }
-    // ------------------------------------------------------------------------
-    public void SetVec4v(string name, Vec4 value) 
-    { 
-        glUniform4fv(glGetUniformLocation(id, name), 1, value); 
-    }
-
-    public void SetVec4(string name, float x, float y, float z, float w) 
-    { 
-        glUniform4f(glGetUniformLocation(id, name), x, y, z, w); 
-    }
-    // ------------------------------------------------------------------------
-    public void SetMat3(string name, Mat3 mat) 
+    // Utility functions
+    public void SetFloat(string name, GLfloat value, GLboolean useShader = GL_FALSE)
     {
-        glUniformMatrix3fv(glGetUniformLocation(id, name), 1, GL_FALSE, mat);
+        if (useShader == GL_TRUE)
+            Use();
+        glUniform1f(glGetUniformLocation(ID, name), value); 
+
     }
-    // ------------------------------------------------------------------------
-    public void SetMat4(string name, Mat4 mat) 
+    public void SetInteger(string name, GLint value, GLboolean useShader = GL_FALSE)
     {
-        glUniformMatrix4fv(glGetUniformLocation(id, name), 1, GL_FALSE, mat);
+        if (useShader == GL_TRUE)
+            Use();
+        glUniform1i(glGetUniformLocation(ID, name), value); 
+
     }
-
-
-    /*
-     * Load and compile a shader
-     */
-    uint loadShader(Type type, string? path = null)
+    public void SetVector2f(string name, GLfloat x, GLfloat y, GLboolean useShader = GL_FALSE)
     {
-        if (path == null) return 0;
+        if (useShader == GL_TRUE)
+            Use();
+        glUniform2f(glGetUniformLocation(ID, name), x, y); 
 
-        var version = VERSION.printf(version, profile);
+    }
+    public void SetVector2(string name, Vec2 value, GLboolean useShader = GL_FALSE)
+    {
+        if (useShader == GL_TRUE)
+            Use();
+        glUniform2fv(glGetUniformLocation(ID, name), 1, value); 
 
-        var shaderCode = readTextFile(path);
-        string[] shaderSource = { version, HEADER, shaderCode };
-        int[] sourceLength = { version.length, HEADER.length, shaderCode.length };
-        var shader = glCreateShader(type);
-        glShaderSource(shader, shaderSource.length, shaderSource , sourceLength);
-        glCompileShader(shader);        
-        checkCompileErrors(shader, type);
-        return shader;
+    }
+    public void SetVector3f(string name, GLfloat x, GLfloat y, GLfloat z, GLboolean useShader = GL_FALSE)
+    {
+        if (useShader == GL_TRUE)
+            Use();
+        glUniform3f(glGetUniformLocation(ID, name), x, y, z); 
+
+    }
+    public void SetVector3(string name, Vec3 value, GLboolean useShader = GL_FALSE)
+    {
+        if (useShader == GL_TRUE)
+            Use();
+        glUniform3fv(glGetUniformLocation(ID, name), 1, value); 
+
+    }
+    public void SetVector4f(string name, GLfloat x, GLfloat y, GLfloat z, GLfloat w, GLboolean useShader = GL_FALSE)
+    {
+        if (useShader == GL_TRUE)
+            Use();
+        glUniform4f(glGetUniformLocation(ID, name), x, y, z, w); 
+
+    }
+    public void SetVector4(string name, Vec4 value, GLboolean useShader = GL_FALSE)
+    {
+        if (useShader == GL_TRUE)
+            Use();
+        glUniform4fv(glGetUniformLocation(ID, name), 1, value); 
+
+    }
+    public void SetMatrix4(string name, Mat4 matrix, GLboolean useShader = GL_FALSE)
+    {
+        if (useShader == GL_TRUE)
+            Use();
+        glUniformMatrix4fv(glGetUniformLocation(ID, name), 1, GL_FALSE, matrix);
+
     }
 
-    /*
-     * Check returned compiler results
-     */
+    // Checks if compilation or linking failed and if so, print the error logs
     void checkCompileErrors(GLuint shader, Type type)
     {
         GLint success = GL_FALSE;
@@ -173,27 +183,6 @@ public class Shader : Object
                 print("Error %s linking %s\n-- --------------------------------------------------- --\n", (string)infoLog, type.to_string());
             }
         }
-            
-    }
-
-    /*
-     * Read in a text file
-     */
-    string? readTextFile(string path)
-    {
-        string? line = null;
-        string? text = "";
-        var frag_file = new FileHandle(ROOT+path);
-        var frag_reader = new BufferedReader(
-                            new InputStreamReader(
-                                new FileInputStream.FromFile(frag_file.file)));
-
-        do 
-        {
-            line = frag_reader.ReadLine();
-            text = text + line+"\n";
-        } while (line != null);
-        return text;
     }
 
     public const string VERSION = "#version %d %s";
@@ -204,4 +193,3 @@ precision mediump float;
 #endif
 """;
 }
-
