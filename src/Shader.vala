@@ -7,11 +7,9 @@
 ** option) any later version.
 ******************************************************************/
 using GL;
-using GLEW;
-using GLFW3;
+using Glm; 
 using System;
 using System.IO;
-using Glm; 
 
 // General purpsoe shader object. Compiles from file, generates
 // compile/link-time error messages and hosts several utility 
@@ -27,7 +25,7 @@ public class Shader : Object
     }
 
     // State
-    public GLuint ID; 
+    public uint ID; 
     public int Version;
     public string Profile;
     // Constructor
@@ -50,7 +48,7 @@ public class Shader : Object
     // Note: geometry source code is optional 
     public void Compile(string vertexSource, string fragmentSource, string? geometrySource = null) 
     {
-        GLuint sVertex, sFragment, gShader = 0;
+        uint sVertex, sFragment, gShader = 0;
         string[] source;
         int[] length;
         var version = VERSION.printf(Version, Profile);
@@ -95,21 +93,21 @@ public class Shader : Object
 
     }
     // Utility functions
-    public void SetFloat(string name, GLfloat value, GLboolean useShader = GL_FALSE)
+    public void SetFloat(string name, float value, GLboolean useShader = GL_FALSE)
     {
         if (useShader == GL_TRUE)
             Use();
         glUniform1f(glGetUniformLocation(ID, name), value); 
 
     }
-    public void SetInteger(string name, GLint value, GLboolean useShader = GL_FALSE)
+    public void SetInteger(string name, int value, GLboolean useShader = GL_FALSE)
     {
         if (useShader == GL_TRUE)
             Use();
         glUniform1i(glGetUniformLocation(ID, name), value); 
 
     }
-    public void SetVector2f(string name, GLfloat x, GLfloat y, GLboolean useShader = GL_FALSE)
+    public void SetVector2f(string name, float x, float y, GLboolean useShader = GL_FALSE)
     {
         if (useShader == GL_TRUE)
             Use();
@@ -123,7 +121,7 @@ public class Shader : Object
         glUniform2fv(glGetUniformLocation(ID, name), 1, value); 
 
     }
-    public void SetVector3f(string name, GLfloat x, GLfloat y, GLfloat z, GLboolean useShader = GL_FALSE)
+    public void SetVector3f(string name, float x, float y, float z, GLboolean useShader = GL_FALSE)
     {
         if (useShader == GL_TRUE)
             Use();
@@ -137,7 +135,7 @@ public class Shader : Object
         glUniform3fv(glGetUniformLocation(ID, name), 1, value); 
 
     }
-    public void SetVector4f(string name, GLfloat x, GLfloat y, GLfloat z, GLfloat w, GLboolean useShader = GL_FALSE)
+    public void SetVector4f(string name, float x, float y, float z, float w, GLboolean useShader = GL_FALSE)
     {
         if (useShader == GL_TRUE)
             Use();
@@ -160,10 +158,10 @@ public class Shader : Object
     }
 
     // Checks if compilation or linking failed and if so, print the error logs
-    void checkCompileErrors(GLuint shader, Type type)
+    void checkCompileErrors(uint shader, Type type)
     {
-        GLint success = GL_FALSE;
-        GLchar infoLog[1024];
+        int success = GL_FALSE;
+        char infoLog[1024];
 
         if (type != Type.PROGRAM)
         {

@@ -7,8 +7,7 @@
 ** option) any later version.
 ******************************************************************/
 using GL;
-using GLEW;
-using GLFW3;
+using Stb;
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -22,12 +21,19 @@ public class ResourceManager : Object
 {
     public const string ROOT = "assets/";
     // Resource storage
-    public static Dictionary<string, Shader> Shaders = new Dictionary<string, Shader>();
-    public static Dictionary<string, Texture2D> Textures = new Dictionary<string, Texture2D>();
+    static Dictionary<string, Shader> Shaders = new Dictionary<string, Shader>();
+    static Dictionary<string, Texture2D> Textures = new Dictionary<string, Texture2D>();
 
-    public static int Version;
-    public static string Profile;
+    static int Version;
+    static string Profile;
+    // public static Font? TheFont = null;
 
+    /**
+     * Initialize the resource manager singleton dictionaries
+     *
+     * @param   version to use for shaders
+     * @param   profile to use for shaders
+     */
     public ResourceManager(int version=300, string profile="es") 
     {
         Version = version;
@@ -93,6 +99,7 @@ public class ResourceManager : Object
         return shader;
 
     }
+
     // Loads a single texture from file
     static Texture2D loadTextureFromFile(string file, bool alpha)
     {
@@ -100,20 +107,19 @@ public class ResourceManager : Object
         Texture2D texture = new Texture2D();
         if (alpha)
         {
-            texture.Internal_Format = GL_RGBA;
-            texture.Image_Format = GL_RGBA;
+            texture.InternalFormat = GL_RGBA;
+            texture.ImageFormat = GL_RGBA;
         }
         // Load image
         int width;
         int height;
-        int _;
-        IntPtr image = Stb.load(ROOT+file, out width, out height, out _, texture.Image_Format == GL_RGBA ? 4 : 3);
+        int channels;
+        IntPtr image = Stb.load(ROOT+file, out width, out height, out channels, texture.ImageFormat == GL_RGBA ? 4 : 3);
         // Now generate texture
         texture.Generate(width, height, image);
         // And finally free image data
         Stb.image_free(image);
         return texture;
-
     }
 
     static string? readTextFile(string path)
@@ -132,5 +138,4 @@ public class ResourceManager : Object
         } while (line != null);
         return text;
     }
-
 }

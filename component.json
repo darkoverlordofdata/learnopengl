@@ -23,6 +23,7 @@
     "src/vapis/stb.vapi",
     "src/BallObject.vala",
     "src/Camera.vala",
+    "src/Collision.vala",
     "src/Game.vala",
     "src/GameLevel.vala",
     "src/GameObject.vala",

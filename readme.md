@@ -2,6 +2,7 @@
 
 a bunch of examples from https://learnopengl.com/ ported to vala.
 
+http://htmlpreview.github.io/?https://github.com/darkoverlordofdata/learnopengl/blob/master/www/index.html
 
 Vala + OpenGL 3.00 es (Compatability Profile at https://glad.dav1d.de/)
 
@@ -11,9 +12,13 @@ uses [doran package manager](https://github.com/darkoverlordofdata/doran.git)
 
 glfw3 for window and event handling.
 emscripten - optional 
-uses glad loader for desktop, gles handle loading in emscripten.
-soil for image loading.
+
+some use
 cglm headers for matrix math.
+glad loader for desktop, gles handle loading in emscripten.
+glew loader for both desktop and emscripten
+stb for image loading.
+soil for image loading.
 
 ## emscripten
 

@@ -7,94 +7,109 @@
 ** option) any later version.
 ******************************************************************/
 using GL;
-using GLEW;
 using GLFW3;
 using System;
-using Glm; 
-
-// class based version
-// The Width of the screen
-const int SCREEN_WIDTH = 800;
-// The height of the screen
-const int SCREEN_HEIGHT = 600;
-
-Game Breakout;
 
 static int main (string[] args) 
 {
-    Breakout = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
+    return new Breakout().Run();
+}
 
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+class Breakout : Object 
+{
+    public static Breakout Instance; 
+    public static Game game;
+    public static bool Done = false;
 
-    var window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Breakout", null, null);
-    glfwMakeContextCurrent(window);
+    const int VERSION = 300;
+    const string PROFILE = "es";
+    // const int VERSION = 330;
+    // const string PROFILE = "core";
+    const int SCREEN_WIDTH = 800;
+    const int SCREEN_HEIGHT = 600;
+    float deltaTime = 0f;
+    float lastFrame = 0f;
+    GLFWwindow* window;
 
-    glewExperimental = true;// GL_TRUE;
-    glewInit();
-    glGetError(); // Call it once to catch glewInit() bug, all other errors are now from our application.
-
-    glfwSetKeyCallback(window, key_callback);
-
-    // OpenGL configuration
-    glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    glEnable(GL_CULL_FACE);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-    // Initialize game
-    Breakout.Init();
-
-    // DeltaTime variables
-    GLfloat deltaTime = 0.0f;
-    GLfloat lastFrame = 0.0f;
-
-    // Start Game within Menu State
-    Breakout.State = GameState.GAME_ACTIVE;
-
-    while (0 == glfwWindowShouldClose(window))
+    public Breakout()
     {
-        // Calculate delta time
-        GLfloat currentFrame = (GLfloat)glfwGetTime();
+        glfwInit();
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, VERSION/100);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, (VERSION%100)/10);
+        glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, 
+            VERSION < 320 
+                ? GLFW_OPENGL_ANY_PROFILE 
+                : PROFILE == "core" 
+                    ? GLFW_OPENGL_CORE_PROFILE 
+                    : GLFW_OPENGL_COMPAT_PROFILE );
+
+        window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Breakout", null, null);
+        glfwMakeContextCurrent(window);
+
+        glewExperimental = true;// GL_TRUE;
+        glewInit();
+        glGetError(); 
+        glfwSetKeyCallback(window, KeyCallback);
+        glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        glEnable(GL_CULL_FACE);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        Instance = this;
+    }
+
+    public int Run()
+    {
+        new ResourceManager(VERSION, PROFILE);
+        game = new Game(SCREEN_WIDTH, SCREEN_HEIGHT);
+        game.Init();
+        game.State = GameState.ACTIVE;
+        #if (__EMSCRIPTEN__)
+        Emscripten.set_main_loop(() => Instance.Update(), -1, 0);
+        #else
+        while (!glfwWindowShouldClose(window)) Update();
+        #endif
+        if (Done) Instance = null;
+        return 0;
+    }
+
+    public void Update()
+    {
+        var currentFrame = (float)glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
         glfwPollEvents();
-
-        //deltaTime = 0.001f;
-        // Manage user input
-        Breakout.ProcessInput(deltaTime);
-
-        // Update Game state
-        Breakout.Update(deltaTime);
-
-        // Render
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        game.ProcessInput(deltaTime);
+        game.Update(deltaTime);
+        glClearColor(0, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
-        Breakout.Render();
-
+        game.Render();
         glfwSwapBuffers(window);
     }
 
-    // Delete all resources as loaded using the resource manager
-    ResourceManager.Clear();
-
-    glfwTerminate();
-    return 0;
+    ~Breakout()
+    {
+        // Delete all resources as loaded using the resource manager
+        ResourceManager.Clear();
+        glfwTerminate();
+        game = null;
+        print("~Breakout\n");
+    }
 }
 
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
+void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
     // When a user presses the escape key, we set the WindowShouldClose property to true, closing the application
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    {
         glfwSetWindowShouldClose(window, GL_TRUE);
+        Breakout.Done = true;
+    }
     if (key >= 0 && key < 1024)
     {
         if (action == GLFW_PRESS)
-            Breakout.Keys[key] = true;
+            Breakout.game.Keys[key] = true;
         else if (action == GLFW_RELEASE)
-            Breakout.Keys[key] = false;
+            Breakout.game.Keys[key] = false;
     }
 }

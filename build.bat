@@ -3,16 +3,24 @@ emcc ^
     -O2 ^
     -std=c99 ^
     -fdeclspec ^
-    -o www/index.html ^
+    -o docs/index.html ^
     -s WASM=1 ^
     -s EMULATE_FUNCTION_POINTER_CASTS=1 ^
     -s USE_WEBGL2=1 ^
     -s USE_GLFW=3 ^
     -s FULL_ES3=1 ^
-    --embed-file assets/shaders/7.2.camera.fs ^
-    --embed-file assets/shaders/7.2.camera.vs ^
-    --preload-file assets/images/awesomeface.png ^
-    --preload-file assets/images/container.jpg ^
+    --embed-file assets/shaders/sprite.frag ^
+    --embed-file assets/shaders/sprite.vs ^
+    --embed-file assets/levels/four.lvl ^
+    --embed-file assets/levels/one.lvl ^
+    --embed-file assets/levels/three.lvl ^
+    --embed-file assets/levels/two.lvl ^
+    --preload-file assets/textures/awesomeface.png ^
+    --preload-file assets/textures/background.jpg ^
+    --preload-file assets/textures/block_solid.png ^
+    --preload-file assets/textures/block.png ^
+    --preload-file assets/textures/out.png ^
+    --preload-file assets/textures/paddle.png ^
     --use-preload-plugins ^
     -D__EMSCRIPTEN__ ^
     -DGLIB_COMPILATION ^

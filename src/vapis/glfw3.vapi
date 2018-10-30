@@ -58,16 +58,9 @@
  *    distribution.
  *
  *************************************************************************/
-/** use the loader for the platform - ensure the headers are included in the right order */
-//  #if (__EMSCRIPTEN__) 
-//  [CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="GLES3/gl3.h,GLFW/glfw3.h")]
-//  #else
-//  [CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="glad/glad.h,GLFW/glfw3.h")]
-//  #endif
-
 [CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="GL/glew.h,GLFW/glfw3.h")]
-namespace GLFW3 {
-
+namespace GLFW3 
+{
 	/*************************************************************************
 	 * GLFW API types
 	 *************************************************************************/
@@ -671,7 +664,7 @@ namespace GLFW3 {
 	public void glfwWindowHintString(int hint, string value);
 	public GLFWwindow* glfwCreateWindow(int width, int height, string title, GLFWmonitor* monitor, GLFWwindow* share);
 	public void glfwDestroyWindow(GLFWwindow* window);
-	public int glfwWindowShouldClose(GLFWwindow* window);
+	public bool glfwWindowShouldClose(GLFWwindow* window);
 	public void glfwSetWindowShouldClose(GLFWwindow* window, int value);
 	public void glfwSetWindowTitle(GLFWwindow* window, string title);
 	public void glfwSetWindowIcon(GLFWwindow* window, int count, GLFWimage* images);
@@ -765,6 +758,8 @@ namespace GLFW3 {
 	public const int GLFW_VERSION_REVISION;
 	public const int GLFW_OPENGL_PROFILE;
 	public const int GLFW_OPENGL_CORE_PROFILE;
+	public const int GLFW_OPENGL_COMPAT_PROFILE;
+	public const int GLFW_OPENGL_ANY_PROFILE;
 	public const int GLFW_OPENGL_FORWARD_COMPAT;
 	public const int GLFW_CONTEXT_VERSION_MAJOR;
 	public const int GLFW_CONTEXT_VERSION_MINOR;
@@ -773,6 +768,10 @@ namespace GLFW3 {
 	public const int GLFW_KEY_ESCAPE;
 	public const int GLFW_PRESS;
 	public const int GLFW_RELEASE;
+	public const int GLFW_KEY_UP;
+	public const int GLFW_KEY_DOWN;
+	public const int GLFW_KEY_LEFT;
+	public const int GLFW_KEY_RIGHT;
 	public const int GLFW_KEY_A;
 	public const int GLFW_KEY_D;
 	public const int GLFW_KEY_SPACE;

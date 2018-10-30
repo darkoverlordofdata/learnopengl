@@ -45,16 +45,14 @@ file (RELATIVE_PATH CONFIG_VALA ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR}/src/Conf
 list ( APPEND VALA_SOURCES ${CONFIG_VALA} )
 list ( APPEND VALA_SOURCES src/main.vala )
 list ( APPEND VALA_SOURCES src/BallObject.vala )
-list ( APPEND VALA_SOURCES src/Camera.vala )
+list ( APPEND VALA_SOURCES src/Collision.vala )
 list ( APPEND VALA_SOURCES src/Game.vala )
 list ( APPEND VALA_SOURCES src/GameLevel.vala )
 list ( APPEND VALA_SOURCES src/GameObject.vala )
 list ( APPEND VALA_SOURCES src/Shader.vala )
-list ( APPEND VALA_SOURCES src/Image.vala )
 list ( APPEND VALA_SOURCES src/Texture.vala )
 list ( APPEND VALA_SOURCES src/ResourceManager.vala )
 list ( APPEND VALA_SOURCES src/SpriteRenderer.vala )
-list ( APPEND C_SOURCES src/glad.c )
 list ( APPEND C_SOURCES src/stb.c )
 #
 #   application includes
@@ -75,12 +73,11 @@ link_directories ( ${DEPS_LIBRARY_DIRS} )
 #
 list ( APPEND VALAC_OPTIONS --disable-warnings --enable-experimental )
 list ( APPEND VALAC_OPTIONS --vapidir=${CMAKE_SOURCE_DIR}/src/vapis)
-# list ( APPEND VALAC_OPTIONS --define __EMSCRIPTEN__ )
+list ( APPEND VALAC_OPTIONS --define __EMSCRIPTEN__ )
 
 # Vapis: 
 set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/emscripten.vapi" )
 set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/gl.vapi" )
-set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/glew.vapi" )
 set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/glfw3.vapi" )
 set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/stb.vapi" )
 # Libs: 

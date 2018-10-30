@@ -1,6 +1,7 @@
 /*
- * GLESv2 binding for Vala (Plain C Style)
+ * GL binding for Vala (Plain C Style)
  *
+ * Copyright 2018 bruce davidson <darkoverlordofdata@gmail.com>
  * Copyright 2013 Aleksandr Palamar <void995@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -20,201 +21,39 @@
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-//  #if (__EMSCRIPTEN__) /** Use the right header for the platform */
-//  [CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="GLES3/gl3.h")]
-//  #else
-//  [CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="glad/glad.h")]
-//  #endif
-[CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="GL/glew.h,GL/gl.h")]
+[CCode (cprefix = "", lower_case_cprefix ="", cheader_filename="GL/glew.h")]
 namespace GL
 {
-	[CCode (cprefix = "GL_", cname = "int", has_type_id = false)]
-	public enum VertexAttribPointerType
-	{
-		[CCode (cname = "GL_BYTE")]
-		Byte,
-		[CCode (cname = "GL_UNSIGNED_BYTE")]
-		UnsignedByte,
-		[CCode (cname = "GL_SHORT")]
-		Short,
-		[CCode (cname = "GL_UNSIGNED_SHORT")]
-		UnsignedShort,
-		[CCode (cname = "GL_INT")]
-		Int,
-		[CCode (cname = "GL_UNSIGNED_INT")]
-		UnsignedInt,
-		[CCode (cname = "GL_HALF_FLOAT")]
-		HalfFloat,
-		[CCode (cname = "GL_FLOAT")]
-		Float,
-		[CCode (cname = "GL_DOUBLE")]
-		Double,
-		[CCode (cname = "GL_FIXED")]
-		Fixed,
-	}
-
-	[CCode (cprefix = "GL_", cname = "int", has_type_id = false)]
-	public enum ShaderType
-	{
-		[CCode (cname = "GL_COMPUTE_SHADER")]
-		ComputeShader,
-		[CCode (cname = "GL_TESS_CONTROL_SHADER")]
-		TessControlShader,
-		[CCode (cname = "GL_TESS_EVALUATION_SHADER")]
-		TessEvaluationShader,
-		[CCode (cname = "GL_GEOMETRY_SHADER")]
-		GeometryShader,
-		[CCode (cname = "GL_VERTEX_SHADER")]
-		VertexShader,
-		[CCode (cname = "GL_FRAGMENT_SHADER")]
-		FragmentShader,
-	}
-
-	[CCode (cprefix = "GL_", cname = "int", has_type_id = false)]
-	public enum ShaderParameter
-	{
-		[CCode (cname = "GL_SHADER_TYPE")]
-		ShaderType,
-		[CCode (cname = "GL_DELETE_STATUS")]
-		DeleteStatus,
-		[CCode (cname = "GL_INFO_LOG_LENGTH")]
-		LogLength,
-		[CCode (cname = "GL_COMPILE_STATUS")]
-		CompileStatus,
-		[CCode (cname = "GL_SHADER_SOURCE_LENGTH")]
-		SourceLength,
-	}
-
-	[CCode (cprefix = "GL_", cname = "int", has_type_id = false)]
-	public enum GetProgramParameter
-	{
-		[CCode (cname = "GL_DELETE_STATUS")]
-		DeleteStatus,
-		[CCode (cname = "GL_VALIDATE_STATUS")]
-		ValidateStatus,
-		[CCode (cname = "GL_ACTIVE_UNIFORM_MAX_LENGTH")]
-		ActiveUniformMaxLength,
-		[CCode (cname = "GL_ATTACHED_SHADERS")]
-		AttachedShaders,
-		[CCode (cname = "GL_ACTIVE_ATTRIBUTES")]
-		ActiveAttributes,
-		[CCode (cname = "GL_ACTIVE_ATTRIBUTE_MAX_LENGTH")]
-		ActiveAttributeMaxLength,
-		[CCode (cname = "GL_ACTIVE_UNIFORMS")]
-		ActiveUniforms,
-		[CCode (cname = "GL_INFO_LOG_LENGTH")]
-		LogLength,
-		[CCode (cname = "GL_LINK_STATUS")]
-		LinkStatus,
-	}
-
-	[CCode (cprefix = "GL_", cname = "int", has_type_id = false)]
-	public enum ClearBufferMask
-	{
-		[CCode (cname = "GL_DEPTH_BUFFER_BIT")]
-		DepthBufferBit,
-		[CCode (cname = "GL_STENCIL_BUFFER_BIT")]
-		StencilBufferBit,
-		[CCode (cname = "GL_COLOR_BUFFER_BIT")]
-		ColorBufferBit,
-		[CCode (cname = "GL_ACCUM_BUFFER_BIT")]
-		AccumBufferBit,
-	}
-
-	[CCode (cprefix = "GL_", cname = "int", has_type_id = false)]
-	public enum BufferTarget
-	{
-		[CCode (cname = "GL_ARRAY_BUFFER")]
-		ArrayBuffer,
-		[CCode (cname = "GL_ELEMENT_ARRAY_BUFFER")]
-		ElementArrayBuffer,
-	}
-
-	[CCode (cprefix = "GL_", cname = "int", has_type_id = false)]
-	public enum BufferUsageHint
-	{
-		[CCode (cname = "GL_STREAM_DRAW")]
-		StreamDraw,
-		[CCode (cname = "GL_STATIC_DRAW")]
-		StaticDraw,
-	}
-
-	[CCode (cprefix = "GL_", cname = "int", has_type_id = false)]
-	public enum PrimitiveType
-	{
-		[CCode (cname = "GL_LINES")]
-		Lines,
-		[CCode (cname = "GL_LINE_STRIP")]
-		LineStrip,
-		[CCode (cname = "GL_TRIANGLES")]
-		Triangles,
-		[CCode (cname = "GL_TRIANGLE_STRIP")]
-		TriangleStrip,
-	}
-
-
-	[CCode (cname="gladLoadGL")]
-	public int gladLoadGL();
+	public bool glewInit();
+    public static bool glewExperimental;
 
     /*-------------------------------------------------------------------------
-     * Data type definitions
+     * Data type definitions (typedefs)
+     *-----------------------------------------------------------------------*/
+
+    [SimpleType] public struct GLvoid { }
+    [SimpleType] public struct GLchar: char { }
+    [SimpleType] public struct GLenum: int { }
+    [SimpleType] public struct GLboolean: uint8 { }    
+    [SimpleType] public struct GLbitfield: uint8 { }
+    [SimpleType] public struct GLbyte: char { }
+    [SimpleType] public struct GLshort: short { }
+    [SimpleType] public struct GLint: int { }
+    [SimpleType] public struct GLsizei: int { }
+    [SimpleType] public struct GLubyte: uchar { }
+    [SimpleType] public struct GLushort: ushort { }
+    [SimpleType] public struct GLuint: uint { }
+    [SimpleType] public struct GLfloat: float { }
+    [SimpleType] public struct GLdouble: double { }
+    [SimpleType] public struct GLclampf: float { }
+    [SimpleType] public struct GLfixed: int32 { }
+    [SimpleType] public struct GLintptr: size_t { }
+    [SimpleType] public struct GLsizeiptr: size_t { }
+
+    /*-------------------------------------------------------------------------
+     * Constants
      *-----------------------------------------------------------------------*/
      
-    [SimpleType]
-    public struct GLvoid { }
-     
-    [SimpleType]
-    public struct GLchar: char { }
-    
-    [SimpleType]
-    public struct GLenum: int { }
-    
-    [SimpleType]
-    public struct GLboolean: uint8 { }
-    
-    [SimpleType]
-    public struct GLbitfield: uint8 { }
-    
-    [SimpleType]
-    public struct GLbyte: char { }
-    
-    [SimpleType]
-    public struct GLshort: short { }
-    
-    [SimpleType]
-    public struct GLint: int { }
-    
-    [SimpleType]
-    public struct GLsizei: int { }
-    
-    [SimpleType]
-    public struct GLubyte: uchar { }
-    
-    [SimpleType]
-    public struct GLushort: ushort { }
-    
-    [SimpleType]
-    public struct GLuint: uint { }
-    
-    [SimpleType]
-    public struct GLfloat: float { }
-    
-    [SimpleType]
-    public struct GLdouble: double { }
-    
-    [SimpleType]
-    public struct GLclampf: float { }
-    
-    [SimpleType]
-    public struct GLfixed: int32 { }
-
-    /* GL types for handling large vertex buffer objects */
-    [SimpleType]
-    public struct GLintptr: size_t { }
-    
-    [SimpleType]
-    public struct GLsizeiptr: size_t { }
-
     public const GLboolean GL_FALSE;
     public const GLboolean GL_TRUE;
 

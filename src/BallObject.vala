@@ -6,25 +6,14 @@
 ** Creative Commons, either version 4 of the License, or (at your
 ** option) any later version.
 ******************************************************************/
-using GL;
-using GLEW;
-using GLFW3;
-using System;
 using Glm;
-
+using System;
 
 public class BallObject : GameObject
 {
     // Ball state	
     public float Radius;
     public bool Stuck;
-
-    public BallObject.Empty()
-    {
-        base.Empty();
-        Rotation = 12.5f;
-        Stuck = true;
-    }
 
     public BallObject(Vec2 pos, float radius, Vec2 velocity, Texture2D sprite)
     {
@@ -44,20 +33,20 @@ public class BallObject : GameObject
             Position.Y += Velocity.Y * dt;
             // Position += Velocity * dt;
             // Check if outside window bounds; if so, reverse velocity and restore at correct position
-            if (Position.X <= 0.0f)
+            if (Position.X <= 0f)
             {
                 Velocity.X = -Velocity.X;
-                Position.X = 0.0f;
+                Position.X = 0f;
             }
             else if (Position.X + Size.X >= window_width)
             {
                 Velocity.X = -Velocity.X;
                 Position.X = window_width - Size.X;
             }
-            if (Position.Y <= 0.0f)
+            if (Position.Y <= 0f)
             {
                 Velocity.Y = -Velocity.Y;
-                Position.Y = 0.0f;
+                Position.Y = 0f;
             }
         
         }
