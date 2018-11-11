@@ -21,9 +21,9 @@ find_package (Vala REQUIRED)
 #
 #   libraries - sources & packages
 #
+add_subdirectory ( .lib/jasmine )
 add_subdirectory ( .lib/glm )
 add_subdirectory ( .lib/system )
-add_subdirectory ( .lib/jasmine )
 add_subdirectory ( .lib/zerog )
 if (EXISTS ${CMAKE_SOURCE_DIR}/data AND NOT DEFINED ZEROG )
     add_subdirectory (data)
@@ -43,13 +43,23 @@ file (RELATIVE_PATH CONFIG_VALA ${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR}/src/Conf
 #   application source
 #
 list ( APPEND VALA_SOURCES ${CONFIG_VALA} )
-list ( APPEND VALA_SOURCES src/Shader.vala )
 list ( APPEND VALA_SOURCES src/main.vala )
+list ( APPEND VALA_SOURCES src/BallObject.vala )
+list ( APPEND VALA_SOURCES src/Collision.vala )
+list ( APPEND VALA_SOURCES src/Game.vala )
+list ( APPEND VALA_SOURCES src/GameLevel.vala )
+list ( APPEND VALA_SOURCES src/GameObject.vala )
+list ( APPEND VALA_SOURCES src/Shader.vala )
+list ( APPEND VALA_SOURCES src/Texture.vala )
+list ( APPEND VALA_SOURCES src/ParticleGenerator.vala )
+list ( APPEND VALA_SOURCES src/ResourceManager.vala )
+list ( APPEND VALA_SOURCES src/SpriteRenderer.vala )
+list ( APPEND C_SOURCES src/stb.c )
 #
 #   application includes
 #
 set ( INCLUDES "${INCLUDES};./include" )
-set ( INCLUDES "${INCLUDES};C:\\msys64\\mingw64\\include\\freetype2" )
+
 #
 #   pkg-config dependencies
 #
@@ -63,20 +73,18 @@ link_directories ( ${DEPS_LIBRARY_DIRS} )
 #   compiler options
 #
 list ( APPEND VALAC_OPTIONS --disable-warnings --enable-experimental )
-list ( APPEND VALAC_OPTIONS --vapidir=${CMAKE_SOURCE_DIR})
+list ( APPEND VALAC_OPTIONS --vapidir=${CMAKE_SOURCE_DIR}/src/vapis)
 # list ( APPEND VALAC_OPTIONS --define __EMSCRIPTEN__ )
 
 # Vapis: 
-set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/freetype2.vapi" )
-set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/gl.vapi" )
 set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/emscripten.vapi" )
-set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/stb.vapi" )
+set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/gl.vapi" )
 set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/glfw3.vapi" )
+set ( CUSTOM_VAPIS "${CUSTOM_VAPIS};src/vapis/stb.vapi" )
 # Libs: 
 set ( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lglfw3" )
 set ( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lglew32" )
 set ( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lopengl32" )
-set ( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lfreetype" )
 
 set ( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -w -std=c99 -O3" )
 
@@ -108,7 +116,7 @@ vala_precompile (
 #
 add_executable ( ${PROJECT_NAME} ${VALA_C} ${C_SOURCES} ${RESOURCES} )
 
-target_link_libraries ( ${PROJECT_NAME} glfw3 glew32 opengl32 freetype )
+target_link_libraries ( ${PROJECT_NAME} glfw3 glew32 opengl32 )
 install (TARGETS ${PROJECT_NAME} RUNTIME DESTINATION . )
 
 if (EXISTS ${CMAKE_SOURCE_DIR}/data AND DEFINED ZEROG)

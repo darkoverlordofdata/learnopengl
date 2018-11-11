@@ -11,20 +11,14 @@ emcc ^
     -s FULL_ES3=1 ^
     -s USE_FREETYPE=1 ^
     -s USE_OGG=1 ^
-    -s USE_SDL=2 ^
-    -s USE_SDL_IMAGE=2 ^
-    -s USE_SDL_TTF=2 ^
     --embed-file assets/shaders/sprite.frag ^
     --embed-file assets/shaders/sprite.vs ^
-    --embed-file assets/shaders/text.frag ^
-    --embed-file assets/shaders/text.vs ^
     --embed-file assets/shaders/particle.frag ^
     --embed-file assets/shaders/particle.vs ^
     --embed-file assets/levels/four.lvl ^
     --embed-file assets/levels/one.lvl ^
     --embed-file assets/levels/three.lvl ^
     --embed-file assets/levels/two.lvl ^
-    --preload-file assets/fonts/LiberationSansBold.ttf ^
     --preload-file assets/textures/awesomeface.png ^
     --preload-file assets/textures/background.jpg ^
     --preload-file assets/textures/block_solid.png ^
@@ -39,10 +33,10 @@ emcc ^
     -DGOBJECT_COMPILATION ^
     -I./include ^
     -I./.lib/zerog/include ^
+    -I./.lib/soil/include ^
     -I./.lib/glm/include ^
     -IC:/Users/darko/Documents/GitHub/glib ^
     -IC:/Users/darko/Documents/GitHub/glib/glib ^
     -IC:/Users/darko/Documents/GitHub/glib/gobject ^
-    -IC:/msys64/mingw64/include/freetype2 ^
     -IC:/msys64/mingw64/lib/libffi-3.2.1/include ^
     @files

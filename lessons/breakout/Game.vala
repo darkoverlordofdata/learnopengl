@@ -16,8 +16,7 @@ public enum GameState
 {
     ACTIVE,
     MENU,
-    WIN,
-    DONE
+    WIN
 }
 // Game holds all game-related state and functionality.
 // Combines all game-related data into a single class for
@@ -40,6 +39,7 @@ public class Game : Object
     Vec2 INITIAL_BALL_VELOCITY = new Vec2(100f, -350f);
     const float BALL_RADIUS = 12.5f;
     BallObject Ball; 
+    ParticleGenerator Particles;
 
     public Game(int width, int height)
     {
@@ -51,6 +51,7 @@ public class Game : Object
     public void Init()
     {
         // Load shaders
+        ResourceManager.LoadShader("shaders/particle.vs", "shaders/particle.frag", null, "particle");
         ResourceManager.LoadShader("shaders/sprite.vs", "shaders/sprite.frag", null, "sprite");
 
         // Load textures
@@ -59,7 +60,7 @@ public class Game : Object
         ResourceManager.LoadTexture("textures/awesomeface.png", true, "face");
         ResourceManager.LoadTexture("textures/block.png", false, "block");
         ResourceManager.LoadTexture("textures/block_solid.png", false, "block_solid");
-
+        ResourceManager.LoadTexture("textures/particle.png", true, "particle");
         // Load levels
         Levels.Add(new GameLevel("levels/one.lvl",  Width, (int)(Height * 0.5)));
         Levels.Add(new GameLevel("levels/two.lvl",  Width, (int)(Height * 0.5)));
@@ -77,6 +78,11 @@ public class Game : Object
         shader.SetMatrix4("projection", projection);    //  uniform mat4 projection;
         shader.SetInteger("image", 0);                  //  uniform sampler2D image;
 
+        var pshader = ResourceManager.GetShader("particle");
+        pshader.Use(); 
+        pshader.SetMatrix4("projection", projection);    //  uniform mat4 projection;
+        pshader.SetInteger("sprite", 0);                  //  uniform sampler2D image;
+
         // Set Game Objects
         var playerPos = new Vec2(Width / 2 - PLAYER_SIZE.X / 2, Height - PLAYER_SIZE.Y);
         Player = new GameObject(playerPos, PLAYER_SIZE, ResourceManager.GetTexture("paddle"));
@@ -86,12 +92,17 @@ public class Game : Object
 
         // Set renderer
         Renderer = new SpriteRenderer(shader);
+        Particles = new ParticleGenerator(ResourceManager.GetShader("particle"), 
+                                            ResourceManager.GetTexture("particle"), 
+                                            500);
     }
 
     public void Update(float dt)
     {
         Ball.Move(dt, Width);
         DoCollisions();
+        // Update particles
+        Particles.Update(dt, Ball, 2, Ball.Radius / 2, Ball.Radius / 2);
         if (Ball.Position.Y >= Height) // Did ball reach bottom edge?
         {
             Levels[Level].Reset();
@@ -134,6 +145,7 @@ public class Game : Object
             Levels[Level].Draw(Renderer);
             Player.Draw(Renderer);          
             Ball.Draw(Renderer);
+            Particles.Draw();
         }
     }
 
@@ -156,7 +168,7 @@ public class Game : Object
                     {
                         Ball.Velocity.X = -Ball.Velocity.X; // Reverse horizontal velocity
                         // Relocate
-                        float penetration = Ball.Radius - Math.fabsf(diff_vector.X);
+                        var penetration = Ball.Radius - Math.fabsf(diff_vector.X);
                         if (dir == Direction.LEFT)
                             Ball.Position.X += penetration; // Move ball to right
                         else
@@ -166,7 +178,7 @@ public class Game : Object
                     {
                         Ball.Velocity.Y = -Ball.Velocity.Y; // Reverse vertical velocity
                         // Relocate
-                        float penetration = Ball.Radius - Math.fabsf(diff_vector.Y);
+                        var penetration = Ball.Radius - Math.fabsf(diff_vector.Y);
                         if (dir == Direction.UP)
                             Ball.Position.Y -= penetration; // Move ball back up
                         else
@@ -180,11 +192,11 @@ public class Game : Object
         if (!Ball.Stuck && result.isTrue)
         {
             // Check where it hit the board, and change velocity based on where it hit the board
-            float centerBoard = Player.Position.X + Player.Size.X / 2;
-            float distance = (Ball.Position.X + Ball.Radius) - centerBoard;
-            float percentage = distance / (Player.Size.X / 2);
+            var centerBoard = Player.Position.X + Player.Size.X / 2;
+            var distance = (Ball.Position.X + Ball.Radius) - centerBoard;
+            var percentage = distance / (Player.Size.X / 2);
             // Then move accordingly
-            float strength = 2f;
+            var strength = 2f;
             Vec2 oldVelocity = Ball.Velocity;
             Ball.Velocity.X = INITIAL_BALL_VELOCITY.X * percentage * strength; 
             // Ball.Velocity.Y = -Ball.Velocity.Y;
